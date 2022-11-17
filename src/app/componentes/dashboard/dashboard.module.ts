@@ -10,6 +10,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { CitasComponent } from './citas/citas.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { MaterialModule } from '../../material/material.module';
+import { CrearComponent } from './usuario/crear/crear.component';
+
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { MaterialModule } from '../../material/material.module';
     UsuarioComponent,
     CitasComponent,
     ReportesComponent,
+    CrearComponent,
   ],
   imports: [
     CommonModule,

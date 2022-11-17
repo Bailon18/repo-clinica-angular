@@ -1,0 +1,59 @@
+
+<h1 mat-dialog-title>Nuevo Usuario</h1>
+<div style="font-size: 12px;">
+    <div mat-dialog-content>
+        <mat-form-field  appearance="fill">
+            <mat-label>Ingrese Nombre</mat-label>
+            <input class="input" matInput>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field  appearance="fill">
+            <mat-label>Ingrese Apellidos</mat-label>
+            <input class="input" matInput>
+        </mat-form-field>
+        <br>
+        <mat-form-field  appearance="fill">
+            <mat-label>Ingrese Dni</mat-label>
+            <input class="input" matInput>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field  appearance="fill">
+            <mat-label>Correo</mat-label>
+            <input class="input" matInput placeholder="pat@example.com"  required>
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+            <mat-label>Ingrese Contraseña</mat-label>
+            <input class="input" matInput>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field  appearance="fill">
+            <mat-label>Seleccione Estado</mat-label>
+            <mat-select class="input">
+              <mat-option value="1">Activo</mat-option>
+              <mat-option value="2">Inactivo</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field  appearance="fill">
+            <mat-label>Seleccione Sexo</mat-label>
+            <mat-select class="input">
+              <mat-option value="M">Masculino</mat-option>
+              <mat-option value="F">Femenino</mat-option>
+            </mat-select>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field  appearance="fill">
+            <mat-label>Seleccione rol</mat-label>
+            <mat-select class="input">
+              <mat-option value="1">Administrador</mat-option>
+              <mat-option value="2">Asistente</mat-option>
+              <mat-option value="3">Psicologo</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions style="text-align: end;">
+        <button class="btn btn-danger"  mat-button mat-dialog-close>Close</button>
+        <button class="btn btn-success" >Guardar</button>
+    </div>
+</div>
+

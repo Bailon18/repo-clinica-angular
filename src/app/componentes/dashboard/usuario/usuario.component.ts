@@ -4,6 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { UsuarioService } from './usuario.service';
 import {MatDialog} from '@angular/material/dialog';
+import { CrearComponent } from './crear/crear.component';
 
 
 
@@ -38,20 +39,15 @@ export class UsuarioComponent implements AfterViewInit {
     return this.servicio.getUsuario();
   }
   
-  openDialog() {
+  abrirDialogoNuevoUsuario() {
   
-    const dialogRef = this.dialog.open(DialogElementsExampleDialog);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    this.dialog.open(CrearComponent, {
+        width:'35%',
+        height:'63%'
     });
   }
 
 
 }
 
-@Component({
-  selector: 'dialog',
-  templateUrl: './dialog.html',
-})
-export class DialogElementsExampleDialog {}
+
