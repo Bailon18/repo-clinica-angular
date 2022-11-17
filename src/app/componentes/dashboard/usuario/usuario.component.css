@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+  }
+
+.iconosAccion {
+  margin: 3px;
+}
+.success-icon{
+  color:green
+}
+.danger-icon{
+  color:red
+}
+.pdf-icon{
+  color:rgb(97, 74, 74)
+}

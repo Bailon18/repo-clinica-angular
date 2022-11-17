@@ -1,0 +1,65 @@
+
+<body class="bg-secondary">
+    <main class="d-flex w-100">
+        <div class="container d-flex flex-column">
+            <div class="row vh-100">
+                <div class="col-sm-12 col-md-3 col-6 mx-auto d-table h-100">
+                    <div class="d-table-cell align-middle">
+
+                        <div class="card" style="max-width: 23rem;">
+                            <div class="card-body">
+                                <div class="m-sm-3">
+                                    <div class="text-center">
+                                        <img src="/assets/imagen/userdefault.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
+                                    </div>
+
+                                    
+                                    <!-- <form (ngSubmit)="ingresar()" #myForm="ngForm">
+                                        <div class="form-floating mt-5">
+                                            <input required [(ngModel)]="correo" name="correo"  type="email" class="form-control" placeholder="admin@ejemplo.com">
+                                            <label>Correo</label>
+                                        </div>
+                                        <div class="form-floating mt-3">
+                                            <input required [(ngModel)]="contrasena" name="contrasena" type="password" class="form-control" placeholder="contraseña">
+                                            <label>Contraseña</label>
+                                            <small>
+                                                <a href="index.html">olvido constraseña?</a>
+                                            </small>
+                                        </div>
+                                        <div class="text-center mt-4">
+                                            <button [disabled]="myForm.invalid" type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                                        </div>
+                                    </form> -->
+                                    
+                                    <br>
+
+                                    <form [formGroup]="formulario" (ngSubmit)="ingresar()">
+                                        <mat-form-field class="example-full-width"  appearance="fill" >
+                                            <mat-label>Correo</mat-label>
+                                            <input matInput autocomplete="off" formControlName="usuario">
+                                        </mat-form-field>
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Contraseña</mat-label>
+                                            <input matInput type="password" autocomplete="off" formControlName="password">
+                                        </mat-form-field>
+                                        <small>
+                                            <a href="index.html">olvido constraseña?</a>
+                                        </small>
+                                        <div class="text-center mt-4">
+                                            <button type="submit" mat-raised-button color="primary" 
+                                            [disabled]="formulario.invalid">Ingresar</button>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+
