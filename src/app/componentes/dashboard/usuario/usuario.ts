@@ -14,6 +14,6 @@ export interface Usuario{
     contrasena:string,
     estado:number,
     sexo:string,
-    idRol: Roles
+    roles: Roles[]
 }
 

@@ -1,6 +1,4 @@
-input{
-    height: 5%;
-}
+
 .mat-radio-inner-circle {
     background-color: blue;
 }
@@ -11,4 +9,8 @@ input{
   'wght' 700,
   'GRAD' 0,
   'opsz' 48
+}
+
+.example-full-width {
+  width: 100%;
 }

@@ -1,76 +1,100 @@
 
-<h1 mat-dialog-title>Nuevo Usuario</h1>
-<div class="row">
-    <div class="col-6">
-        <mat-form-field  appearance="fill">
-            <mat-label>Ingrese Nombre</mat-label>
-            <input class="input" matInput>
-        </mat-form-field>
-    </div>
-    <div class="col-6">
-        <mat-form-field  appearance="fill">
-            <mat-label>Ingrese Apellidos</mat-label>
-            <input class="input" matInput>
-        </mat-form-field>
-    </div>
-</div>
+<h1 mat-dialog-title style="font-weight: 500;">Nuevo Usuario</h1>
 
-<div class="row">
-    <div class="col-6">
-        <mat-form-field  appearance="fill">
-            <mat-label>Ingrese Dni</mat-label>
-            <input class="input" matInput>
+<form [formGroup]="usuarioForm"> <!---->
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field  appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <mat-form-field  appearance="outline">
+                <mat-label>Apellidos</mat-label>
+                <input matInput  formControlName="apellidos">
+            </mat-form-field>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field  appearance="outline">
+                <mat-label>Ingrese Dni</mat-label>
+                <input  formControlName="dni" matInput>
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <mat-form-field  appearance="outline">
+                <mat-label>Sexo</mat-label>
+                <mat-select formControlName="sexo" name="sexo">
+                    <mat-option value="M">Masculino</mat-option>
+                    <mat-option value="F">Femenino</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <mat-form-field  appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input type="email" formControlName="correo" matInput placeholder="admin@idat.com">
         </mat-form-field>
     </div>
-    <div class="col-6">
-        <mat-form-field  appearance="fill">
-            <mat-label>Ingrese Contraseña</mat-label>
-            <input class="input" matInput>
-        </mat-form-field>
-    </div>
-</div>
-<div class="row">
-    <mat-form-field  appearance="fill">
-        <mat-label>Correo</mat-label>
-        <input class="input" matInput placeholder="pat@example.com"  required>
-    </mat-form-field>
-</div>
-
-<div class="row">
-    <div class="col-6">
-        <label class="form-label">Roles<sup><i class="fa fa-asterisk"></i></sup></label>
-        <section class="example-section">
-            <p><mat-checkbox formControlName="pepperoni">Administrador</mat-checkbox></p>
-            <p><mat-checkbox formControlName="extracheese">Asistente</mat-checkbox></p>
-            <p><mat-checkbox formControlName="mushroom">Psicologo</mat-checkbox></p>
-        </section>
-    </div>
-    <div class="col-6">
-
-        <div class="row">
-            <div class="col-6">
-                <label class="form-label">Estado<sup><i class="fa fa-asterisk"></i></sup></label>
-                <br>
-                <mat-radio-button >Activo</mat-radio-button>
-                <p class="mb-2"></p>
-                <mat-radio-button >Bloqueado</mat-radio-button>
-            </div>
-            <div class="col-6">
+    
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field  appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input type="password"  formControlName="contrasena" matInput>
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field  appearance="outline">
+                        <mat-label>Estado</mat-label>
+                        <mat-select formControlName="estado" value="1">
+                            <mat-option value="1">Activo</mat-option>
+                            <mat-option value="0">Inactivo</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div >
-<div class="row">
-    <div class="col text-end">
-        <button class="btn btn-secondary m-2" mat-dialog-close>Cancelar</button>
-        <button class="btn btn-primary" >Guardar</button>
+
+    <div class="row">
+        <div class="col-6">
+            <label class="form-label">Roles<sup><i class="fa fa-asterisk"></i></sup></label>
+            <div>
+                <input type="checkbox" formArrayName="roles" value="1" (change)="onCheckboxChange($event)">&nbsp;&nbsp;Administrador
+            </div>
+            <div>
+                <input type="checkbox" formArrayName="roles" value="2" (change)="onCheckboxChange($event)">&nbsp;&nbsp;Asistente
+            </div>
+            <div>
+                <input type="checkbox" formArrayName="roles"  value="3" (change)="onCheckboxChange($event)">&nbsp;&nbsp;Psicologo
+            </div>
+        </div>
     </div>
-</div>
+    
+    <div class="row">
+        <div class="col text-end">
+            <button class="btn btn-secondary m-2" mat-dialog-close>Cancelar</button>
+            <button class="btn btn-primary" type="submit" (click)="guardarUsuario()">Guardar</button>
+        </div>
+    </div> 
+</form>
 
 
 
 
 
+
+
+  
+  
 
 
