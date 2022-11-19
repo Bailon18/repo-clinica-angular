@@ -12,6 +12,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material/radio';
+
 
 
 
@@ -29,7 +32,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatPaginatorModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
 
   exports: [
@@ -44,9 +49,14 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatPaginatorModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    MatRadioModule
 
-    
-  ]
+  ],
+  providers: [{
+    provide: MAT_RADIO_DEFAULT_OPTIONS,
+    useValue: { color: 'primary',},
+}] 
 })
 export class MaterialModule { }

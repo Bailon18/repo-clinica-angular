@@ -42,8 +42,8 @@ export class UsuarioComponent implements AfterViewInit {
   abrirDialogoNuevoUsuario() {
   
     this.dialog.open(CrearComponent, {
-        width:'35%',
-        height:'63%'
+        width:'470px',
+        height:'500px'
     });
   }
 
