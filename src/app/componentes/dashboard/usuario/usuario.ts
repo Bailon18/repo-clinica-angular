@@ -12,7 +12,7 @@ export interface Usuario{
     apellidos: string,
     correo:string, 
     contrasena:string,
-    estado:number,
+    estado:string,
     sexo:string,
     roles: Roles[]
 }

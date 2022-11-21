@@ -13,15 +13,19 @@ import { CrearComponent } from './crear/crear.component';
   templateUrl: './usuario.component.html',
   styleUrls:['./usuario.component.css']
 })
-export class UsuarioComponent implements AfterViewInit {
+export class UsuarioComponent implements AfterViewInit , OnInit{
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'CORREO', 'ESTADO', 'SEXO', 'ROL','ACCIONES'];
+  dataSource = new MatTableDataSource<Usuario>;
+
   constructor(private servicio:UsuarioService, public dialog: MatDialog) {
   }
-
-  columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'CORREO', 'ESTADO', 'SEXO', 'ROL','ACCIONES'];
-  dataSource = new MatTableDataSource<Usuario>(this.cargarUsuario());
+  ngOnInit(): void {
+    this.getUsuarioss();
+    console.log("USUARIOS:  ", this.getUsuarioss())
+  }
 
   ngAfterViewInit(): void {
     this.paginator._intl.itemsPerPageLabel = 'Paginas';
@@ -35,18 +39,38 @@ export class UsuarioComponent implements AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  getUsuarioss(){
+    return this.servicio.getUsuarios().subscribe(
+      res => this.dataSource = new MatTableDataSource(res)
+    )
+  }
+
   cargarUsuario(){
     return this.servicio.getUsuario();
   }
   
   abrirDialogoNuevoUsuario() {
-  
-    this.dialog.open(CrearComponent, {
-        width:'470px',
-        height:'500px'
-    });
+    // this.dialog.open(CrearComponent, {
+    //     width:'470px',
+    // }).afterClosed().subscribe(valor =>{
+    //   if (valor === 'guardar') {
+    //     this.dataSource = new MatTableDataSource<Usuario>(this.cargarUsuario());
+    //     this.dataSource.paginator = this.paginator;
+    //   }
+    // });
   }
 
+  editarUsuario(fila: any){
+    // this.dialog.open(CrearComponent,{
+    //   width:'470px',
+    //   data:fila
+    // }).afterClosed().subscribe(valor =>{
+    //   if (valor === 'actualizar') {
+    //     this.dataSource = new MatTableDataSource<Usuario>(this.cargarUsuario());
+    //     this.dataSource.paginator = this.paginator;
+    //   }
+    // });
+  }
 
 }
 

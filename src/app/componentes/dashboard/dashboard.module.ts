@@ -28,7 +28,8 @@ import { CrearComponent } from './usuario/crear/crear.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
+    MaterialModule,
+   
   ]
 })
 export class DashboardModule { }
