@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../usuario.service';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Roles, Usuario } from '../usuario';
 
 
 @Component({
@@ -15,9 +16,12 @@ export class CrearComponent implements OnInit {
 
   usuarioForm !: FormGroup
   rolesServicios: any;
-  rolesDevista: any;
+  rolesDevista!: Roles[];
   titulo: string = "Nuevo Usuario";
   tituloBoton:string ="Guardar"
+ 
+
+  listaRoles! : Roles[];
 
   constructor(private formbuilder: FormBuilder, 
             private servicio: UsuarioService,
@@ -28,45 +32,59 @@ export class CrearComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.listaRoles = this.servicio.getRoles();
+    
     this.usuarioForm = this.formbuilder.group({
-      id:['1'],
+      id:[''],
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
       dni: ['',[Validators.required,Validators.min(10000000),Validators.max(99999999)]],
       contrasena: ['',[Validators.required, Validators.minLength(5)]],
-      roles : new FormArray([]),
       correo: ['', [Validators.required, Validators.email]],
       estado: ['', Validators.required],
       sexo: ['', Validators.required],
     })
 
+
     if(this.datoedit){
 
-      this.usuarioForm.controls['nombres'].setValue(this.datoedit.nombres);
-      this.usuarioForm.controls['apellidos'].setValue(this.datoedit.apellidos);
-      this.usuarioForm.controls['dni'].setValue(this.datoedit.dni);
-      this.usuarioForm.controls['contrasena'].setValue(this.datoedit.contrasena);
-      this.usuarioForm.controls['correo'].setValue(this.datoedit.correo);
-      this.usuarioForm.controls['estado'].setValue(this.datoedit.estado);
-      this.usuarioForm.controls['sexo'].setValue(this.datoedit.sexo);
+      this.listaRoles.forEach((item) => {
+        item.seleccion = false;})
+
+      this.servicio.buscarUsuario(this.datoedit.id).subscribe(u => 
+        {
+
+          this.usuarioForm.controls['id'].setValue(u.id)
+          this.usuarioForm.controls['nombres'].setValue(u.nombres);
+          this.usuarioForm.controls['apellidos'].setValue(u.apellidos);
+          this.usuarioForm.controls['dni'].setValue(u.dni);
+          this.usuarioForm.controls['contrasena'].setValue(u.contrasena);
+          this.usuarioForm.controls['correo'].setValue(u.correo);
+          this.usuarioForm.controls['estado'].setValue(u.estado);
+          this.usuarioForm.controls['sexo'].setValue(u.sexo);
+
+
+          for(const r of u.roles){
+            for(const rn of this.listaRoles){
+              if(r.id === rn.id){
+                rn.seleccion = true;
+              }
+            }
+          }
+      
+        })
 
       this.titulo = "Editar Usuario";
       this.tituloBoton = "Actualizar";
 
     }
-
-    console.log(this.datoedit)
   }
 
-  onCheckboxChange(event: any) {
 
-    const roles = (this.usuarioForm.controls['roles'] as FormArray);
-    if (event.target.checked) {
-      roles.push(new FormControl( parseInt(event.target.value)));
-    } else {
-      const index = roles.controls.findIndex(x => x.value === parseInt(event.target.value));
-      roles.removeAt(index);
-    }
+  onchange(event: any) {
+
+    this.rolesDevista = this.listaRoles.slice()
+    console.log("LISTAAA ROL ", this.rolesDevista)
   }
 
 
@@ -76,23 +94,25 @@ export class CrearComponent implements OnInit {
     
         if(this.usuarioForm.valid){
     
-          this.rolesDevista = this.usuarioForm.value['roles']
-          this.rolesServicios = this.servicio.getRoles();
-      
-          const rolesSeleccionados = [];
-      
-          for (const i of this.rolesDevista) {
-            for (const j of this.rolesServicios) {
-                if(i == j.id){
-                  rolesSeleccionados.push(j)
-                }
+          let copiaRoles = this.rolesDevista.slice()
+    
+          let resultado = copiaRoles.filter(x => x.seleccion==true).map(({seleccion, ...rest}) => {
+            return rest;
+          });
+
+          this.usuarioForm.value['roles']= resultado
+          
+          this.servicio.guardarUsuarioServi(this.usuarioForm.value).subscribe( usu => {
+
+              
+              this.listaRoles.forEach((item) => {
+              item.seleccion = false;})
+            
+              this.dialog.close("guardar")
+              this.mensaje("Se registro usuario correctamente ", "Valido")
+          
             }
-          }
-      
-          this.usuarioForm.value['roles']= rolesSeleccionados
-          this.servicio.setUsuario(this.usuarioForm.value)
-          this.dialog.close("guardar");
-          this.mensaje("Se registro usuario correctamente ", "Valido")
+          )
         }
     }else{
       this.actualizarUsuario()
@@ -101,11 +121,28 @@ export class CrearComponent implements OnInit {
   }
 
   actualizarUsuario(){
-    this.servicio.updateUsuario(this.usuarioForm.value, this.datoedit.id);
-    this.dialog.close("actualizar");
-    this.mensaje("Se actualizo usuario correctamente ", "Valido");
-  }
+    
+    this.onchange(Event)
 
+    let copiaRoles = this.rolesDevista.slice()
+    
+    let resultado = copiaRoles.filter(x => x.seleccion==true).map(({seleccion, ...rest}) => {
+      return rest;
+    });
+
+    this.usuarioForm.value['roles']= resultado
+    
+    this.servicio.actualizarUsuarioServi(this.usuarioForm.value).subscribe(usuario => {
+
+      this.listaRoles.forEach((item) => {
+      item.seleccion = false;})
+
+      this.dialog.close("actualizar");
+      this.mensaje("Se actualizo usuario correctamente ", "Valido");
+
+    })
+
+  }
 
   mensaje(mensaje:string, tipo:string) {
       this._snackBar.open(mensaje, tipo, {

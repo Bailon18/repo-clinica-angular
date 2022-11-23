@@ -10,53 +10,19 @@ import { Roles, Usuario } from './usuario';
 export class UsuarioService {
 
   private urlListar: string = 'http://localhost:8080/usuario/listar';
-  private urlcrear: string = 'http://localhost:8080/clientes/guardar';
-  private urlBuscar: string = 'http://localhost:8080/clientes/buscar';
-  private urlActualizar: string = 'http://localhost:8080/clientes/editar';
+  private urlcrear: string = 'http://localhost:8080/usuario/guardar';
+  private urlBuscar: string = 'http://localhost:8080/usuario/buscar';
+  private urlActualizar: string = 'http://localhost:8080/usuario/actualizar';
   private urleliminar: string = 'http://localhost:8080/clientes/eliminar';
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 
 
-  // listaRoles: Roles[] = [
-  //   {id:1, descripcion:'Admin'},
-  //   {id:2, descripcion:'Asistente'},
-  //   {id:3, descripcion:'Psicologo'}
-  // ]
-
-  // listaUsuarios : Usuario[] = [
-  // {id:1, dni:"1111111", nombres:"Bailon", apellidos: "Paucar Montes", correo:"bailon@gmail.com", 
-  // contrasena:"admin1", estado:"Activo", sexo:"Femenino", roles:[this.listaRoles[1]]},
-  
-  // {id:2, dni:"2222222", nombres:"Robert", apellidos: "Palacios", correo:"robert@gmail.com", 
-  // contrasena:"admin2", estado:"Activo", sexo:"Masculino", roles:[this.listaRoles[1]]},
-
-  // {id:3, dni:"1111111", nombres:"Bailon", apellidos: "Paucar Montes", correo:"bailon@gmail.com", 
-  // contrasena:"admin1", estado:"Inactivo", sexo:"Femenino", roles:[this.listaRoles[3]]},
-  
-  // {id:4, dni:"2222222", nombres:"kevin", apellidos: "Noriega Montes", correo:"kevin@gmail.com", 
-  // contrasena:"psicologo2", estado:"Activo", sexo:"Masculino", roles:[this.listaRoles[3]]},
-  // {id:5, dni:"1111111", nombres:"Bailon", apellidos: "Paucar Montes", correo:"bailon@gmail.com", 
-  // contrasena:"psicologo1", estado:"Inactivo", sexo:"Femenino", roles:[this.listaRoles[3]]},
-  
-  // {id:6, dni:"2222222", nombres:"kevin", apellidos: "Noriega Montes", correo:"kevin@gmail.com", 
-  // contrasena:"psicologo2", estado:"Activo", sexo:"Masculino", roles:[this.listaRoles[3]]},
-  // {id:7, dni:"1111111", nombres:"Bailon", apellidos: "Paucar Montes", correo:"bailon@gmail.com", 
-  // contrasena:"psicologo1", estado:"Inactivo", sexo:"Femenino", roles:[this.listaRoles[3]]},
-  
-  // {id:8, dni:"2222222", nombres:"kevin", apellidos: "Noriega Montes", correo:"kevin@gmail.com", 
-  // contrasena:"psicologo2", estado:"Activo", sexo:"Masculino", roles:[this.listaRoles[3]]},
-  // {id:9, dni:"1111111", nombres:"Bailon", apellidos: "Paucar Montes", correo:"bailon@gmail.com", 
-  // contrasena:"psicologo1", estado:"Activo", sexo:"Femenino", roles:[this.listaRoles[3]]},
-  
-  // {id:10, dni:"2222222", nombres:"kevin", apellidos: "Noriega Montes", correo:"kevin@gmail.com", 
-  // contrasena:"psicologo2", estado:"Activo", sexo:"Masculino", roles:[this.listaRoles[3]]},
-  // {id:11, dni:"1111111", nombres:"Bailon", apellidos: "Paucar Montes", correo:"bailon@gmail.com", 
-  // contrasena:"psicologo1", estado:"Activo", sexo:"Femenino", roles:[this.listaRoles[3]]},
-  
-  // {id:12, dni:"2222222", nombres:"kevin", apellidos: "Noriega Montes", correo:"kevin@gmail.com", 
-  // contrasena:"psicologo2", estado:"Activo", sexo:"Masculino", roles:[this.listaRoles[3]]},
-  // ];
+  listaRoles: Roles[] = [
+    {id:1, descripcion:'Admin', seleccion:false},
+    {id:2, descripcion:'Asistente', seleccion:false},
+    {id:3, descripcion:'Psicologo', seleccion:false}
+  ]
 
   constructor(private http: HttpClient) { }
 
@@ -66,22 +32,20 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.urlListar);
   }
 
-
-
-  getUsuario(){
-    //return this.listaUsuarios.reverse();
+  // servicio de buscar un  cliente
+  buscarUsuario(id:number): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.urlBuscar}/${id}`);
+  }
+  guardarUsuarioServi(usuario: Usuario):Observable<Usuario>{
+    return this.http.post<Usuario>(this.urlcrear, usuario, {headers: this.httpHeaders});
   }
 
-  setUsuario(usuario: Usuario){
-    //this.listaUsuarios.push(usuario)
+  actualizarUsuarioServi(usuario: Usuario):Observable<Usuario>{
+    return this.http.put<Usuario>(this.urlActualizar, usuario,{headers: this.httpHeaders})
   }
 
   getRoles(){
-    //return this.listaRoles;
+    return this.listaRoles;
   }
 
-  updateUsuario(dato: any, id: number){
-    //this.listaUsuarios = this.listaUsuarios.filter((fila) => fila.id !== id);
-    //this.listaUsuarios.push(dato);
-  }
 }

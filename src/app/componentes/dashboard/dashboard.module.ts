@@ -11,6 +11,7 @@ import { CitasComponent } from './citas/citas.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { MaterialModule } from '../../material/material.module';
 import { CrearComponent } from './usuario/crear/crear.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -29,6 +30,7 @@ import { CrearComponent } from './usuario/crear/crear.component';
     CommonModule,
     DashboardRoutingModule,
     MaterialModule,
+    FormsModule
    
   ]
 })

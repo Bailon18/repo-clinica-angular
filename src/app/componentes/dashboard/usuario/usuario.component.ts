@@ -15,6 +15,8 @@ import { CrearComponent } from './crear/crear.component';
 })
 export class UsuarioComponent implements AfterViewInit , OnInit{
   
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'CORREO', 'ESTADO', 'SEXO', 'ROL','ACCIONES'];
@@ -22,9 +24,9 @@ export class UsuarioComponent implements AfterViewInit , OnInit{
 
   constructor(private servicio:UsuarioService, public dialog: MatDialog) {
   }
+
   ngOnInit(): void {
-    this.getUsuarioss();
-    console.log("USUARIOS:  ", this.getUsuarioss())
+    this.listarUsuarios();
   }
 
   ngAfterViewInit(): void {
@@ -39,37 +41,42 @@ export class UsuarioComponent implements AfterViewInit , OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getUsuarioss(){
+  listarUsuarios(){
     return this.servicio.getUsuarios().subscribe(
-      res => this.dataSource = new MatTableDataSource(res)
+      {next: res => {
+        this.dataSource = new MatTableDataSource(res)
+        this.dataSource.paginator = this.paginator;
+        },
+        error: error => {
+          console.log("Ocurrio un error en la carga")
+        }
+      }
     )
   }
 
   cargarUsuario(){
-    return this.servicio.getUsuario();
+    return this.servicio.getUsuarios();
   }
   
   abrirDialogoNuevoUsuario() {
-    // this.dialog.open(CrearComponent, {
-    //     width:'470px',
-    // }).afterClosed().subscribe(valor =>{
-    //   if (valor === 'guardar') {
-    //     this.dataSource = new MatTableDataSource<Usuario>(this.cargarUsuario());
-    //     this.dataSource.paginator = this.paginator;
-    //   }
-    // });
+    this.dialog.open(CrearComponent, {
+         width:'470px',
+     }).afterClosed().subscribe(valor =>{
+        if (valor === 'guardar') {
+          this.listarUsuarios();
+       }
+    });
   }
 
   editarUsuario(fila: any){
-    // this.dialog.open(CrearComponent,{
-    //   width:'470px',
-    //   data:fila
-    // }).afterClosed().subscribe(valor =>{
-    //   if (valor === 'actualizar') {
-    //     this.dataSource = new MatTableDataSource<Usuario>(this.cargarUsuario());
-    //     this.dataSource.paginator = this.paginator;
-    //   }
-    // });
+    this.dialog.open(CrearComponent,{
+      width:'470px',
+      data:fila
+    }).afterClosed().subscribe(valor =>{
+      if (valor === 'actualizar') {
+        this.listarUsuarios();
+      }
+    });
   }
 
 }

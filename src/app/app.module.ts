@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ComponentesModule } from './componentes/componentes.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http'; // add this line
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {HttpClientModule} from '@angular/common/http'; // add this line
     ComponentesModule,
     BrowserAnimationsModule,
     HttpClientModule, //add this line
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

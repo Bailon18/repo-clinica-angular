@@ -4,6 +4,7 @@
 <form [formGroup]="usuarioForm"> <!---->
     <div class="row mb-2">
         <div class="col-6">
+            <input type="hidden" formControlName="id">
             <mat-form-field  appearance="fill">
                 <mat-label>Nombre</mat-label>
                 <input matInput formControlName="nombres">
@@ -58,7 +59,7 @@
                 <mat-error class="mensaje" *ngIf="usuarioForm.get('sexo')?.invalid && 
                 usuarioForm.get('sexo')?.errors && 
                 (usuarioForm.get('sexo')?.dirty || usuarioForm.get('sexo')?.touched)">
-                    <mat-error *ngIf="usuarioForm.get('sexo')?.hasError('required')">Campo sexo es requerido</mat-error>                 
+                <mat-error *ngIf="usuarioForm.get('sexo')?.hasError('required')">Campo sexo es requerido</mat-error>                 
                 </mat-error>
             </mat-form-field>
         </div>
@@ -72,7 +73,7 @@
             (usuarioForm.get('correo')?.dirty || usuarioForm.get('correo')?.touched)">
             <mat-error *ngIf="usuarioForm.get('correo')?.hasError('required')">Campo correo es requerido</mat-error>
             <mat-error  *ngIf="usuarioForm.get('correo')?.hasError('email')">Campo correo no tiene el formato</mat-error>               
-    </mat-error>
+        </mat-error>
         </mat-form-field>
     </div>
     
@@ -107,21 +108,20 @@
     </div>
 
     <div class="row mb-2">
-        <div class="col-6">
-            <label class="form-label">Roles<sup><i class="fa fa-asterisk"></i></sup></label>
-            <div><input type="checkbox" 
-                formArrayName="roles" value="1" 
-                (change)="onCheckboxChange($event)">&nbsp;&nbsp;Administrador
-            </div>
-            <div><input type="checkbox" 
-                formArrayName="roles" value="2" 
-                (change)="onCheckboxChange($event)">&nbsp;&nbsp;Asistente
-            </div>
-            <div><input type="checkbox" 
-                formArrayName="roles"  value="3" 
-                (change)="onCheckboxChange($event)">&nbsp;&nbsp;Psicologo
-            </div>
-        </div>
+        <mat-label class="mb-2">Roles</mat-label>
+        <div *ngFor="let item of listaRoles; let i=index">
+            <label>
+              <input type="checkbox"  name="{{item.descripcion}}"  (change)="onchange($event)"  [(ngModel)]="item.seleccion"  [ngModelOptions]="{standalone: true}"/>
+              {{item.descripcion}}
+            </label>
+          </div>
+          <mat-error class="mensaje" *ngIf="usuarioForm.get('roles')?.invalid ||
+          usuarioForm.get('roles')?.errors || 
+          (usuarioForm.get('roles')?.dirty || usuarioForm.get('roles')?.touched)">
+            <mat-error class="error" *ngIf="this.usuarioForm.get('roles')?.hasError('required')">
+                Seleccione minimo un rol
+            </mat-error>
+        </mat-error>
     </div>
     
     <div class="row mb-2">

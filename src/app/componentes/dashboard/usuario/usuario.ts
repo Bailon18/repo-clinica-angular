@@ -3,10 +3,12 @@
 export interface Roles{
     id:number;
     descripcion:string,
+    seleccion?: boolean
 }
 
 export interface Usuario{
-    id:number;
+
+    id:string,
     dni:string,
     nombres:string,
     apellidos: string,
