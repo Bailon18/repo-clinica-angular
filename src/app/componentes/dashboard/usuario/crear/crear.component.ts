@@ -71,7 +71,6 @@ export class CrearComponent implements OnInit {
               }
             }
           }
-      
         })
 
       this.titulo = "Editar Usuario";

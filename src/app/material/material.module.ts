@@ -15,6 +15,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { NgToastModule } from 'ng-angular-popup';
+
 
 
 
@@ -36,6 +38,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatCheckboxModule,
     MatRadioModule,
     MatGridListModule,
+    NgToastModule,
+  
 
   ],
 
@@ -54,7 +58,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatDialogModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatGridListModule
+    MatGridListModule,
+    NgToastModule,
+    
 
   ],
   providers: [{

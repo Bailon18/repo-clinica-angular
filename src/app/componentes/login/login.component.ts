@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import swall from 'sweetalert2'; // npm install sweetalert2 --save
 
 
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   formulario:FormGroup
 
-  constructor(private fb:FormBuilder , private _snackBar: MatSnackBar ,private router : Router) { 
+  constructor(private fb:FormBuilder , private _snackBar: MatSnackBar ,private router : Router
+    ,private toast: NgToastService) { 
 
     this.formulario = this.fb.group({
       usuario: ['',Validators.required],
@@ -36,10 +38,11 @@ export class LoginComponent implements OnInit {
     if(usuario === "admin@gmail.com" && password === "admin"){
       this.router.navigate(['dashboard']);
     }else{
-      this.mensajeError();
+      this.toast.error({detail:"Mensaje Error", summary:"Usuario o contraseña es incorrecto", position:"br" , duration:2500})
       this.formulario.reset();
     }
   }
+
 
   mensajeError() {
     this._snackBar.open("Usuario o contraseña invalido", 'Invalido', {

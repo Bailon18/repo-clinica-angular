@@ -7,6 +7,8 @@ import { ComponentesModule } from './componentes/componentes.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http'; // add this line
 import { FormsModule } from '@angular/forms';
+import { NgToastModule } from 'ng-angular-popup';
+
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { FormsModule } from '@angular/forms';
     ComponentesModule,
     BrowserAnimationsModule,
     HttpClientModule, //add this line
-    FormsModule
+    FormsModule,
+    NgToastModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
