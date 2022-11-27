@@ -19,7 +19,7 @@ export class UsuarioService {
 
 
   listaRoles: Roles[] = [
-    {id:1, descripcion:'Admin', seleccion:false},
+    {id:1, descripcion:'Administrador', seleccion:false},
     {id:2, descripcion:'Asistente', seleccion:false},
     {id:3, descripcion:'Psicologo', seleccion:false}
   ]

@@ -5,6 +5,7 @@ import { UsuarioService } from '../usuario.service';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Roles, Usuario } from '../usuario';
+import swall from 'sweetalert2';
 
 
 @Component({
@@ -81,9 +82,7 @@ export class CrearComponent implements OnInit {
 
 
   onchange(event: any) {
-
     this.rolesDevista = this.listaRoles.slice()
-    console.log("LISTAAA ROL ", this.rolesDevista)
   }
 
 
@@ -108,7 +107,11 @@ export class CrearComponent implements OnInit {
               item.seleccion = false;})
             
               this.dialog.close("guardar")
-              this.mensaje("Se registro usuario correctamente ", "Valido")
+              swall.fire({
+                icon: 'success',
+                title: 'Registro nuevo Usuario',
+                text:  `Se registro correctamente al usuario: ${this.usuarioForm.value['nombres']}`,
+              })
           
             }
           )

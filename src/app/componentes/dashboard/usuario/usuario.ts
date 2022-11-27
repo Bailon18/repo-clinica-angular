@@ -1,21 +1,21 @@
 
 
-export interface Roles{
+export class Roles{
     id:number;
-    descripcion:string,
-    seleccion?: boolean
+    descripcion:string;
+    seleccion?: boolean;
 }
 
-export interface Usuario{
+export class Usuario{
 
-    id:string,
-    dni:string,
-    nombres:string,
-    apellidos: string,
-    correo:string, 
-    contrasena:string,
-    estado:string,
-    sexo:string,
+    id:string;
+    dni:string;
+    nombres:string;
+    apellidos: string;
+    correo:string; 
+    contrasena:string;
+    estado:string;
+    sexo:string;
     roles: Roles[]
 }
 

@@ -70,14 +70,19 @@
                     
                         <ng-container matColumnDef="ROL">
                         <th mat-header-cell *matHeaderCellDef> Rol </th>
-                        <td mat-cell *matCellDef="let fila"> holitas </td>
+
+                        <td mat-cell *matCellDef="let fila">
+                            <ul *ngFor="let f of fila.roles">
+                                <li>{{f.descripcion}}</li>
+                            </ul>
+                        </td>
                         </ng-container>
             
                         <ng-container matColumnDef="ACCIONES">
                             <th mat-header-cell *matHeaderCellDef> Acciones </th>
                             <td mat-cell *matCellDef="let fila">
                                 <a class="pointer iconosAccion" matTooltip="Editar Usuario" (click)="editarUsuario(fila)"><mat-icon class="success-icon">edit</mat-icon></a>
-                                <a class="pointer iconosAccion" matTooltip="Bloquear Usuario"><mat-icon class="danger-icon">not_interested</mat-icon></a>
+                                <a class="pointer iconosAccion" matTooltip="Bloquear Usuario" (click)="bloquearUsuario(fila)"><mat-icon class="danger-icon">not_interested</mat-icon></a>
                                 <!-- <a class="pointer iconosAccion" matTooltip="Exportar Datos"><mat-icon class="pdf-icon">picture_as_pdf</mat-icon></a> -->
                             </td>
                         </ng-container>

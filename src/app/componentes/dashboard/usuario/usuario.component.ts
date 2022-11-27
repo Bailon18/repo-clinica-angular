@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { UsuarioService } from './usuario.service';
 import {MatDialog} from '@angular/material/dialog';
 import { CrearComponent } from './crear/crear.component';
+import swall from 'sweetalert2';
 
 
 
@@ -78,6 +79,29 @@ export class UsuarioComponent implements AfterViewInit , OnInit{
       }
     });
   }
+
+  bloquearUsuario(fila:any): void{
+
+    swall.fire({
+      title: 'Bloquear Usuario',
+      text: "¿Estas seguro de bloquear usuario?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        swall.fire(
+          'Usuario Eliminado',
+          `Usuario eliminado con exito`,
+          'success'
+        )
+      } 
+    })
+  }
+
 
 }
 

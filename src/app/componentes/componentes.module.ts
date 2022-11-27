@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { UsuarioComponent } from './dashboard/usuario/usuario.component';
 
 
 
@@ -19,7 +20,8 @@ import { MaterialModule } from '../material/material.module';
   imports: [
     FormsModule,
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    
   ]
 })
 export class ComponentesModule { }
