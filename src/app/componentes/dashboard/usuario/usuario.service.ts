@@ -13,7 +13,7 @@ export class UsuarioService {
   private urlcrear: string = 'http://localhost:8080/usuario/guardar';
   private urlBuscar: string = 'http://localhost:8080/usuario/buscar';
   private urlActualizar: string = 'http://localhost:8080/usuario/actualizar';
-  private urleliminar: string = 'http://localhost:8080/clientes/eliminar';
+  private urlBloquear: string = 'http://localhost:8080/usuario/bloquearUsuario';
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 
@@ -43,6 +43,11 @@ export class UsuarioService {
   actualizarUsuarioServi(usuario: Usuario):Observable<Usuario>{
     return this.http.put<Usuario>(this.urlActualizar, usuario,{headers: this.httpHeaders})
   }
+
+  bloquearUsuarioServi(usuario: Usuario): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.urlBloquear}/${usuario.id}`)
+  }
+
 
   getRoles(){
     return this.listaRoles;

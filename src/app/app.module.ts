@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http'; // add this line
 import { FormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -24,9 +26,8 @@ import { NgToastModule } from 'ng-angular-popup';
     HttpClientModule, //add this line
     FormsModule,
     NgToastModule,
-  
+
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

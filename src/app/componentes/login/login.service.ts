@@ -15,7 +15,9 @@ export class LoginService {
 
   sesionUsuario: string;
 
-  usuarios: Observable<Usuario>;
+  usuarios: Usuario;
+
+  val:Usuario;
 
   @Output()
   usuarioEmitter = new EventEmitter<Usuario>();
@@ -27,17 +29,17 @@ export class LoginService {
 
 
   getValidacion(correo:string, password:string):Observable<Usuario>{
-    this.usuarios = this.http.get<Usuario>(`${this.urlValidar}/${correo}/${password}`);
+    this.http.get<Usuario>(`${this.urlValidar}/${correo}/${password}`).subscribe( res => {
+        this.usuarios = res;
+      }
+    );
     this.getObtenerUsuario()
-    return this.usuarios;
+    return this.http.get<Usuario>(`${this.urlValidar}/${correo}/${password}`);
   }
 
   getObtenerUsuario():Observable<Usuario>{
-    this.usuarios.subscribe({
-      next: (res) => {this.usuarioEmitter.emit(res)},
-      error: (error) => {}
-    });
-    return this.usuarios;
+    this.usuarioEmitter.emit(this.usuarios)
+    return of(this.usuarios);
   }
 
   // aqui setea desde el componente login -> el rol seleccionado

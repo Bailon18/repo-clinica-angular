@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
       next:(resultado) => {
 
         this.usuario = resultado;
+        localStorage.setItem('usuario', JSON.stringify(this.usuario))
 
         if(this.usuario !=null){
 
@@ -62,7 +63,7 @@ export class LoginComponent implements OnInit {
             (async () => {
 
               const { value: roles } = await swall.fire({
-                title: 'Usted cuenta con mas un rol, Seleccione un rol para iniciar sesión',
+                html: 'Usted cuenta con mas un rol, Seleccione un rol para iniciar sesión',
                 icon:'question',
                 input: 'select',
                 inputOptions: {
@@ -98,8 +99,8 @@ export class LoginComponent implements OnInit {
         
         }else{
           swall.fire({icon: 'error',
-                      title: 'Credenciales incorrectos',
-                      text:  `Correo o contraseña incorrecto!`,
+                      confirmButtonColor:'#0275d8',
+                      html:  `Correo o contraseña incorrecto!`,
           })
         }
       },
@@ -118,6 +119,7 @@ export class LoginComponent implements OnInit {
     })   //`${this.usuario.nombres} ${this.usuario.apellidos} Iniciado sesión como: ${rol}` )
     this.servicio.setRolSesion(rol).subscribe({
       next:(res) => {
+        localStorage.setItem('rol', JSON.stringify(res))
       }
     })
     this.router.navigate(['dashboard']);

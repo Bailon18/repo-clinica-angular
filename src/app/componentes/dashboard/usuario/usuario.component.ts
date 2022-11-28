@@ -94,10 +94,19 @@ export class UsuarioComponent implements AfterViewInit , OnInit{
     }).then((result) => {
       if (result.isConfirmed) {
 
-        swall.fire(
-          'Usuario Eliminado',
-          `Usuario eliminado con exito`,
-          'success'
+        this.servicio.bloquearUsuarioServi(fila).subscribe({
+          next:(res) => {
+            this.listarUsuarios();
+          },
+          error:(error) => {
+            console.log("Ocurrio un error")
+          }
+        })
+
+        swall.fire({
+          icon:'success',
+          html:'Usuario bloqueado con exito!'
+        }
         )
       } 
     })

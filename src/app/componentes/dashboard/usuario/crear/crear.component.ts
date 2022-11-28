@@ -109,7 +109,7 @@ export class CrearComponent implements OnInit {
               this.dialog.close("guardar")
               swall.fire({
                 icon: 'success',
-                //title: 'Registro Usuario',
+                confirmButtonColor:'#0275d8',
                 html:  `Se registro correctamente al usuario:  <strong>${this.usuarioForm.value['nombres']}</strong>`,
               })
           
@@ -142,7 +142,7 @@ export class CrearComponent implements OnInit {
       this.dialog.close("actualizar");
       swall.fire({
         icon: 'success',
-        //title: 'Edicion Usuario',
+        confirmButtonColor:'#0275d8',
         html:  `Se actualizo correctamente al usuario:  <strong>${this.usuarioForm.value['nombres']}</strong>`,
       })
 

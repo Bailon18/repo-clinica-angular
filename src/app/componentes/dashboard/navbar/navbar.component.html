@@ -39,25 +39,29 @@
                         <div class="sb-sidenav-collapse-arrow"></div>
                     </a>
 
-                    <a *ngIf="rolInicioSesion == 'Administrador' || rolInicioSesion == 'Psicologo'" class="nav-link collapsed" routerLink="/dashboard/pacientes"  data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a *ngIf="rolInicioSesion == 'Administrador' || rolInicioSesion == 'Psicologo'" class="nav-link collapsed" 
+                        routerLink="/dashboard/pacientes"  data-bs-toggle="collapse" 
+                        data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="sidebar-item-icon fa fa-users"></i></div>
                         Pacientes
                         <div class="sb-sidenav-collapse-arrow"></div>
                     </a>
 
-                    <a *ngIf="rolInicioSesion == 'Administrador' || rolInicioSesion == 'Psicologo' || rolInicioSesion == 'Asistente' "  class="nav-link collapsed" routerLink="/dashboard/citas"  data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a    *ngIf="rolInicioSesion == 'Administrador' || rolInicioSesion == 'Psicologo' || rolInicioSesion == 'Asistente' "  class="nav-link collapsed"
+                        routerLink="/dashboard/citas"  data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
+                        aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="sidebar-item-icon fa fa-table"></i></div>
                         Citas
                         <div class="sb-sidenav-collapse-arrow"></div>
                     </a>
 
-                    <a *ngIf="rolInicioSesion == 'Administrador'" class="nav-link collapsed" routerLink="/dashboard/reportes"  data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a   *ngIf="rolInicioSesion == 'Administrador'" class="nav-link collapsed" routerLink="/dashboard/reportes"  data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="sidebar-item-icon fa fa-bar-chart"></i></div>
                         Reportes
                         <div class="sb-sidenav-collapse-arrow"></div>
                     </a>
 
-                    <a *ngIf="rolInicioSesion == 'Administrador'" class="nav-link collapsed" routerLink="/dashboard/usuarios"  data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a   *ngIf="rolInicioSesion == 'Administrador'" class="nav-link collapsed" routerLink="/dashboard/usuarios"  data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="sidebar-item-icon fa fa-user"></i></div>
                         Usuario
                         <div class="sb-sidenav-collapse-arrow"></div>
