@@ -109,8 +109,8 @@ export class CrearComponent implements OnInit {
               this.dialog.close("guardar")
               swall.fire({
                 icon: 'success',
-                title: 'Registro nuevo Usuario',
-                text:  `Se registro correctamente al usuario: ${this.usuarioForm.value['nombres']}`,
+                //title: 'Registro Usuario',
+                html:  `Se registro correctamente al usuario:  <strong>${this.usuarioForm.value['nombres']}</strong>`,
               })
           
             }
@@ -140,19 +140,14 @@ export class CrearComponent implements OnInit {
       item.seleccion = false;})
 
       this.dialog.close("actualizar");
-      this.mensaje("Se actualizo usuario correctamente ", "Valido");
+      swall.fire({
+        icon: 'success',
+        //title: 'Edicion Usuario',
+        html:  `Se actualizo correctamente al usuario:  <strong>${this.usuarioForm.value['nombres']}</strong>`,
+      })
 
     })
 
   }
-
-  mensaje(mensaje:string, tipo:string) {
-      this._snackBar.open(mensaje, tipo, {
-        duration:3000,
-        horizontalPosition:'center',
-        verticalPosition:'bottom'
-      });
-  }
-  
 
 }

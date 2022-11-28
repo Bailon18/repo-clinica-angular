@@ -17,6 +17,7 @@
                             <mat-label>Filtro</mat-label>
                             <input matInput (keyup)="aplicarFiltro($event)" placeholder="Ejemplo.. Bailon" #input>
                         </mat-form-field>
+                        <mat-checkbox color="primary" class="example-margin" [(ngModel)]="estadoFiltro" (click)="mostrarInactivos()">Mostrar Inactivos</mat-checkbox>
                     </div>
                     <div class="col-6 text-end">
                         <button class="btn btn-primary" (click)="abrirDialogoNuevoUsuario()">Nuevo Usuario</button>

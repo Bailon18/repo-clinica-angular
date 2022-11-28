@@ -16,7 +16,7 @@ import swall from 'sweetalert2';
 })
 export class UsuarioComponent implements AfterViewInit , OnInit{
   
-
+  estadoFiltro:any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -45,7 +45,8 @@ export class UsuarioComponent implements AfterViewInit , OnInit{
   listarUsuarios(){
     return this.servicio.getUsuarios().subscribe(
       {next: res => {
-        this.dataSource = new MatTableDataSource(res)
+        let filtrado = res.filter(u => u.estado =="Activo")
+        this.dataSource = new MatTableDataSource(filtrado)
         this.dataSource.paginator = this.paginator;
         },
         error: error => {
@@ -83,13 +84,13 @@ export class UsuarioComponent implements AfterViewInit , OnInit{
   bloquearUsuario(fila:any): void{
 
     swall.fire({
-      title: 'Bloquear Usuario',
-      text: "¿Estas seguro de bloquear usuario?",
+      html: `¿Estas seguro de bloquear a <strong>${fila.nombres} ${fila.apellidos}</strong>?`,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: '#0275d8',
+      cancelButtonColor: '#9c9c9c',
+      confirmButtonText: 'Si, bloquear!',
+      cancelButtonText:'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
 
@@ -102,6 +103,27 @@ export class UsuarioComponent implements AfterViewInit , OnInit{
     })
   }
 
+  mostrarInactivos(){
+
+    if(!this.estadoFiltro){
+
+    this.servicio.getUsuarios().subscribe(
+      {next: res => {
+        let filtrado = res.filter(u => u.estado=="Inactivo")
+        this.dataSource = new MatTableDataSource(filtrado)
+        this.dataSource.paginator = this.paginator;
+        },
+        error: error => {
+          console.log("Ocurrio un error en la carga")
+        }
+      }
+    )
+      
+    }else{
+      this.listarUsuarios();
+      
+    }
+  }
 
 }
 

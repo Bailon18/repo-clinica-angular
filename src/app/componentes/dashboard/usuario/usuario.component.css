@@ -14,3 +14,8 @@ table {
 .pdf-icon{
   color:rgb(97, 74, 74)
 }
+
+.example-margin {
+  margin: 0 10px;
+}
+

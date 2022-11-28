@@ -62,14 +62,16 @@ export class LoginComponent implements OnInit {
             (async () => {
 
               const { value: roles } = await swall.fire({
-                title: 'Usted cuenta con mas un rol',
-                text:`${this.usuario.nombres} Seleccione un rol para iniciar sesión`,
+                title: 'Usted cuenta con mas un rol, Seleccione un rol para iniciar sesión',
+                icon:'question',
                 input: 'select',
                 inputOptions: {
                   'roles': rolesListaUser
                 },
                 inputPlaceholder: 'Seleccione el rol',
-                //showCancelButton: true,
+                confirmButtonColor:'#0275d8',
+                showCancelButton: true,
+                cancelButtonText:'Cancelar',
                 inputValidator: (value) => {
                   return new Promise<void | any>((resolve) => {
                     if (value !== '') {
@@ -110,7 +112,10 @@ export class LoginComponent implements OnInit {
 
   setServicioRol(rol: string){
 
-    swall.fire(`${this.usuario.nombres} ${this.usuario.apellidos} Iniciado sesión como: ${rol}`)
+    swall.fire({
+      html:`${this.usuario.nombres.toUpperCase()} ${this.usuario.apellidos} Iniciastes sesión como: <strong>${rol}</strong>`,
+      confirmButtonColor:'#0275d8'
+    })   //`${this.usuario.nombres} ${this.usuario.apellidos} Iniciado sesión como: ${rol}` )
     this.servicio.setRolSesion(rol).subscribe({
       next:(res) => {
       }
