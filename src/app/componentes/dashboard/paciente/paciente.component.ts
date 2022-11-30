@@ -7,14 +7,14 @@ import { Paciente } from './models/paciente';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog} from '@angular/material/dialog';
-import { CrearComponent } from './paginas/crear.component';
-import swall from 'sweetalert2';
+
 
 
 @Component({
   selector: 'app-paciente',
   templateUrl: './paciente.component.html',
+  styleUrls:['./paciente.component.css'],
+
 })
 export class PacienteComponent implements AfterViewInit, OnInit {
 
@@ -25,7 +25,7 @@ export class PacienteComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'TELEFONO','ACCIONES'];
+  columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'TELEFONO', 'DISTRITO', 'ACCIONES'];
   dataSource = new MatTableDataSource<Paciente>;
 
   constructor(private servicio: PacienteService) { }
@@ -46,8 +46,8 @@ export class PacienteComponent implements AfterViewInit, OnInit {
 
     this.servicio.getPacientes().subscribe({
       next:(res) =>{
-        let d = res;
-        this.dataSource = new MatTableDataSource(d);
+        console.log("PAC ",res)
+        this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
       }
     })

@@ -20,7 +20,7 @@ export class UsuarioComponent implements AfterViewInit , OnInit{
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'CORREO', 'ESTADO', 'SEXO', 'ROL','ACCIONES'];
+  columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'CORREO', 'ESTADO', 'ROL','ACCIONES'];
   dataSource = new MatTableDataSource<Usuario>;
 
   constructor(private servicio:UsuarioService, public dialog: MatDialog) {

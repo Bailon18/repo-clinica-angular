@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-6">
                         <mat-form-field>
-                            <mat-label>Filtro</mat-label>
+                            <mat-label>Filtro multiple campos</mat-label>
                             <input matInput (keyup)="aplicarFiltro($event)" placeholder="Ejemplo.. Bailon" #input>
                         </mat-form-field>
                     </div>
@@ -38,18 +38,23 @@
                         <th mat-header-cell *matHeaderCellDef> Apellidos </th>
                         <td mat-cell *matCellDef="let fila"> {{fila.apellidos}} </td>
                         </ng-container>
+
                     
                         <ng-container matColumnDef="DNI">
                         <th mat-header-cell *matHeaderCellDef> Dni </th>
-                        <td mat-cell *matCellDef="let fila"> {{fila.dni}} </td>
+                        <td mat-cell *matCellDef="let fila"> {{fila.documento}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="TELEFONO">
                         <th mat-header-cell *matHeaderCellDef> Telefono </th>
                         <td mat-cell *matCellDef="let fila"> {{fila.telefono}} </td>
                         </ng-container>
+
+                        <ng-container matColumnDef="DISTRITO">
+                            <th mat-header-cell *matHeaderCellDef> Distrito </th>
+                            <td mat-cell *matCellDef="let fila"> {{fila.distrito}} </td>
+                        </ng-container>
        
-            
                         <ng-container matColumnDef="ACCIONES">
                             <th mat-header-cell *matHeaderCellDef> Acciones </th>
                             <td mat-cell *matCellDef="let fila">
@@ -58,7 +63,6 @@
                                 <!-- <a class="pointer iconosAccion" matTooltip="Exportar Datos"><mat-icon class="pdf-icon">picture_as_pdf</mat-icon></a> -->
                             </td>
                         </ng-container>
-                    
                         <tr mat-header-row *matHeaderRowDef="columnas"></tr>
                         <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
                     </table>
