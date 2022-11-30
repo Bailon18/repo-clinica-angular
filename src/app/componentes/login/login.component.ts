@@ -5,9 +5,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import swall from 'sweetalert2'; // npm install sweetalert2 --save
-import { UsuarioService } from '../dashboard/usuario/usuario.service';
+import { UsuarioService } from '../dashboard/usuario/services/usuario.service';
 import { LoginService } from './login.service';
-import { Usuario } from '../dashboard/usuario/usuario';
+import { Usuario } from '../dashboard/usuario/model/usuario';
 
 
 

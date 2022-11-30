@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Usuario, Roles } from './usuario';
+import { Usuario, Roles } from './model/usuario';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import { UsuarioService } from './usuario.service';
+import { UsuarioService } from './services/usuario.service';
 import {MatDialog} from '@angular/material/dialog';
-import { CrearComponent } from './crear/crear.component';
+import { CrearComponent } from './paginas/crear.component';
 import swall from 'sweetalert2';
 
 

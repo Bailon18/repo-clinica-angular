@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsuarioService } from '../usuario.service';
+import { UsuarioService } from '../services/usuario.service';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Roles, Usuario } from '../usuario';
+import { Roles, Usuario } from '../model/usuario';
 import swall from 'sweetalert2';
 
 

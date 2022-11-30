@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Usuario } from '../dashboard/usuario/usuario';
+import { Usuario } from '../dashboard/usuario/model/usuario';
 import { Observable, of } from 'rxjs';
 
 

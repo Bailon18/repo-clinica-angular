@@ -1,4 +1,3 @@
-
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <a class="navbar-brand ps-3" href="#">&nbsp;&nbsp;&nbsp;&nbsp;CLINICA PADMA</a>
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
@@ -33,35 +32,44 @@
 
                     <div class="sb-sidenav-menu-heading">Menu</div>
 
-                    <a class="nav-link collapsed" routerLink="/dashboard" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a class="nav-link collapsed" 
+                        routerLink="/dashboard" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="sidebar-item-icon fa fa-bookmark"></i></div>
                         Home
                         <div class="sb-sidenav-collapse-arrow"></div>
                     </a>
 
                     <a *ngIf="rolInicioSesion == 'Administrador' || rolInicioSesion == 'Psicologo'" class="nav-link collapsed" 
-                        routerLink="/dashboard/pacientes"  data-bs-toggle="collapse" 
-                        data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            routerLink="/dashboard/pacientes"  data-bs-toggle="collapse" 
+                            data-bs-target="#collapseLayouts" aria-expanded="false" 
+                            aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="sidebar-item-icon fa fa-users"></i></div>
                         Pacientes
                         <div class="sb-sidenav-collapse-arrow"></div>
                     </a>
 
                     <a    *ngIf="rolInicioSesion == 'Administrador' || rolInicioSesion == 'Psicologo' || rolInicioSesion == 'Asistente' "  class="nav-link collapsed"
-                        routerLink="/dashboard/citas"  data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
-                        aria-controls="collapseLayouts">
+                            routerLink="/dashboard/citas"  data-bs-toggle="collapse" 
+                            data-bs-target="#collapseLayouts" aria-expanded="false"
+                            aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="sidebar-item-icon fa fa-table"></i></div>
                         Citas
                         <div class="sb-sidenav-collapse-arrow"></div>
                     </a>
 
-                    <a   *ngIf="rolInicioSesion == 'Administrador'" class="nav-link collapsed" routerLink="/dashboard/reportes"  data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a   *ngIf="rolInicioSesion == 'Administrador'" class="nav-link collapsed" 
+                        routerLink="/dashboard/reportes"  data-bs-toggle="collapse" 
+                        data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="sidebar-item-icon fa fa-bar-chart"></i></div>
                         Reportes
                         <div class="sb-sidenav-collapse-arrow"></div>
                     </a>
 
-                    <a   *ngIf="rolInicioSesion == 'Administrador'" class="nav-link collapsed" routerLink="/dashboard/usuarios"  data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <a   *ngIf="rolInicioSesion == 'Administrador'" class="nav-link collapsed" 
+                        routerLink="/dashboard/usuarios"  data-bs-toggle="collapse" 
+                        data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="sidebar-item-icon fa fa-user"></i></div>
                         Usuario
                         <div class="sb-sidenav-collapse-arrow"></div>

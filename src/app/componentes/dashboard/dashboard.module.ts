@@ -10,7 +10,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { CitasComponent } from './citas/citas.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { MaterialModule } from '../../material/material.module';
-import { CrearComponent } from './usuario/crear/crear.component';
+import { CrearComponent } from './usuario/paginas/crear.component';
 import { FormsModule } from '@angular/forms';
 
 
