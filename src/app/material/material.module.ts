@@ -5,7 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
@@ -16,6 +16,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NgToastModule } from 'ng-angular-popup';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 
@@ -28,6 +30,7 @@ import { NgToastModule } from 'ng-angular-popup';
     MatSelectModule,
     MatIconModule,
     MatInputModule,
+    FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
     MatTableModule,
@@ -39,7 +42,8 @@ import { NgToastModule } from 'ng-angular-popup';
     MatRadioModule,
     MatGridListModule,
     NgToastModule,
-  
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
 
@@ -60,6 +64,9 @@ import { NgToastModule } from 'ng-angular-popup';
     MatRadioModule,
     MatGridListModule,
     NgToastModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     
 
   ],

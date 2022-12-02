@@ -8,6 +8,9 @@ import { AfterViewInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
+import { MatDialog } from '@angular/material/dialog';
+import { FormpacienteComponent } from './paginas/formPaciente/formpaciente.component';
+
 
 
 @Component({
@@ -28,7 +31,7 @@ export class PacienteComponent implements AfterViewInit, OnInit {
   columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'TELEFONO', 'DISTRITO', 'ACCIONES'];
   dataSource = new MatTableDataSource<Paciente>;
 
-  constructor(private servicio: PacienteService) { }
+  constructor(private servicio: PacienteService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -66,7 +69,12 @@ export class PacienteComponent implements AfterViewInit, OnInit {
   }
 
   abrirDialogoNuevoPaciente() {
-
+    this.dialog.open(FormpacienteComponent, {
+      }).afterClosed().subscribe(valor =>{
+        if (valor === 'guardar') {
+          //this.listarUsuarios();
+        }
+    });
   }
 
 }

@@ -1,0 +1,160 @@
+
+<h1 mat-dialog-title style="font-weight: 500;" >{{titulo}}</h1>
+<form [formGroup]="pacienteForm"> <!---->
+
+    <div class="row mb-2">
+        <div class="col-4">
+            <input type="hidden" formControlName="id">
+            <mat-form-field  appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre">
+            <mat-error class="mensaje" *ngIf="pacienteForm.get('nombre')?.invalid && 
+            pacienteForm.get('nombre')?.errors && 
+            (pacienteForm.get('nombre')?.dirty || pacienteForm.get('nombre')?.touched)">
+                <small class="text-danger"
+                *ngIf="pacienteForm.get('nombre')?.hasError('required')">
+                El campo nombre es requerido
+                </small>
+            </mat-error>
+        </mat-form-field>
+        </div>
+        <div class="col-4">
+            <mat-form-field  appearance="fill">
+                <mat-label>Apellidos</mat-label>
+                <input matInput  formControlName="apellidos">
+                <mat-error *ngIf="pacienteForm.get('apellidos')?.invalid && 
+                pacienteForm.get('apellidos')?.errors && 
+                (pacienteForm.get('apellidos')?.dirty || pacienteForm.get('apellidos')?.touched)">
+                    <small class="text-danger"
+                    *ngIf="pacienteForm.get('apellidos')?.hasError('required')">
+                    El campo es requerido
+                    </small>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-4">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                  <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <!--
+    <div class="row b-2">
+        <div class="col-6">
+            <mat-form-field appearance="fill">
+                <mat-label>Ingrese Dni</mat-label>
+                <input type="number"formControlName="dni" matInput>
+                <mat-error class="mensaje" *ngIf="pacienteForm.get('dni')?.invalid && 
+                        pacienteForm.get('dni')?.errors && 
+                        (pacienteForm.get('dni')?.dirty || pacienteForm.get('dni')?.touched)">
+                        <mat-error *ngIf="pacienteForm.get('dni')?.hasError('required')">Campo dni es requerido</mat-error>
+                        <mat-error  *ngIf="pacienteForm.get('dni')?.hasError('min')">Campo minimo 8 digitos</mat-error>
+                        <mat-error *ngIf="pacienteForm.get('dni')?.hasError('max')">Campo maximo 8 digitos</mat-error>                    
+                </mat-error>
+                
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <mat-form-field  appearance="fill">
+                <mat-label>Sexo</mat-label>
+                <mat-select formControlName="sexo" name="sexo">
+                    <mat-option value="Masculino">Masculino</mat-option>
+                    <mat-option value="Femenino">Femenino</mat-option>
+                </mat-select>
+                <mat-error class="mensaje" *ngIf="pacienteForm.get('sexo')?.invalid && 
+                pacienteForm.get('sexo')?.errors && 
+                (pacienteForm.get('sexo')?.dirty || pacienteForm.get('sexo')?.touched)">
+                <mat-error *ngIf="pacienteForm.get('sexo')?.hasError('required')">Campo sexo es requerido</mat-error>                 
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <mat-form-field  appearance="fill">
+            <mat-label>Correo</mat-label>
+            <input type="email" formControlName="correo" matInput placeholder="admin@idat.com">
+            <mat-error class="mensaje" *ngIf="pacienteForm.get('correo')?.invalid && 
+            pacienteForm.get('correo')?.errors && 
+            (pacienteForm.get('correo')?.dirty || pacienteForm.get('correo')?.touched)">
+            <mat-error *ngIf="pacienteForm.get('correo')?.hasError('required')">Campo correo es requerido</mat-error>
+            <mat-error  *ngIf="pacienteForm.get('correo')?.hasError('email')">Campo correo no tiene el formato</mat-error>               
+        </mat-error>
+        </mat-form-field>
+    </div>
+    
+    <div class="row mb-2">
+        <div class="col-6">
+            <mat-form-field  appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input type="password"  formControlName="contrasena" matInput>
+                <mat-error class="mensaje" *ngIf="pacienteForm.get('contrasena')?.invalid && 
+                pacienteForm.get('contrasena')?.errors && 
+                (pacienteForm.get('contrasena')?.dirty || pacienteForm.get('contrasena')?.touched)">
+                <mat-error *ngIf="pacienteForm.get('contrasena')?.hasError('required')">Campo contraseña es requerido</mat-error>
+                <mat-error  *ngIf="pacienteForm.get('contrasena')?.hasError('minlength')">Campo minimo 5 digitos</mat-error>                 
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field  appearance="fill">
+                        <mat-label>Estado</mat-label>
+                        <mat-select formControlName="estado" value="Activo">
+                            <mat-option value="Activo">Activo</mat-option>
+                            <mat-option value="Inactivo">Inactivo</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <mat-label class="mb-2">Roles</mat-label>
+        <div *ngFor="let item of listaRoles; let i=index">
+            <label>
+              <input type="checkbox"  name="{{item.descripcion}}"  (change)="onchange($event)"  [(ngModel)]="item.seleccion"  [ngModelOptions]="{standalone: true}"/>
+              {{item.descripcion}}
+            </label>
+          </div>
+          <mat-error class="mensaje" *ngIf="pacienteForm.get('roles')?.invalid ||
+          pacienteForm.get('roles')?.errors || 
+          (pacienteForm.get('roles')?.dirty || pacienteForm.get('roles')?.touched)">
+            <mat-error class="error" *ngIf="this.pacienteForm.get('roles')?.hasError('required')">
+                Seleccione minimo un rol
+            </mat-error>
+        </mat-error>
+    </div>
+
+    -->
+    
+    <div class="row mb-2">
+        <div class="col text-end">
+            <button class="btn btn-secondary m-2" mat-dialog-close>Cancelar</button>
+            <button class="btn btn-primary" type="submit" (click)="guardarPaciente()" [disabled]="pacienteForm.invalid">{{tituloBoton}}</button>
+        </div>
+    </div> 
+
+</form>
+
+
+
+
+
+
+
+  
+  
+
+
+

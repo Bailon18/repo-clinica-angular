@@ -11,7 +11,10 @@ import { CitasComponent } from './citas/citas.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { MaterialModule } from '../../material/material.module';
 import { CrearComponent } from './usuario/paginas/crear.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormpacienteComponent } from './paciente/paginas/formPaciente/formpaciente.component';
+
+
 
 
 
@@ -25,13 +28,20 @@ import { FormsModule } from '@angular/forms';
     CitasComponent,
     ReportesComponent,
     CrearComponent,
+    FormpacienteComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
    
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class DashboardModule { }
