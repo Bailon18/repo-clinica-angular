@@ -70,6 +70,7 @@ export class PacienteComponent implements AfterViewInit, OnInit {
 
   abrirDialogoNuevoPaciente() {
     this.dialog.open(FormpacienteComponent, {
+      
       }).afterClosed().subscribe(valor =>{
         if (valor === 'guardar') {
           //this.listarUsuarios();

@@ -1,6 +1,6 @@
 
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import swall from 'sweetalert2';
@@ -22,6 +22,7 @@ export class FormpacienteComponent implements OnInit {
   tituloBoton:string ="Guardar"
   ocupaciones: Ocupacion[];
   estadocivil: EstadoCivil[];
+
 
   constructor(private formbuilder: FormBuilder, 
     private servicio: PacienteService,
@@ -48,14 +49,14 @@ export class FormpacienteComponent implements OnInit {
       id:[''],
       nombre: ['', Validators.required],
       apellidos: ['', Validators.required],
-      telefono: ['', Validators.required],
-      sexo: ['', Validators.required],
+      telefono: ['', Validators.required], //
+      sexo: ['', Validators.required], //
       fechanacimiento: ['', Validators.required],
-      ocupacion: ['', Validators.required],
-      estadocivil: ['', Validators.required],
+      ocupacion: ['', [Validators.required]],
+      estadocivil: ['', [Validators.required]],
       documento: ['',[Validators.required,Validators.min(10000000),Validators.max(99999999)]],
-      direccion: ['', [Validators.required, Validators.email]],
-      distrito: ['', Validators.required],
+      direccion: ['', [Validators.required, Validators.email]],//
+      distrito: ['', Validators.required],//
     })
   }
 
