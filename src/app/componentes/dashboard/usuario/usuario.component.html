@@ -54,10 +54,10 @@
                         <th mat-header-cell *matHeaderCellDef> Estado </th>
                         <td mat-cell *matCellDef="let fila">
                             <div *ngIf="fila.estado === 'Activo'; else ladoNe">                
-                                <span class="badge alert-secondary">{{fila.estado}}</span>
+                                <span class="badge text-bg-secondary">{{fila.estado}}</span>
                             </div>
                             <ng-template #ladoNe>
-                                <span class="badge alert-danger">{{fila.estado}}</span>
+                                <span class="badge text-bg-danger">{{fila.estado}}</span>
                             </ng-template>  
                         </td>
                         </ng-container>
@@ -73,9 +73,9 @@
                         <th mat-header-cell *matHeaderCellDef> Rol </th>
 
                         <td mat-cell *matCellDef="let fila">
-                            <ul *ngFor="let f of fila.roles">
-                                <li>{{f.descripcion}}</li>
-                            </ul>
+                            <p *ngFor="let f of fila.roles">
+                                {{f.descripcion}}
+                            </p>
                         </td>
                         </ng-container>
             

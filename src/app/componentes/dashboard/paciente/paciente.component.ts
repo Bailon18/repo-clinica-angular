@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PacienteService } from './services/paciente.service';
 import { Ocupacion } from './models/ocupacion';
 import { EstadoCivil } from './models/estadoCivil';
@@ -10,6 +10,7 @@ import {MatTableDataSource} from '@angular/material/table';
 
 import { MatDialog } from '@angular/material/dialog';
 import { FormpacienteComponent } from './paginas/formPaciente/formpaciente.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -20,62 +21,78 @@ import { FormpacienteComponent } from './paginas/formPaciente/formpaciente.compo
 
 })
 export class PacienteComponent implements AfterViewInit, OnInit {
+    
+    pacientes: Paciente[];
 
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ocupaciones: Ocupacion[];
-  estadoCivil: EstadoCivil[];
-  pacientes: Paciente[];
+    columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'TELEFONO', 'DISTRITO', 'ACCIONES'];
+    dataSource = new MatTableDataSource<Paciente>;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+    constructor(private servicio: PacienteService, public dialog: MatDialog) { }
 
-  columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'TELEFONO', 'DISTRITO', 'ACCIONES'];
-  dataSource = new MatTableDataSource<Paciente>;
+    ngOnInit(): void {
 
-  constructor(private servicio: PacienteService, public dialog: MatDialog) { }
+        this.servicio.getOcupaciones().subscribe(
+            res => localStorage.setItem('ocupaciones', JSON.stringify(res))
+        )
 
-  ngOnInit(): void {
+        this.servicio.getEstadoCivil().subscribe(
+            res =>localStorage.setItem('estadocivil', JSON.stringify(res))
+        )
 
-    this.servicio.getOcupaciones().subscribe({
-      next:(res) =>{
-        this.ocupaciones = res;
-      }
-    })
+        this.listarPaciente();
+    }
 
-    this.servicio.getEstadoCivil().subscribe({
-      next:(res) =>{
-        this.estadoCivil = res;
-      }
-    })
-
-    this.servicio.getPacientes().subscribe({
-      next:(res) =>{
-        console.log("PAC ",res)
-        this.dataSource = new MatTableDataSource(res);
+    ngAfterViewInit(): void {
+        this.paginator._intl.itemsPerPageLabel = 'Paginas';
+        this.paginator._intl.nextPageLabel = 'Siguiente';
+        this.paginator._intl.previousPageLabel = 'Atras';
         this.dataSource.paginator = this.paginator;
-      }
-    })
-  }
+    }
 
-  ngAfterViewInit(): void {
-    this.paginator._intl.itemsPerPageLabel = 'Paginas';
-    this.paginator._intl.nextPageLabel = 'Siguiente';
-    this.paginator._intl.previousPageLabel = 'Atras';
-    this.dataSource.paginator = this.paginator;
-  }
+    aplicarFiltro(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
 
-  aplicarFiltro(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+    abrirDialogoNuevoPaciente() {
+        
+        this.dialog.open(FormpacienteComponent, {
+            width:'25%',
+        }).afterClosed().subscribe(valor =>{
+            if (valor === 'guardar') {
+                this.listarPaciente();
+            }
+        });
+    }
 
-  abrirDialogoNuevoPaciente() {
-    this.dialog.open(FormpacienteComponent, {
-      
-      }).afterClosed().subscribe(valor =>{
-        if (valor === 'guardar') {
-          //this.listarUsuarios();
-        }
-    });
-  }
+    abrirDialogoEditarPaciente(fila: any){
+        this.dialog.open(FormpacienteComponent,{
+            width:'25%',
+            data:fila
+        }).afterClosed().subscribe(valor =>{
+            if (valor === 'actualizar') {
+                this.listarPaciente();
+            }
+        });
+    }
+
+    verDetallehistoria(fila:any){
+
+    }
+
+    listarPaciente(){
+        return this.servicio.getPacientes().subscribe(
+            {next: res => {
+                this.dataSource = new MatTableDataSource(res)
+                this.dataSource.paginator = this.paginator;
+                },
+                error: error => {
+                console.log("Ocurrio un error en la carga")
+                }
+            }
+        )
+    }
 
 }

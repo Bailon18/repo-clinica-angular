@@ -99,6 +99,8 @@ export class CrearComponent implements OnInit {
           });
 
           this.usuarioForm.value['roles']= resultado
+
+          console.log("US ", this.usuarioForm.value);
           
           this.servicio.guardarUsuarioServi(this.usuarioForm.value).subscribe( usu => {
 

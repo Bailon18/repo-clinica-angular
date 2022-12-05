@@ -18,7 +18,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { NgToastModule } from 'ng-angular-popup';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
+import { MAT_DATE_LOCALE } from '@angular/material/core'
 
 
 
@@ -43,7 +45,11 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatGridListModule,
     NgToastModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgbModule,
+
+    
+    
 
   ],
 
@@ -66,13 +72,19 @@ import {MatNativeDateModule} from '@angular/material/core';
     NgToastModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgbModule,
+
     
 
   ],
-  providers: [{
+  providers: [
+    DatePipe,
+    {
     provide: MAT_RADIO_DEFAULT_OPTIONS,
     useValue: { color: 'primary',},
-}] 
+    },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ] 
 })
 export class MaterialModule { }

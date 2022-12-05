@@ -13,6 +13,8 @@ import { RouterModule } from '@angular/router';
 
 
 
+
+
 @NgModule({
   // los componentes que contiene el modulo APP
   declarations: [
@@ -26,6 +28,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule, //add this line
     FormsModule,
     NgToastModule,
+   
 
   ],
   bootstrap: [AppComponent]
