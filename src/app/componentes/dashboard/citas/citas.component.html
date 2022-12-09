@@ -1,36 +1,83 @@
-<p>citas works!</p>
-<div class="mt-4">
-    <h2>LISTA DE PACIENTES</h2>
-  </div>
 
-    <div class="card mb-4">
-        <div class="card-header">
-            <i class="fas fa-table me-1"></i>
-            DataTable Example
+<br>
+<mat-card>
+    <div class="row">
+        <div class="row">
+            <div class="col-6 mb-2">
+                <mat-card-title>
+                    Citas
+                </mat-card-title>
+            </div>
         </div>
-        <div class="card-body">
-            <table id="datatablesSimple">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </tfoot>
-             
-            </table>
+        <div class="row">
+            <mat-card-content>
+                <div class="container-fluid p-0">
+                    <main>
+                        <section class="calendar p-2">
+                            <mat-card class="demo-inline-calendar-card">
+                            <mat-calendar [(selected)]="selected"></mat-calendar>
+                            </mat-card>
+                        </section>
+                        
+                        <section class="citas">
+                            <div class="doctor">
+                                <img src="/assets/imagen/userdefault.png"/>
+                                <div>
+                                    <p>Lourdes Nina</p>
+                                    <p>PADMA - Consulta de medicina general</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="hours" *ngFor="let i of horadefinida">
+            
+                                <div *ngIf="i.dato.psicologo != null; else fal">
+                                    <div class="cita filaitem">
+                                        <div>
+                                            <h4 style="background-color:#834c9f">AC</h4>
+                                            <p class="txt-medium">{{i.formato}}</p>
+                                            <!-- <small class="txt-medium">{{i.formato}}</small> -->
+            
+                                        </div>
+                                        <div class="separator active"></div>
+                                        <div class="info">
+                                            <h5 style="font-size: 19px; font-weight: 500;">{{i.dato.paciente.nombre}}</h5>
+                                            <p style="font-size: 17px;"> Género: {{i.dato.paciente.sexo}} - Estado: {{i.dato.estacita}} - Teléfono: +51{{i.dato.paciente.telefono}}</p>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="actions d-block">
+                                            <div>
+                                                <a class="pointer iconosAccion success-icon" matTooltip="ver detalle" matTooltipClass="tooltip">
+                                                    <i class="fa-regular fa-folder-open fa-xl"></i></a>
+                                                <a class="pointer iconosAccion" matTooltip="Cambiar estado" matTooltipClass="tooltip">
+                                                    <i class="fa-solid fa-rotate fa-xl"></i></a>
+                                                <a class="pointer iconosAccion danger-icon" matTooltip="Eliminar" matTooltipClass="tooltip">
+                                                    <i class="fa-regular fa-trash-can fa-xl"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                </div>
+                                
+                                <ng-template #fal>
+                                    <div id="docopy" class="cita ">
+                                        <div>
+                                            <p class="text-black">{{i.formato}}</p>
+                                        </div>
+                                        <div class="separator"></div>
+                                        <div class="info"></div>
+                                        <div class="actions">
+                                            <button class="btn botonagendar btn-sm">Agendar</button>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </mat-card-content>
         </div>
     </div>
+</mat-card>
+

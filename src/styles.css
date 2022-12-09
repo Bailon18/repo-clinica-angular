@@ -37,3 +37,6 @@ font-family: "Helvetica Neue",;
     text-align: center !important;
 }
 
+.mat-tooltip.tooltip {
+    font-size: 12px;
+  }
