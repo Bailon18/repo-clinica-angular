@@ -13,66 +13,101 @@
             <mat-card-content>
                 <div class="container-fluid p-0">
                     <main>
+
+                        <!-- Calendario -->
                         <section class="calendar p-2">
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>Seleccione psicolog@</mat-label>
+                                <mat-select (selectionChange)="obtenerpsicologo($event.value)">
+                                  <mat-option *ngFor="let est of psicologos" [value]="est">
+                                    {{est.nombres}}
+                                  </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <br>
+
                             <mat-card class="demo-inline-calendar-card">
-                            <mat-calendar [(selected)]="selected"></mat-calendar>
+                            <mat-calendar [dateClass]="dateClass" [(selected)]="selected"  (selectedChange)="obtenerfecha($event)"></mat-calendar>
                             </mat-card>
                         </section>
                         
+                        <!-- Fila de citas -->
                         <section class="citas">
                             <div class="doctor">
-                                <img src="/assets/imagen/userdefault.png"/>
-                                <div>
-                                    <p>Lourdes Nina</p>
-                                    <p>PADMA - Consulta de medicina general</p>
+                                <div class="doctor">
+                                    <img src="/assets/imagen/userdefault.png" />
+                                    <div>
+                                        <p class="nombrepsicologa">{{nombrepsicologa||'Nombre psicologo'}}</p>
+                                        <p>Psicologo Padma</p>
+                                    </div>
+                                    <div class="fechita">
+                                        <h3 class="fecha5">{{fechatext || 'Fecha'}}</h3>
+                                    </div>
                                 </div>
                             </div>
-                            <br>
-                            <div class="hours" *ngFor="let i of horadefinida">
-            
-                                <div *ngIf="i.dato.psicologo != null; else fal">
-                                    <div class="cita filaitem">
-                                        <div>
-                                            <h4 style="background-color:#834c9f">AC</h4>
-                                            <p class="txt-medium">{{i.formato}}</p>
-                                            <!-- <small class="txt-medium">{{i.formato}}</small> -->
-            
-                                        </div>
-                                        <div class="separator active"></div>
-                                        <div class="info">
-                                            <h5 style="font-size: 19px; font-weight: 500;">{{i.dato.paciente.nombre}}</h5>
-                                            <p style="font-size: 17px;"> Género: {{i.dato.paciente.sexo}} - Estado: {{i.dato.estacita}} - Teléfono: +51{{i.dato.paciente.telefono}}</p>
-                                            <p>
-                                            </p>
-                                        </div>
-                                        <div class="actions d-block">
+
+                            <div class="scroll">
+                                <div class="hours" *ngFor="let i of listacitasresul">
+                                    <div *ngIf="i.dato.psicologo != null; else fal">
+                                        <div class="cita filaitem">
                                             <div>
-                                                <a class="pointer iconosAccion success-icon" matTooltip="ver detalle" matTooltipClass="tooltip">
-                                                    <i class="fa-regular fa-folder-open fa-xl"></i></a>
-                                                <a class="pointer iconosAccion" matTooltip="Cambiar estado" matTooltipClass="tooltip">
-                                                    <i class="fa-solid fa-rotate fa-xl"></i></a>
-                                                <a class="pointer iconosAccion danger-icon" matTooltip="Eliminar" matTooltipClass="tooltip">
-                                                    <i class="fa-regular fa-trash-can fa-xl"></i></a>
+                                                <h4 style="background-color:#834c9f;font-weight: 500; font-size: 18px; ">{{i.dato.paciente.nombre.substr(0,1)+''+i.dato.paciente.apellidos.substr(0,1)| uppercase}}</h4>
+                                                <p class="txt-medium">{{i.formato}}</p>
+                                            </div>
+                                            <div class="separator active"></div>
+                                            <div class="info">
+
+                                                <h5 style="font-size: 19px; font-weight: 500;">{{i.dato.paciente.nombre}} {{i.dato.paciente.apellidos}}</h5>
+
+                                                <p *ngIf="i.dato.estadocita === 'pendiente'" style="font-size: 17px;">
+                                                    <b>Género:</b> {{i.dato.paciente.sexo}} &nbsp; <b>Estado: </b>
+                                                    <span class="badge bg-warning text-dark">{{i.dato.estadocita}}</span> &nbsp; <b>Teléfono:</b>+51{{i.dato.paciente.telefono}}
+                                                </p>
+
+                                                <p *ngIf="i.dato.estadocita === 'atendido'" style="font-size: 17px;">
+                                                    <b>Género:</b> {{i.dato.paciente.sexo}} &nbsp; <b>Estado: </b>
+                                                    <span class="badge bg-info text-dark">{{i.dato.estadocita}}</span> &nbsp; <b>Teléfono:</b>+51{{i.dato.paciente.telefono}}
+                                                </p>
+
+                                                <p *ngIf="i.dato.estadocita === 'cancelado'" style="font-size: 17px;">
+                                                    <b>Género:</b> {{i.dato.paciente.sexo}} &nbsp; <b>Estado: </b>
+                                                    <span class="badge bg-danger">{{i.dato.estadocita}}</span> &nbsp; <b>Teléfono:</b>+51{{i.dato.paciente.telefono}}
+                                                </p>
+                                                 
+                                                <p>
+                                                </p>
+                                            </div>
+                                            <div class="actions d-block">
+                                                <div>
+                                                    <a class="pointer iconosAccion success-icon" matTooltip="ver detalle" matTooltipClass="tooltip">
+                                                        <i class="fa-regular fa-folder-open fa-xl"></i></a>
+                                                    <a class="pointer iconosAccion" matTooltip="Cambiar estado" matTooltipClass="tooltip">
+                                                        <i class="fa-solid fa-rotate fa-xl"></i></a>
+                                                    <a class="pointer iconosAccion danger-icon" matTooltip="Eliminar" matTooltipClass="tooltip">
+                                                        <i class="fa-regular fa-trash-can fa-xl"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                
+                                    
+                                    <ng-template #fal>
+                                        <div id="docopy" class="cita ">
+                                            <div>
+                                                <p class="text-black">{{i.formato}}</p>
+                                            </div>
+                                            <div class="separator"></div>
+                                            <div class="info"></div>
+                                            <div class="actions">
+                                                <button class="btn botonagendar btn-sm">Agendar</button>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    
                                 </div>
-                                
-                                <ng-template #fal>
-                                    <div id="docopy" class="cita ">
-                                        <div>
-                                            <p class="text-black">{{i.formato}}</p>
-                                        </div>
-                                        <div class="separator"></div>
-                                        <div class="info"></div>
-                                        <div class="actions">
-                                            <button class="btn botonagendar btn-sm">Agendar</button>
-                                        </div>
-                                    </div>
-                                </ng-template>
-                                
                             </div>
+
                         </section>
                     </main>
                 </div>
@@ -80,4 +115,5 @@
         </div>
     </div>
 </mat-card>
+
 

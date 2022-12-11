@@ -96,10 +96,10 @@ main {
   left: -0.5rem;
 }
 .separator.active {
-  background-color: #ffc107;
+  background-color: #0E76A8;
 }
 .separator.active::before {
-  border: solid 0.2rem #ffc107;
+  border: solid 0.2rem #0E76A8;
 }
 .info {
   width: 100%;
@@ -194,7 +194,9 @@ p.today {
   position: absolute;
   width: .5rem;
   height: .5rem;
-  background-color: #ffc107;
+  background-color: rgba(14, 118, 168, 0.3);
+  /* background: rgba(72, 132, 156, 0.1)  */
+  opacity: initial;
   border-radius: 50%;
   top: .2rem;
   right: 0;
@@ -234,6 +236,40 @@ p.today {
 }
 
 #docopy{
+  height: 60px;
   background: rgba(72, 132, 156, 0.1) 
 }
 
+
+mat-form-field {
+  width: 100%;
+}
+
+.scroll{
+  position: relative;
+  overflow: scroll;
+  height: 83%;
+}
+
+.nombrepsicologa{
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 600;
+  color: rgb(108 108 108);
+}
+
+.fechita{
+  position:relative;
+  left:23%;
+}
+
+.fecha5{
+  font-size: 25px;
+  font-weight: 500;
+  color: #2980b9;
+}
+
+button.example-custom-date-class {
+  background: orange;
+  border-radius: 100%;
+}
