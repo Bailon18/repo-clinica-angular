@@ -29,7 +29,9 @@
                             <br>
 
                             <mat-card class="demo-inline-calendar-card">
-                            <mat-calendar [dateClass]="dateClass" [(selected)]="selected"  (selectedChange)="obtenerfecha($event)"></mat-calendar>
+                            <mat-calendar id="calendario" [dateClass]="funcion()"  [(selected)]="selected"  (selectedChange)="obtenerfecha($event)">
+                              
+                            </mat-calendar>
                             </mat-card>
                         </section>
                         
@@ -43,7 +45,9 @@
                                         <p>Psicologo Padma</p>
                                     </div>
                                     <div class="fechita">
-                                        <h3 class="fecha5">{{fechatext || 'Fecha'}}</h3>
+                                        <h6 style="font-size: 25px;
+                                        font-weight: 500;
+                                        color: #2980b9;">{{fechatext || 'Fecha'}}</h6>
                                     </div>
                                 </div>
                             </div>

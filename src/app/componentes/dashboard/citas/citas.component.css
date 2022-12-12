@@ -1,6 +1,14 @@
 main {
   display: flex;
 }
+
+.fechaa{
+  font-size: 25px;
+  font-weight: 500;
+  color: #2980b9;
+}
+
+
 .calendar {
   background: rgba(68, 70, 71, 0.1) ;
   min-height: 100vh;
@@ -261,13 +269,11 @@ mat-form-field {
 .fechita{
   position:relative;
   left:23%;
-}
-
-.fecha5{
-  font-size: 25px;
+  font-size: 40px;
   font-weight: 500;
   color: #2980b9;
 }
+
 
 button.example-custom-date-class {
   background: orange;
