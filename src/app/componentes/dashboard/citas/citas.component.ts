@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
-import { Component, OnChanges, OnInit , SimpleChanges, ViewEncapsulation} from '@angular/core';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { AfterViewInit, Component, OnChanges, OnInit , Renderer2, ViewChild, ViewEncapsulation} from '@angular/core';
+import { MatCalendar, MatCalendarCellCssClasses, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Paciente } from '../paciente/models/paciente';
 import { Citas, CitasResultado } from './model/citas';
 import { CitasService } from './services/citas.service';
@@ -9,6 +9,7 @@ import { Usuario } from '../usuario/model/usuario';
 
 import {MatCalendarCellClassFunction} from '@angular/material/datepicker';
 import { map } from 'rxjs';
+import { NativeDateAdapter } from '@angular/material/core';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { map } from 'rxjs';
   styleUrls:['./citas.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class CitasComponent implements OnInit {
+export class CitasComponent implements OnInit, AfterViewInit {
 
     
     id!:number;
@@ -35,6 +36,7 @@ export class CitasComponent implements OnInit {
     mesactual:number;
 
 
+
     public horadefinida:CitasResultado[]= [
         {hora:1, formato:"1:00 AM", dato:this.citas}, {hora:1, formato:"2:00 AM", dato:this.citas}, {hora:1, formato:"3:00 AM", dato:this.citas},
         {hora:1, formato:"4:00 AM", dato:this.citas},{hora:1, formato:"5:00 AM", dato:this.citas}, {hora:1, formato:"6:00 AM", dato:this.citas},
@@ -49,7 +51,6 @@ export class CitasComponent implements OnInit {
 
 
     funcion():MatCalendarCellClassFunction<Date>{
-
 
         //this.dato = JSON.parse(localStorage.getItem('mes')!) || [];
      
@@ -69,8 +70,6 @@ export class CitasComponent implements OnInit {
                 //let mesesito = JSON.parse(localStorage.getItem('mes')!) || [];
                 let dias = JSON.parse(localStorage.getItem('dias')!) || []
 
-                
-                
                 // if(mes != undefined){
                     
                 //     //console.log("cellDate.getMonth()+1 ", cellDate.getMonth()+1)
@@ -109,10 +108,47 @@ export class CitasComponent implements OnInit {
 
 
 
-    constructor(private servicio: CitasService) {
+   
+    constructor(private servicio: CitasService, private renderer: Renderer2 ) {
      }
 
+     ngAfterViewInit(): void {
 
+        const BACK_BUTTON = document.querySelector('.mat-calendar-previous-button');
+        const FORWARD_BUTTON = document.querySelector('.mat-calendar-next-button');
+   
+        if (BACK_BUTTON) {
+          this.renderer.listen(BACK_BUTTON, 'click', (event) => {
+            
+          });
+        }
+        if (FORWARD_BUTTON) {
+          this.renderer.listen(FORWARD_BUTTON, 'click', (event) => {
+
+          });
+        }
+      }
+
+    handleMonthSelected(event:any) {
+        console.log("Month changed", event);
+        //handler logic
+    }
+
+
+
+    hola(event:any){
+     
+        let elements = document.querySelectorAll('.calendario');
+
+        console.log("caaa ", elements)
+        
+        let x =  elements[0].querySelectorAll('.mat-calendar-body-header-content');
+        x.forEach(y => {
+            //y.classList.add('newClass');
+            console.log("YYY ",y)
+        });
+    
+    }
 
     ngOnInit(): void {
 
