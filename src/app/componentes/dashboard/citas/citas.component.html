@@ -2,21 +2,21 @@
 <br>
 <mat-card>
     <div class="row">
+        <mat-card-title>
+            Calendario de Citas
+        </mat-card-title>
         <div class="row">
-            <div class="col-6 mb-2">
-                <mat-card-title>
-                    Citas
-                </mat-card-title>
+            <div class="col mb-2 text-end">
+                <button class="btn btn-primary btn-sm" type="submit">Nuevo Paciente</button>
             </div>
         </div>
         <div class="row">
             <mat-card-content>
                 <div class="container-fluid p-0">
                     <main>
-
                         <!-- Calendario -->
                         <section class="calendar p-2">
-
+                            
                             <div *ngIf="rolInicioSesion != 'Psicologo'">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Seleccione psicolog@</mat-label>
@@ -27,15 +27,10 @@
                                     </mat-select>
                                 </mat-form-field>
                             </div>
-
-                            <br>
-
                             <mat-card class="demo-inline-calendar-card">
-                            <mat-calendar  [(selected)]="selected"  (selectedChange)="obtenerfecha($event)">
-                              
-                            </mat-calendar>
+                                <mat-calendar  [(selected)]="selected"  (selectedChange)="obtenerfecha($event)">
+                                </mat-calendar>
                             </mat-card>
-
                             <br>
 
                             <div class="text-center">
@@ -114,7 +109,7 @@
                                             <div class="separator"></div>
                                             <div class="info"></div>
                                             <div class="actions">
-                                                <button class="btn botonagendar btn-sm">Agendar</button>
+                                                <button class="btn botonagendar btn-sm" (click)="abrirmodalnuevacita()">Agendar</button>
                                             </div>
                                         </div>
                                     </ng-template>

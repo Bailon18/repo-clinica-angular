@@ -4,6 +4,8 @@ import { Citas, CitasResultado } from './model/citas';
 import { CitasService } from './services/citas.service';
 import { Usuario } from '../usuario/model/usuario';
 import {MatCalendarCellClassFunction} from '@angular/material/datepicker';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { NuevacitaComponent } from './paginas/nuevacita/nuevacita.component';
 
 
 
@@ -40,7 +42,7 @@ export class CitasComponent implements OnInit {
     public listacitasresul:any[];
 
 
-    constructor(private servicio: CitasService ) {
+    constructor(private servicio: CitasService,public dialog: MatDialog ) {
     }
 
     ngOnInit(): void {
@@ -80,11 +82,20 @@ export class CitasComponent implements OnInit {
         if(this.fecha != null && this.id != null){
             this.listarCitas(this.id, this.fecha);
 
+            // aqui guardamos la fecha acutal - psicologa
+
         }
     }
     
 
     listarCitas(id:number , fecha: Date){
+
+        let datoscita=[this.id, this.fechatext];
+
+        localStorage.setItem('datoscita', JSON.stringify(datoscita))
+
+        console.log("LLEGOOOO")
+
         this.servicio.buscarCitas(id, fecha).subscribe(res =>{
 
             this.listacitasresul = [
@@ -110,6 +121,18 @@ export class CitasComponent implements OnInit {
         )
     }
 
+
+    abrirmodalnuevacita(){
+        
+        this.dialog.open(NuevacitaComponent, {
+            width:'470px',
+        }).afterClosed().subscribe(valor =>{
+           if (valor === 'guardar') {
+             
+          }
+       });
+
+    }
 
 
 }
