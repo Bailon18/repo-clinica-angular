@@ -17,14 +17,16 @@
                         <!-- Calendario -->
                         <section class="calendar p-2">
 
-                            <mat-form-field appearance="fill">
-                                <mat-label>Seleccione psicolog@</mat-label>
-                                <mat-select (selectionChange)="obtenerpsicologo($event.value)">
-                                  <mat-option *ngFor="let est of psicologos" [value]="est">
-                                    {{est.nombres}}
-                                  </mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                            <div *ngIf="rolInicioSesion != 'Psicologo'">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Seleccione psicolog@</mat-label>
+                                    <mat-select (selectionChange)="obtenerpsicologo($event.value)">
+                                    <mat-option *ngFor="let est of psicologos" [value]="est">
+                                        {{est.nombres}}
+                                    </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
 
                             <br>
 
@@ -33,6 +35,14 @@
                               
                             </mat-calendar>
                             </mat-card>
+
+                            <br>
+
+                            <div class="text-center">
+                                <button routerLink="/dashboard/citaslista" class="btn btn-secondary btn-sm" type="submit">Visualizar en tabla</button>
+                            </div>
+                            
+
                         </section>
                         
                         <!-- Fila de citas -->

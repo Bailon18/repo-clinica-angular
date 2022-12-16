@@ -6,6 +6,7 @@ import { PacienteComponent } from './paciente/paciente.component';
 import { CitasComponent } from './citas/citas.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { ListarsesionesComponent } from './citas/paginas/listarsesiones/listarsesiones.component';
 
 const routes: Routes = [
   {path:'', component:DashboardComponent , children:[
@@ -14,7 +15,8 @@ const routes: Routes = [
     {path:'pacientes', component:PacienteComponent},
     {path:'citas', component:CitasComponent},
     {path:'reportes', component:ReportesComponent},
-    {path:'usuarios', component:UsuarioComponent}
+    {path:'usuarios', component:UsuarioComponent},
+    {path:'citaslista', component:ListarsesionesComponent}
 
   ]}
 ];

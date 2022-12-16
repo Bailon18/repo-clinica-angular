@@ -25,6 +25,7 @@ export class CitasComponent implements OnInit {
     public resul:any[];
     dias:number[];
     dato:number;
+    rolInicioSesion:string;
     
     public horadefinida:CitasResultado[]= [
         {hora:1, formato:"1:00 AM", dato:this.citas}, {hora:1, formato:"2:00 AM", dato:this.citas}, {hora:1, formato:"3:00 AM", dato:this.citas},
@@ -46,13 +47,16 @@ export class CitasComponent implements OnInit {
 
         this.servicio.listarPsicologas().subscribe(resultado => {
             this.psicologos = resultado.filter(psicologo => {
-                let res = psicologo.roles.some( r => r.id === 3 )
+                let res = psicologo.roles.some( r => r.descripcion === "Psicologo" )
                 return res;
             })
         })
 
         this.listacitasresul = this.horadefinida.splice(7,20);
-        this.fechatext = new Date().toLocaleDateString('es-PE', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
+        this.fechatext = new Date().toLocaleDateString('es-PE', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
+        
+        this.rolInicioSesion = JSON.parse(localStorage.getItem('rol')!) || [];
+        console.log("ROL ", this.rolInicioSesion)
         
     }
 
@@ -64,9 +68,11 @@ export class CitasComponent implements OnInit {
     }
 
     obtenerpsicologo(event:any){
+
         this.id = event.id;
         this.nombrepsicologa = event.nombres +" "+ event.apellidos
         console.log("ID ", this.id);
+        this.valirdarenviodatos();
     }
 
     valirdarenviodatos(){

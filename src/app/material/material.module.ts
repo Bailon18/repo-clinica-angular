@@ -84,7 +84,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core'
     provide: MAT_RADIO_DEFAULT_OPTIONS,
     useValue: { color: 'primary',},
     },
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ] 
 })
 export class MaterialModule { }

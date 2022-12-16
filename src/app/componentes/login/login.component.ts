@@ -58,6 +58,8 @@ export class LoginComponent implements OnInit {
             rolesListaUser.push(rolest[index]['descripcion'])
           }
 
+          console.log("ROLES ", rolesListaUser)
+
           if(rolesListaUser.length > 1){
             
             (async () => {
