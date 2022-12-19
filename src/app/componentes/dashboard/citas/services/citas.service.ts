@@ -10,15 +10,20 @@ import { Usuario } from '../../usuario/model/usuario';
 })
 export class CitasService {
 
-  private urlbuscarcitas: string = 'http://localhost:8080/citas/buscarcitas';
-  private urlListar: string = 'http://localhost:8080/usuario/listar';
-  private urldias : string ='http://localhost:8080/citas/listardias';
+  private urlbuscarcitas: string = 'http://localhost:8090/citas/buscarcitas';
+  private urlListar: string = 'http://localhost:8090/usuario/listar';
+  private urldias : string ='http://localhost:8090/citas/listardias';
+  private urlpacientecita : string ='http://localhost:8090/paciente/pagendar/';
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 
   constructor(private http: HttpClient) { }
 
   buscarCitas(id:number, fecha:Date): Observable<Citas[]>{
+    return this.http.get<Citas[]>(`${this.urlbuscarcitas}/${id}/${fecha}`);
+  }
+
+  buscarpacientecitas(id:number, fecha:Date): Observable<Citas[]>{
     return this.http.get<Citas[]>(`${this.urlbuscarcitas}/${id}/${fecha}`);
   }
 

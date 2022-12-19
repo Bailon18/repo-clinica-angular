@@ -3,6 +3,7 @@ import { Component, OnInit , ViewEncapsulation} from '@angular/core';
 import { Citas, CitasResultado } from './model/citas';
 import { CitasService } from './services/citas.service';
 import { Usuario } from '../usuario/model/usuario';
+import swall from 'sweetalert2'; // npm install sweetalert2 --save
 import {MatCalendarCellClassFunction} from '@angular/material/datepicker';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NuevacitaComponent } from './paginas/nuevacita/nuevacita.component';
@@ -20,6 +21,8 @@ export class CitasComponent implements OnInit {
     id!:number;
     nombrepsicologa!:string;
     fecha!: Date;
+
+
     psicologos : Usuario[];
     fechatext:string;
     selected: Date | null;
@@ -58,13 +61,14 @@ export class CitasComponent implements OnInit {
         this.fechatext = new Date().toLocaleDateString('es-PE', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
         
         this.rolInicioSesion = JSON.parse(localStorage.getItem('rol')!) || [];
-        console.log("ROL ", this.rolInicioSesion)
+        //console.log("ROL ", this.rolInicioSesion)
         
     }
 
     obtenerfecha(event:any){
 
         this.fecha = event
+        console.log("FECHA ", this.fecha)
         this.fechatext = event.toLocaleDateString('es-PE', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
         this.valirdarenviodatos();
     }
@@ -73,7 +77,7 @@ export class CitasComponent implements OnInit {
 
         this.id = event.id;
         this.nombrepsicologa = event.nombres +" "+ event.apellidos
-        console.log("ID ", this.id);
+        //console.log("ID ", this.id);
         this.valirdarenviodatos();
     }
 
@@ -89,13 +93,6 @@ export class CitasComponent implements OnInit {
     
 
     listarCitas(id:number , fecha: Date){
-
-        let datoscita=[this.id, this.fechatext];
-
-        localStorage.setItem('datoscita', JSON.stringify(datoscita))
-
-        console.log("LLEGOOOO")
-
         this.servicio.buscarCitas(id, fecha).subscribe(res =>{
 
             this.listacitasresul = [
@@ -122,16 +119,37 @@ export class CitasComponent implements OnInit {
     }
 
 
-    abrirmodalnuevacita(){
-        
-        this.dialog.open(NuevacitaComponent, {
-            width:'470px',
-        }).afterClosed().subscribe(valor =>{
-           if (valor === 'guardar') {
-             
-          }
-       });
+    abrirmodalnuevacita(dato:any){
 
+        if(this.fecha != null && this.id != null){
+
+            // console.log("DATO FILA ", dato.formato)
+            // console.log("FECHA ", this.fecha.toLocaleDateString('en-CA'))
+            // console.log("ID ", this.id)
+            // console.log("NOMBRE PSICOLOGO ", this.nombrepsicologa)
+
+
+            let datoscita=[this.id,this.nombrepsicologa, this.fecha, dato.formato];
+
+            localStorage.setItem('datoscita', JSON.stringify(datoscita))
+
+            this.dialog.open(NuevacitaComponent, {
+                width:'470px',
+            }).afterClosed().subscribe(valor =>{
+               if (valor === 'guardar') {
+                 
+              }
+           });
+
+        }else{
+            swall.fire({icon: 'warning',
+            confirmButtonColor:'#0275d8',
+            html:  `Para agendar se requiere fecha y psicologo!`,
+            })
+        }
+
+
+        
     }
 
 

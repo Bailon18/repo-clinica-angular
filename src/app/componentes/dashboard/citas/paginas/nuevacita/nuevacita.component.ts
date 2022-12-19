@@ -23,7 +23,8 @@ export class NuevacitaComponent implements OnInit {
 
   ngOnInit(): void {
 
-      //this.ocupaciones = JSON.parse(localStorage.getItem('ocupaciones')!) || [];
+      let datosetear  = JSON.parse(localStorage.getItem('datoscita')!) || [];
+      console.log("DATOS A SETEAR ", datosetear)
 
       this.citaForm = this.formbuilder.group({
         id:[''],
@@ -34,11 +35,23 @@ export class NuevacitaComponent implements OnInit {
         paciente:['Lucas',Validators.required], //
         nota:[''],
         estadocita:['Pendiente', Validators.required],
-        servicios:['', Validators.required]
+        servicios:['', Validators.required],
+        // nombrepaciente:new FormControl({ value: "Bailon", disabled: true }),
+        // apellidospaciente:new FormControl({ value: "Paucar Montes", disabled: true })
+        
       })
 
     }
 
+  buscarusuario(event: any){
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log("dato "+filterValue)
+
+    if(filterValue.length == 8){
+
+      // consola 
+    }
+  }
 
   guardarPaciente():void{
       if(this.citaForm.valid){

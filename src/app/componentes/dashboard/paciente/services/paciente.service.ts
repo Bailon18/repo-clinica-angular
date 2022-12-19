@@ -10,12 +10,12 @@ import { Paciente } from '../models/paciente';
 })
 export class PacienteService {
 
-  private urlocupacion: string = 'http://localhost:8080/paciente/listarOcupaciones';
-  private urloetapav: string = 'http://localhost:8080/paciente/listarEstadoCi';
-  private urlPaciente: string = 'http://localhost:8080/paciente/listarPacientes'
-  private urlBuscar: string = 'http://localhost:8080/paciente/buscarPaciente';
-  private urlcrear: string = 'http://localhost:8080/paciente/guardarPaciente';
-  private urlActualizar: string = 'http://localhost:8080/paciente/actualizarPaciente';
+  private urlocupacion: string = 'http://localhost:8090/paciente/listarOcupaciones';
+  private urloetapav: string = 'http://localhost:8090/paciente/listarEstadoCi';
+  private urlPaciente: string = 'http://localhost:8090/paciente/listarPacientes'
+  private urlBuscar: string = 'http://localhost:8090/paciente/buscarPaciente';
+  private urlcrear: string = 'http://localhost:8090/paciente/guardarPaciente';
+  private urlActualizar: string = 'http://localhost:8090/paciente/actualizarPaciente';
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 

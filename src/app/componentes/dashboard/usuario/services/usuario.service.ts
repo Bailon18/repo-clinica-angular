@@ -9,11 +9,11 @@ import { Roles, Usuario } from '../model/usuario';
 })
 export class UsuarioService {
 
-  private urlListar: string = 'http://localhost:8080/usuario/listar';
-  private urlcrear: string = 'http://localhost:8080/usuario/guardar';
-  private urlBuscar: string = 'http://localhost:8080/usuario/buscar';
-  private urlActualizar: string = 'http://localhost:8080/usuario/actualizar';
-  private urlBloquear: string = 'http://localhost:8080/usuario/bloquearUsuario';
+  private urlListar: string = 'http://localhost:8090/usuario/listar';
+  private urlcrear: string = 'http://localhost:8090/usuario/guardar';
+  private urlBuscar: string = 'http://localhost:8090/usuario/buscar';
+  private urlActualizar: string = 'http://localhost:8090/usuario/actualizar';
+  private urlBloquear: string = 'http://localhost:8090/usuario/bloquearUsuario';
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 

@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 })
 export class LoginService {
 
-  private urlValidar: string = "http://localhost:8080/login/validar"
+  private urlValidar: string = "http://localhost:8090/login/validar"
 
  //usu: Usuario = new Usuario();
 

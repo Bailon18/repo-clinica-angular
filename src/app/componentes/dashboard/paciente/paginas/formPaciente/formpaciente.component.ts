@@ -40,9 +40,7 @@ export class FormpacienteComponent implements OnInit {
       this.ocupaciones = JSON.parse(localStorage.getItem('ocupaciones')!) || [];
       this.estadocivil = JSON.parse(localStorage.getItem('estadocivil')!) || [];
 
-      console.log("ESTADO ", this.estadocivil)
-
-    
+      
       this.pacienteForm = this.formbuilder.group({
         id:[''],
         nombre: ['Anonimo', Validators.required],
