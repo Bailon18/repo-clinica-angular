@@ -8,7 +8,7 @@ export class Roles{
 
 export class Usuario{
 
-    id:string;
+    id:number;
     dni:string;
     nombres:string;
     apellidos: string;

@@ -11,10 +11,12 @@ export class Citas{
     psicologo:Usuario;
     paciente:Paciente;
     nota:string;
-    estacita:string;
+    estadocita:string;
     servicio:Servicio;
     
 }
+
+
 
 export class CitasResultado{
     hora:number;
