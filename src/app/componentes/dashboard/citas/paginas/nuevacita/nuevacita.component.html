@@ -3,7 +3,7 @@
     <div class="col">
         <h1 mat-dialog-title style="font-weight: 500;">Registra cita</h1>
     </div>
-    <div class="col mt-2 text-end">
+    <div id="nombrepaciente" class="col mt-2 text-end">
         {{nombrepaciente}}
     </div>
 </div>
@@ -14,19 +14,19 @@
 
 
         <!-- Fecha Cita -->
-        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1" id="inputdisable">
                 <input type="hidden" formControlName="idpsicologo">
                 <input type="hidden" formControlName="idpaciente">
                 <mat-form-field  appearance="fill">
-                    <mat-label>Fecha cita</mat-label>
-                    <input matInput formControlName="fechacita">
+                    <mat-label class="titulodisabled">Fecha cita</mat-label>
+                    <input matInput formControlName="fechacita" [disabled]="true">
                 </mat-form-field>
         </mat-grid-tile>
       
         <!-- Hora -->
         <mat-grid-tile [colspan] = "3" [rowspan] = "1">
             <mat-form-field  appearance="fill">
-                <mat-label>Hora cita</mat-label>
+                <mat-label class="titulodisabled">Hora cita</mat-label>
                 <input matInput  formControlName="hora">
             </mat-form-field>
         </mat-grid-tile>
@@ -34,7 +34,7 @@
         <!-- Psicologo -->
         <mat-grid-tile [colspan] = "3" [rowspan] = "1">
             <mat-form-field  appearance="fill">
-                <mat-label>Psicologo</mat-label>
+                <mat-label class="titulodisabled">Psicologo</mat-label>
                 <input matInput  formControlName="psicologo">
             </mat-form-field>
         </mat-grid-tile>
@@ -42,25 +42,11 @@
         <!-- Paciente -->
         <mat-grid-tile [colspan] = "3" [rowspan] = "1">
             <mat-form-field  appearance="fill">
-                <mat-label>Paciente</mat-label>
+                <mat-label class="titulodisabled">Paciente</mat-label>
                 <input matInput type="number"  formControlName="paciente"  (keyup)="buscarusuario($event)" placeholder="Buscar por dni...">
             </mat-form-field>
         </mat-grid-tile>
 
-        <!-- <mat-grid-tile [colspan] = "3" [rowspan] = "1">
-            <mat-form-field  appearance="fill">
-                <mat-label>Nombre</mat-label>
-                <input matInput  formControlName="nombrepaciente" >
-            </mat-form-field>
-        </mat-grid-tile>
-
-        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
-            <mat-form-field  appearance="fill">
-                <mat-label>Apellidos</mat-label>
-                <input matInput  formControlName="apellidospaciente" >
-            </mat-form-field>
-        </mat-grid-tile>
-       -->
         <!-- Modalidad -->
         <mat-grid-tile [colspan] = "3" [rowspan] = "1">
             <mat-form-field  appearance="fill">

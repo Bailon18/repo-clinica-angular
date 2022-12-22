@@ -32,43 +32,41 @@ export class NuevacitaComponent implements OnInit {
   ngOnInit(): void {
 
       this.datosetear  = JSON.parse(localStorage.getItem('datoscita')!) || [];
-      //console.log("DATOS A SETEAR ", this.datosetear)
 
-      // [3, 'Herlly Arteaga Sedano', '2022-12-15T05:00:00.000Z', '11:00 AM']
+
+      console.log("DATOS EN NUEVA CITA ", this.datosetear)
+
       this.fechaseleccionado = this.datosetear[2];
       this.horaseleccionado =  Number.parseInt(this.datosetear[3].slice(0,2));
       let fecha = new Date(this.fechaseleccionado).toLocaleDateString('en-CA')
-      //console.log("FECHAAAAAA ", fecha)
 
       this.citaForm = this.formbuilder.group({
         
         idpsicologo:[this.datosetear[0]],
         idpaciente : [''],
-        fechacita: [fecha], //text -> fecha automatico
-        hora:[this.datosetear[3]], // text -> hora automatico
+
+        
+        fechacita: [{value: fecha, disabled: true},], //text -> fecha automatico
+        hora:[{value: this.datosetear[3], disabled: true},], // text -> hora automatico
         modalidad: [''], // combobox - manual -> Virtual Presencial
-        psicologo:[this.datosetear[1],Validators.required], // text -> paciente automatico
+        psicologo:[{value: this.datosetear[1], disabled: true} ,Validators.required], // text -> paciente automatico
         paciente:['',Validators.required], //
         nota:[''],
         estadocita:['Pendiente', Validators.required],
         servicios:['', Validators.required],
-        // nombrepaciente:new FormControl({ value: "Bailon", disabled: true }),
-        // apellidospaciente:new FormControl({ value: "Paucar Montes", disabled: true })
         
-      })
+      }
+      )
     }
-
 
   buscarusuario(event: any){
 
     this.nombrepaciente = 'Paciente no seleccionado';
 
     const dni = (event.target as HTMLInputElement).value;
-    console.log("dato "+dni)
 
     if(dni.length == 8){
 
-      // consola 
       this.servicio.buscarpacientedni(dni).subscribe(pac => {
         
         if(pac != null ){
@@ -82,22 +80,6 @@ export class NuevacitaComponent implements OnInit {
 
   guardarPaciente():void{
 
-  //   {
-  //     "fechacita": "2022-12-19",
-  //     "horacita": 9,
-  //     "modalidad": "Virtual",
-  //     "psicologo": {
-  //         "id": 3
-  //     },
-  //     "paciente": {
-  //         "id": 2
-  //     },
-  //     "nota": "Se atendio con el paciente x",
-  //     "estadocita": "pendiente",
-  //     "servicio": {
-  //         "id": 1
-  //     }
-  // }
 
       if(this.citaForm.valid){
 
@@ -133,7 +115,7 @@ export class NuevacitaComponent implements OnInit {
               swall.fire({
                 icon: 'success',
                 confirmButtonColor:'#0275d8',
-                html:  `Se registro correctamente del paciente:  <strong>${this.nombrepaciente}</strong>`,
+                html:  `Se registro correctamente cita del paciente:  <strong>${this.nombrepaciente}</strong>`,
               })
 
             }else{
@@ -141,20 +123,12 @@ export class NuevacitaComponent implements OnInit {
               swall.fire({
                 icon: 'warning',
                 confirmButtonColor:'#0275d8',
-                html:  `No se  puede registrar la cita del paciente:  <strong>${this.nombrepaciente}</strong> porque solo puede registrarse una cita por paciente al dia`,
+                html:  `No se  puede registrar la cita del paciente:  <strong>${this.nombrepaciente}</strong> 
+                porque solo puede registrarse una cita por paciente al dia`,
               })
             }
           })
 
-          // this.servicio.guardarPacienteServi(this.citaForm.value).subscribe( pac => {
-          //       this.dialog.close("guardar")
-          //       this.citaForm.reset();
-          //       swall.fire({
-          //       icon: 'success',
-          //       confirmButtonColor:'#0275d8',
-          //       html:  `Se registro correctamente al paciente:  <strong>${pac.nombre}</strong>`,
-          //       })
-          // })
       }
 
   }

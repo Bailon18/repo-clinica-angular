@@ -90,20 +90,17 @@ export class FormpacienteComponent implements OnInit {
     if(!this.datoedit){
         if(this.pacienteForm.valid){
 
-    
-            this.pacienteForm.value['ocupacion']= this.ocupaciones.filter(ocu => ocu.id == this.pacienteForm.value['ocupacion'])[0];
-            this.pacienteForm.value['estadocivil']= this.estadocivil.filter(esta => esta.id == this.pacienteForm.value['estadocivil'])[0];
-        
-            console.log(this.pacienteForm.value);
-
+            this.pacienteForm.value['ocupacion']= new Ocupacion(this.pacienteForm.value['ocupacion']); ;
+            this.pacienteForm.value['estadocivil']= new EstadoCivil(this.pacienteForm.value['estadocivil'])
+      
             this.servicio.guardarPacienteServi(this.pacienteForm.value).subscribe( pac => {
                   this.dialog.close("guardar")
                   this.pacienteForm.reset();
-                  swall.fire({
-                  icon: 'success',
-                  confirmButtonColor:'#0275d8',
-                  html:  `Se registro correctamente al paciente:  <strong>${pac.nombre}</strong>`,
-                  })
+                  // swall.fire({
+                  // icon: 'success',
+                  // confirmButtonColor:'#0275d8',
+                  // html:  `Se registro correctamente al paciente:  <strong>${pac.nombre}</strong>`,
+                  // })
             })
         }
     }else{

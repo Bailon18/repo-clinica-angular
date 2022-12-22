@@ -6,6 +6,7 @@ import { Usuario } from '../usuario/model/usuario';
 import swall from 'sweetalert2'; // npm install sweetalert2 --save
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NuevacitaComponent } from './paginas/nuevacita/nuevacita.component';
+import { FormpacienteComponent } from '../paciente/paginas/formPaciente/formpaciente.component';
 
 
 
@@ -19,11 +20,11 @@ export class CitasComponent implements OnInit {
 
     id!:number;
     nombrepsicologa!:string;
-    fecha!: Date;
+    fecha: Date = new Date();
 
     psicologos : Usuario[];
     fechatext:string;
-    selected: Date | null;
+    selected: Date = new Date();
     public citas = new Citas();
     public resul:any[];
     dias:number[];
@@ -85,6 +86,55 @@ export class CitasComponent implements OnInit {
     }
     
 
+
+
+
+    abrirmodalnuevacita(dato:any){
+
+        if(this.fecha != null && this.id != null){
+
+            let datoscita=[this.id,this.nombrepsicologa, this.fecha, dato.formato];
+
+            localStorage.setItem('datoscita', JSON.stringify(datoscita))
+
+            this.dialog.open(NuevacitaComponent, {
+                width:'470px',
+            }).afterClosed().subscribe(valor =>{
+              
+                this.listarCitas(this.id, this.fecha);
+              
+           });
+
+        }else{
+            swall.fire({icon: 'warning',
+            confirmButtonColor:'#0275d8',
+            html:  `Para agendar se requiere fecha y psicologo!`,
+            })
+        }
+ 
+    }
+
+    // este formulario esta dentro de PACIENTE/PAGINAS/
+    abrirDialogoNuevoPaciente() {
+        
+        this.dialog.open(FormpacienteComponent, {
+            width:'25%',
+        }).afterClosed().subscribe(valor =>{
+
+            // despues de guardar el paciente -> abre automaticamente el  modal de nueva cita 
+            this.dialog.open(NuevacitaComponent, {
+                width:'470px',
+            }).afterClosed().subscribe(valor =>{
+                
+                
+                
+            });
+        });
+    }
+
+
+
+    
     listarCitas(id:number , fecha: Date){
         this.servicio.buscarCitas(id, fecha).subscribe(res =>{
 
@@ -111,33 +161,6 @@ export class CitasComponent implements OnInit {
         )
     }
 
-
-    abrirmodalnuevacita(dato:any){
-
-        if(this.fecha != null && this.id != null){
-
-            let datoscita=[this.id,this.nombrepsicologa, this.fecha, dato.formato];
-
-            localStorage.setItem('datoscita', JSON.stringify(datoscita))
-
-            this.dialog.open(NuevacitaComponent, {
-                width:'470px',
-            }).afterClosed().subscribe(valor =>{
-              
-                this.listarCitas(this.id, this.fecha);
-              
-           });
-
-        }else{
-            swall.fire({icon: 'warning',
-            confirmButtonColor:'#0275d8',
-            html:  `Para agendar se requiere fecha y psicologo!`,
-            })
-        }
-
-
-        
-    }
 
 
 }
