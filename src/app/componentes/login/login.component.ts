@@ -8,6 +8,7 @@ import swall from 'sweetalert2'; // npm install sweetalert2 --save
 import { UsuarioService } from '../dashboard/usuario/services/usuario.service';
 import { LoginService } from './login.service';
 import { Usuario } from '../dashboard/usuario/model/usuario';
+import { map } from 'rxjs';
 
 
 
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   ingresar(){
 
     const usuario = this.formulario.value.usuario;
@@ -51,16 +53,14 @@ export class LoginComponent implements OnInit {
         if(this.usuario !=null){
 
           const rolest = this.usuario['roles'];
-
-          let rolesListaUser = [];
   
+          let mapa= new Map();
+
           for (let index = 0; index < rolest.length; index++) {
-            rolesListaUser.push(rolest[index]['descripcion'])
+            mapa.set(rolest[index]['descripcion'],rolest[index]['descripcion'] )
           }
 
-          console.log("ROLES ", rolesListaUser)
-
-          if(rolesListaUser.length > 1){
+          if(mapa){
             
             (async () => {
 
@@ -68,9 +68,7 @@ export class LoginComponent implements OnInit {
                 html: 'Usted cuenta con mas un rol, Seleccione un rol para iniciar sesión',
                 icon:'question',
                 input: 'select',
-                inputOptions: {
-                  'roles': rolesListaUser
-                },
+                inputOptions: mapa,
                 inputPlaceholder: 'Seleccione el rol',
                 confirmButtonColor:'#0275d8',
                 showCancelButton: true,
@@ -86,19 +84,14 @@ export class LoginComponent implements OnInit {
                 }
               })
 
+         
               if (roles) {
-                let roless = this.serviUser.getRoles()
-                this.setServicioRol(roless[roles].descripcion)
+                this.setServicioRol(roles)
               }
               
               })()
-          }else{
-
-            const rolest = this.usuario['roles'];
-            this.setServicioRol(rolest[0].descripcion);
           }
 
-        
         }else{
           swall.fire({icon: 'error',
                       confirmButtonColor:'#0275d8',
@@ -106,19 +99,19 @@ export class LoginComponent implements OnInit {
           })
         }
       },
-      error:(error) => {}
-    });
+      error:(error) => {
 
-  
+      }
+    });
   }
 
 
-  setServicioRol(rol: string){
+  setServicioRol(rol: any){
 
     swall.fire({
       html:`${this.usuario.nombres.toUpperCase()} ${this.usuario.apellidos} Iniciastes sesión como: <strong>${rol}</strong>`,
       confirmButtonColor:'#0275d8'
-    })   //`${this.usuario.nombres} ${this.usuario.apellidos} Iniciado sesión como: ${rol}` )
+    }) 
     this.servicio.setRolSesion(rol).subscribe({
       next:(res) => {
         localStorage.setItem('rol', JSON.stringify(res))

@@ -17,5 +17,6 @@ export class Usuario{
     estado:string;
     sexo:string;
     roles: Roles[]
+
 }
 

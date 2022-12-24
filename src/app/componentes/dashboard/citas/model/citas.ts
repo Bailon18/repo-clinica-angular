@@ -12,8 +12,7 @@ export class Citas{
     paciente:Paciente;
     nota:string;
     estadocita:string;
-    servicio:Servicio;
-    
+    servicio:Servicio;  
 }
 
 

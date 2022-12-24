@@ -65,29 +65,23 @@ export class CitasComponent implements OnInit {
     }
 
     obtenerfecha(event:any){
-
         this.fecha = event
         this.fechatext = event.toLocaleDateString('es-PE', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
         this.valirdarenviodatos();
     }
 
     obtenerpsicologo(event:any){
-
         this.id = event.id;
         this.nombrepsicologa = event.nombres +" "+ event.apellidos
         this.valirdarenviodatos();
     }
 
     valirdarenviodatos(){
-
         if(this.fecha != null && this.id != null){
             this.listarCitas(this.id, this.fecha);
         }
     }
     
-
-
-
 
     abrirmodalnuevacita(dato:any){
 
@@ -121,14 +115,12 @@ export class CitasComponent implements OnInit {
             width:'25%',
         }).afterClosed().subscribe(valor =>{
 
-            // despues de guardar el paciente -> abre automaticamente el  modal de nueva cita 
-            this.dialog.open(NuevacitaComponent, {
-                width:'470px',
-            }).afterClosed().subscribe(valor =>{
+            // // despues de guardar el paciente -> abre automaticamente el  modal de nueva cita 
+            // this.dialog.open(NuevacitaComponent, {
+            //     width:'470px',
+            // }).afterClosed().subscribe(valor =>{
                 
-                
-                
-            });
+            // });
         });
     }
 

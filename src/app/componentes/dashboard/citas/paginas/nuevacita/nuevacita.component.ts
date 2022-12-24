@@ -29,12 +29,14 @@ export class NuevacitaComponent implements OnInit {
   }
 
 
+  /**
+   * Metodo donde todo se inicializa
+   * - Datos a setear(localstorage) al modal(fecha , hora , psicologo)
+   */
   ngOnInit(): void {
 
       this.datosetear  = JSON.parse(localStorage.getItem('datoscita')!) || [];
 
-
-      console.log("DATOS EN NUEVA CITA ", this.datosetear)
 
       this.fechaseleccionado = this.datosetear[2];
       this.horaseleccionado =  Number.parseInt(this.datosetear[3].slice(0,2));
@@ -44,8 +46,6 @@ export class NuevacitaComponent implements OnInit {
         
         idpsicologo:[this.datosetear[0]],
         idpaciente : [''],
-
-        
         fechacita: [{value: fecha, disabled: true},], //text -> fecha automatico
         hora:[{value: this.datosetear[3], disabled: true},], // text -> hora automatico
         modalidad: [''], // combobox - manual -> Virtual Presencial
@@ -59,6 +59,12 @@ export class NuevacitaComponent implements OnInit {
       )
     }
 
+  /**
+   * Metodo que tiene por funcionalidad buscar un usuario atraves del dni
+   * ENCUENTRA -> mostrar el nombre de usuario cuando lo encuentra 
+   * NO ENCUENTRA -> de lo contrario sigue mostrando "PACIENTE NO SELECCIONADO"
+   * 
+   */
   buscarusuario(event: any){
 
     this.nombrepaciente = 'Paciente no seleccionado';
@@ -78,7 +84,10 @@ export class NuevacitaComponent implements OnInit {
     }
   }
 
-  guardarPaciente():void{
+  /*
+   * Metodo que tiene por funcionalidad guardar una nueva cita
+  */
+  guardarCita():void{
 
 
       if(this.citaForm.valid){
@@ -87,14 +96,10 @@ export class NuevacitaComponent implements OnInit {
 
           let nuevospicologo = new Usuario();
           nuevospicologo.id = this.citaForm.value['idpsicologo'];
-
-          let nuevopaciente = new Paciente();
-          nuevopaciente.id = this.pacienteseleccionado
-
-          let nuevoservicio = new Servicio();
-          nuevoservicio.id = this.citaForm.value['servicios'];
           
-
+          let nuevopaciente = new Paciente(this.pacienteseleccionado);
+          let nuevoservicio = new Servicio(this.citaForm.value['servicios']);
+          
           nuevacita.fechacita = this.fechaseleccionado;
           nuevacita.horacita = this.horaseleccionado;
           nuevacita.modalidad = this.citaForm.value['modalidad'];

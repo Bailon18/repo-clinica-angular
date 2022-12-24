@@ -17,4 +17,9 @@ export class Paciente {
 	documento:string;
 	direccion:string;
 	distrito:string;
+
+	constructor(id:number){
+		this.id = id;
+	}
 }
+
