@@ -7,6 +7,7 @@ import swall from 'sweetalert2'; // npm install sweetalert2 --save
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NuevacitaComponent } from './paginas/nuevacita/nuevacita.component';
 import { FormpacienteComponent } from '../paciente/paginas/formPaciente/formpaciente.component';
+import { DetallecitaComponent } from './paginas/detallecita/detallecita.component';
 
 
 
@@ -82,6 +83,20 @@ export class CitasComponent implements OnInit {
         }
     }
     
+    abrirmodaleditarcita(dato:any){
+        
+ 
+        this.servicio.buscarcitaid(dato.dato.id).subscribe( res => {
+            console.log("Resultado de busqueda ", res);
+        })
+
+        this.dialog.open(DetallecitaComponent, {
+            width:'25%',
+        }).afterClosed().subscribe(valor =>{
+        });
+
+    }
+
 
     abrirmodalnuevacita(dato:any){
 
@@ -129,6 +144,8 @@ export class CitasComponent implements OnInit {
     
     listarCitas(id:number , fecha: Date){
         this.servicio.buscarCitas(id, fecha).subscribe(res =>{
+
+            console.log("CITAS ", res)
 
             this.listacitasresul = [
                 {hora:1, formato:"1:00 AM", dato:this.citas}, {hora:1, formato:"2:00 AM", dato:this.citas}, {hora:1, formato:"3:00 AM", dato:this.citas},

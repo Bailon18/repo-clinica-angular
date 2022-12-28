@@ -15,7 +15,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormpacienteComponent } from './paciente/paginas/formPaciente/formpaciente.component';
 import { ListarsesionesComponent } from './citas/paginas/listarsesiones/listarsesiones.component';
 import { DetallecitaComponent } from './citas/paginas/detallecita/detallecita.component';
-import { EstadocitaComponent } from './citas/paginas/estadocita/estadocita.component';
 import { NuevacitaComponent } from './citas/paginas/nuevacita/nuevacita.component';
 
 
@@ -35,7 +34,6 @@ import { NuevacitaComponent } from './citas/paginas/nuevacita/nuevacita.componen
     FormpacienteComponent,
     ListarsesionesComponent,
     DetallecitaComponent,
-    EstadocitaComponent,
     NuevacitaComponent
   ],
   imports: [

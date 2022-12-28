@@ -12,6 +12,7 @@ import { Citas } from '../model/citas';
 export class CitasService {
 
   private urlbuscarcitas: string = 'http://localhost:8090/citas/buscarcitas';
+  private urlbuscarcitasID: string = 'http://localhost:8090/citas/buscarcitasid';
   private urlListar: string = 'http://localhost:8090/usuario/listar';
   private urldias : string ='http://localhost:8090/citas/listardias';
   private urlpacientecita : string ='http://localhost:8090/paciente/pagendar';
@@ -43,6 +44,10 @@ export class CitasService {
 
   guardarCita(cita: Citas):Observable<Citas>{
     return this.http.post<Citas>(this.urlcrear, cita, {headers: this.httpHeaders});
+  }
+
+  buscarcitaid(id:number):Observable<Citas>{
+    return this.http.get<Citas>(`${this.urlbuscarcitasID}/${id}`);
   }
 }
 
