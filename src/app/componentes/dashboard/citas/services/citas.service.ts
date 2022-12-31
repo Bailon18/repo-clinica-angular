@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Usuario } from '../../usuario/model/usuario';
 import { PacienteDTO } from '../model/pacientedto';
 import { Citas } from '../model/citas';
+import { CitasDTO } from '../model/citasdto';
 
 
 @Injectable({
@@ -46,8 +47,8 @@ export class CitasService {
     return this.http.post<Citas>(this.urlcrear, cita, {headers: this.httpHeaders});
   }
 
-  buscarcitaid(id:number):Observable<Citas>{
-    return this.http.get<Citas>(`${this.urlbuscarcitasID}/${id}`);
+  buscarcitaid(id:number):Observable<CitasDTO>{
+    return this.http.get<CitasDTO>(`${this.urlbuscarcitasID}/${id}`);
   }
 }
 

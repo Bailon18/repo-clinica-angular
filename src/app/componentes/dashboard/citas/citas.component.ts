@@ -8,6 +8,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NuevacitaComponent } from './paginas/nuevacita/nuevacita.component';
 import { FormpacienteComponent } from '../paciente/paginas/formPaciente/formpaciente.component';
 import { DetallecitaComponent } from './paginas/detallecita/detallecita.component';
+import { Paciente } from '../paciente/models/paciente';
+import { CitasDTO } from './model/citasdto';
 
 
 
@@ -31,6 +33,8 @@ export class CitasComponent implements OnInit {
     dias:number[];
     dato:number;
     rolInicioSesion:string;
+
+    datoedit:CitasDTO;
     
     public horadefinida:CitasResultado[]= [
         {hora:1, formato:"1:00 AM", dato:this.citas}, {hora:1, formato:"2:00 AM", dato:this.citas}, {hora:1, formato:"3:00 AM", dato:this.citas},
@@ -85,16 +89,17 @@ export class CitasComponent implements OnInit {
     
     abrirmodaleditarcita(dato:any){
         
- 
         this.servicio.buscarcitaid(dato.dato.id).subscribe( res => {
-            console.log("Resultado de busqueda ", res);
+            //console.log("Resultado de busqueda ", res);
+            this.datoedit = res;
+            //localStorage.setItem('datosedicioncita', JSON.stringify(ress))
+            this.dialog.open(DetallecitaComponent, {
+                width:'30%',
+                data:this.datoedit
+            }).afterClosed().subscribe(valor =>{
+            });
+    
         })
-
-        this.dialog.open(DetallecitaComponent, {
-            width:'25%',
-        }).afterClosed().subscribe(valor =>{
-        });
-
     }
 
 

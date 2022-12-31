@@ -77,17 +77,17 @@
 
                                                 <h5 style="font-size: 19px; font-weight: 500;">{{i.dato.paciente.nombre}} {{i.dato.paciente.apellidos}}</h5>
 
-                                                <p *ngIf="i.dato.estadocita === 'pendiente'" style="font-size: 17px;">
+                                                <p *ngIf="i.dato.estadocita === 'Pendiente'" style="font-size: 17px;">
                                                     <b>Género:</b> {{i.dato.paciente.sexo}} &nbsp; <b>Estado: </b>
                                                     <span class="badge bg-warning text-dark">{{i.dato.estadocita}}</span> &nbsp; <b>Teléfono:</b>+51{{i.dato.paciente.telefono}}
                                                 </p>
 
-                                                <p *ngIf="i.dato.estadocita === 'atendido'" style="font-size: 17px;">
+                                                <p *ngIf="i.dato.estadocita === 'Atendido'" style="font-size: 17px;">
                                                     <b>Género:</b> {{i.dato.paciente.sexo}} &nbsp; <b>Estado: </b>
                                                     <span class="badge bg-info text-dark">{{i.dato.estadocita}}</span> &nbsp; <b>Teléfono:</b>+51{{i.dato.paciente.telefono}}
                                                 </p>
 
-                                                <p *ngIf="i.dato.estadocita === 'cancelado'" style="font-size: 17px;">
+                                                <p *ngIf="i.dato.estadocita === 'Cancelado'" style="font-size: 17px;">
                                                     <b>Género:</b> {{i.dato.paciente.sexo}} &nbsp; <b>Estado: </b>
                                                     <span class="badge bg-danger">{{i.dato.estadocita}}</span> &nbsp; <b>Teléfono:</b>+51{{i.dato.paciente.telefono}}
                                                 </p>

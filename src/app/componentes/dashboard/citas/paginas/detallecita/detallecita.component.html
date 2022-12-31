@@ -3,9 +3,6 @@
     <div class="col">
         <h1 mat-dialog-title style="font-weight: 500;">Editar cita</h1>
     </div>
-    <!-- <div id="nombrepaciente" class="col mt-2 text-end">
-        {{nombrepaciente}}
-    </div> -->
 </div>
 
 <form [formGroup]="citaForm">
@@ -21,34 +18,29 @@
                     <mat-datepicker-toggle matSuffix [for]="dp">
                     </mat-datepicker-toggle>
                     <mat-datepicker #dp></mat-datepicker>
-                    <!-- <mat-error *ngIf="citaForm.get('fechacita')?.invalid &&
+                    <mat-error *ngIf="citaForm.get('fechacita')?.invalid &&
                     citaForm.get('fechacita')?.errors &&
                     (citaForm.get('fechacita')?.dirty || citaForm.get('fechacita')?.touched)">
                         <small class="text-danger"
                         *ngIf="citaForm.get('fechacita')?.hasError('required')">
                         Campo <b>Fecha</b> es requerido
                         </small>
-                    </mat-error> -->
+                    </mat-error>
                 </mat-form-field>
         </mat-grid-tile>
       
+        
         <!-- Hora -->
-        <!-- <mat-grid-tile [colspan] = "3" [rowspan] = "1">
-            <mat-form-field  appearance="fill">
-                <mat-label >Hora cita</mat-label>
-                <input type="number"  min="8" max="19" matInput  formControlName="hora">
-            </mat-form-field>
-        </mat-grid-tile> -->
         <mat-grid-tile [colspan] = "3" [rowspan] = "1">
             <mat-form-field appearance="fill">
                 <mat-label>Seleccione hora</mat-label>
-                <mat-select (selectionChange)="obtenerhora($event.value)" >
-                <mat-option *ngFor="let est of listacitasresul" [value]="est">
+                <mat-select  (selectionChange)="obtenerhora($event.value)"  formControlName="hora" name="hora" [(value)]="selectedOption" >
+                <mat-option *ngFor="let est of listacitasresul" [value]="est" [disabled]="est.dato.paciente ? true : false"> <!-- [disabled]="est.dato.paciente? true : false"-->
                     <div *ngIf="est.dato.paciente != null; else fal">
-                        {{est.formato}} -- {{est.dato.paciente.nombre+''+est.dato.paciente.apellidos}}
+                        <i style="color: brown;" class="fa-solid fa-circle fa-xs"></i> {{' '+est.formato}} -- {{est.dato.paciente.nombre+' '+est.dato.paciente.apellidos.split(" ")[0]}}
                     </div>
                     <ng-template #fal>
-                        {{est.formato}} -- {{"Libre"}}
+                        <i style="color: rgb(7, 85, 7);" class="fa-solid fa-circle fa-xs"></i> {{est.formato}} -- {{"Libre"}}
                     </ng-template>
                 </mat-option>
                 </mat-select>
@@ -109,9 +101,9 @@
             <mat-form-field  appearance="fill">
                 <mat-label>Estado cita</mat-label>
                 <mat-select formControlName="estadocita" name="estadocita">
-                    <mat-option value="1">Pendiente</mat-option>
-                    <mat-option value="2">Atendido</mat-option>
-                    <mat-option value="2">Reprogramado</mat-option>
+                    <mat-option value="Pendiente">Pendiente</mat-option>
+                    <mat-option value="Atendido">Atendido</mat-option>
+                    <mat-option value="Reprogramado">Reprogramado</mat-option>
                 </mat-select>
                 <mat-error *ngIf="citaForm.get('estadocita')?.invalid &&
                 citaForm.get('estadocita')?.errors &&
@@ -121,13 +113,12 @@
             </mat-form-field>
         </mat-grid-tile>
                       
-
-
+  
         <!-- OBservacion -->
-        <mat-grid-tile [colspan] = "6" [rowspan] = "1">
-            <mat-form-field  appearance="fill">
-                <mat-label >Hora cita</mat-label>
-                <textarea matInput rows="10" cols="100" style="background-color: antiquewhite;" formControlName="nota"></textarea>
+        <mat-grid-tile [colspan] = "6" [rowspan] = "2">
+            <mat-form-field appearance="outline">
+                <mat-label >Observación</mat-label>
+                <textarea matInput matTextareaAutosize matAutosizeMinRows=3 matAutosizeMaxRows=8 formControlName="nota" rows="5"></textarea>
             </mat-form-field>
         </mat-grid-tile>
 
