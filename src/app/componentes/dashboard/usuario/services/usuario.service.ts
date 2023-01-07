@@ -14,6 +14,8 @@ export class UsuarioService {
   private urlBuscar: string = 'http://localhost:8090/usuario/buscar';
   private urlActualizar: string = 'http://localhost:8090/usuario/actualizar';
   private urlBloquear: string = 'http://localhost:8090/usuario/bloquearUsuario';
+  private urlvalidarcorreo: string = 'http://localhost:8090/usuario/validarcorreo';
+  private urlvalidardni: string = 'http://localhost:8090/usuario/validardni';
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 
@@ -48,6 +50,13 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${this.urlBloquear}/${usuario.id}`)
   }
 
+  validarcorreo(correo: string): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.urlvalidarcorreo}/${correo}`)
+  }
+
+  validardni(dni: string): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.urlvalidardni}/${dni}`)
+  }
 
   getRoles(){
     return this.listaRoles;

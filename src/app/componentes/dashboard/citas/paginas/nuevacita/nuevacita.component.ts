@@ -106,7 +106,7 @@ export class NuevacitaComponent implements OnInit {
           nuevacita.paciente = nuevopaciente;
           nuevacita.psicologo = nuevospicologo;
           nuevacita.nota = "";
-          nuevacita.estadocita = "pendiente";
+          nuevacita.estadocita = "Pendiente";
           nuevacita.servicio = nuevoservicio;
 
         

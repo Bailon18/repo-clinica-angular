@@ -100,7 +100,7 @@ export class CrearComponent implements OnInit {
 
           this.usuarioForm.value['roles']= resultado
 
-          console.log("US ", this.usuarioForm.value);
+          //console.log("US ", this.usuarioForm.value);
           
           this.servicio.guardarUsuarioServi(this.usuarioForm.value).subscribe( usu => {
 
@@ -152,4 +152,37 @@ export class CrearComponent implements OnInit {
 
   }
 
+
+  validardni(event:any){
+
+    const dni = (event.target as HTMLInputElement).value;
+    
+    if(dni.length == 8){
+
+      this.servicio.validardni(dni).subscribe(res => {
+        if(res != null ){
+          this.usuarioForm.controls['dni'].setErrors({ invalid: 'Dni ya esta registrado' });
+        }else{
+          this.usuarioForm.controls['dni'].setErrors(null);
+        }
+      })
+    }
+  }
+
+
+  validarcorreo(event:any){
+
+    if (this.usuarioForm.controls['correo'].valid){
+      const correo = (event.target as HTMLInputElement).value;
+
+      this.servicio.validarcorreo(correo).subscribe(res => {
+        if(res != null ){
+          this.usuarioForm.controls['correo'].setErrors({ invalid: 'Correo ya esta registrado' });
+        }else{
+          this.usuarioForm.controls['correo'].setErrors(null);
+        }
+      })
+
+    }
+  }
 }

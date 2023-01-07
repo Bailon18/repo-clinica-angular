@@ -58,7 +58,7 @@
      
                                     
                                     <div class="col text-end">
-                                        <button class="btn btn-primary btn-sm" type="submit" (click)="abrirDialogoNuevoPaciente()">Nuevo Paciente</button>
+                                        <button *ngIf="rolInicioSesion != 'Psicologo'" class="btn btn-primary btn-sm" type="submit" (click)="abrirDialogoNuevoPaciente()">Nuevo Paciente</button>
                                     </div>
                                     
                                 </div>
@@ -114,7 +114,7 @@
                                             <div class="separator"></div>
                                             <div class="info"></div>
                                             <div class="actions">
-                                                <button class="btn botonagendar btn-sm" (click)="abrirmodalnuevacita(i)">Agendar</button>
+                                                <button  *ngIf="rolInicioSesion != 'Psicologo'" class="btn botonagendar btn-sm" (click)="abrirmodalnuevacita(i)">Agendar</button>
                                             </div>
                                         </div>
                                     </ng-template>

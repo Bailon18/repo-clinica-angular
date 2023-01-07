@@ -4,11 +4,10 @@ import { Citas, CitasResultado } from './model/citas';
 import { CitasService } from './services/citas.service';
 import { Usuario } from '../usuario/model/usuario';
 import swall from 'sweetalert2'; // npm install sweetalert2 --save
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { NuevacitaComponent } from './paginas/nuevacita/nuevacita.component';
 import { FormpacienteComponent } from '../paciente/paginas/formPaciente/formpaciente.component';
 import { DetallecitaComponent } from './paginas/detallecita/detallecita.component';
-import { Paciente } from '../paciente/models/paciente';
 import { CitasDTO } from './model/citasdto';
 
 
@@ -66,16 +65,41 @@ export class CitasComponent implements OnInit {
         this.fechatext = new Date().toLocaleDateString('es-PE', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
         
         this.rolInicioSesion = JSON.parse(localStorage.getItem('rol')!) || [];
-        
+
+
+        // si el rol de inicio es Psicologo -> llamamos automaticamente el listar citas 
+        // * sin necesidad de estar seleccionado la psicologa y la fecha
+        if(this.rolInicioSesion == 'Psicologo'){
+
+            let psicologa = JSON.parse(localStorage.getItem('usuario')!) || [];
+            this.nombrepsicologa = psicologa.nombres +" "+ psicologa.apellidos
+            let fechaactual = new Date();
+            // console.log("PSICOLOGO ID ",psicologa.id);
+            // console.log("FECHA ACTUAL ", fechaactual);
+
+            this.listarCitas(psicologa.id, fechaactual)
+
+        }
+ 
     }
 
     obtenerfecha(event:any){
+
         this.fecha = event
         this.fechatext = event.toLocaleDateString('es-PE', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
+
+        // en el evento de seleccionar fecha -> consultamos si el rol de inicio actual es == Psicologo
+        // si es correcto -> obtenemos el id del psicologo que esta guardado en localstorage
+        if(this.rolInicioSesion == 'Psicologo'){
+            let psicologa = JSON.parse(localStorage.getItem('usuario')!) || [];
+            this.id = psicologa.id;
+        }
+
         this.valirdarenviodatos();
     }
 
     obtenerpsicologo(event:any){
+
         this.id = event.id;
         this.nombrepsicologa = event.nombres +" "+ event.apellidos
         this.valirdarenviodatos();
@@ -101,7 +125,6 @@ export class CitasComponent implements OnInit {
     
         })
     }
-
 
     abrirmodalnuevacita(dato:any){
 
@@ -144,9 +167,6 @@ export class CitasComponent implements OnInit {
         });
     }
 
-
-
-    
     listarCitas(id:number , fecha: Date){
         this.servicio.buscarCitas(id, fecha).subscribe(res =>{
 
