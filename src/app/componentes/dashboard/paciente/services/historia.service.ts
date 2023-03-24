@@ -11,14 +11,14 @@ import { Diagnostico } from '../models/diagnostico';
 })
 export class HistoriaService {
 
-  private urlbuscarafiliacion: string = 'http://localhost:8090/afiliacion/validarafiliacion';
-  private urlbuscarhistoria: string = 'http://localhost:8090/historia/buscarHistoriaxpaciente';
-  private urlbuscardiagnostico: string = 'http://localhost:8090/afiliacion/buscardiagnosticoxhistoria';
-  private urlactualizarafili: string = 'http://localhost:8090/afiliacion/actualizarafiliacion';
-  private urlactualizarhistori: string = 'http://localhost:8090/historia/actualizarhistoria';
-  private urlguardarhistoria: string = 'http://localhost:8090/historia/guardarhistoria';
+  private urlbuscarafiliacion: string = 'https://repo-clinicaa-spring-production.up.railway.app/afiliacion/validarafiliacion';
+  private urlbuscarhistoria: string = 'https://repo-clinicaa-spring-production.up.railway.app/historia/buscarHistoriaxpaciente';
+  private urlbuscardiagnostico: string = 'https://repo-clinicaa-spring-production.up.railway.app/afiliacion/buscardiagnosticoxhistoria';
+  private urlactualizarafili: string = 'https://repo-clinicaa-spring-production.up.railway.app/afiliacion/actualizarafiliacion';
+  private urlactualizarhistori: string = 'https://repo-clinicaa-spring-production.up.railway.app/historia/actualizarhistoria';
+  private urlguardarhistoria: string = 'https://repo-clinicaa-spring-production.up.railway.app/historia/guardarhistoria';
 
-  
+
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 
   constructor(private http: HttpClient) { }
@@ -37,8 +37,8 @@ export class HistoriaService {
 
   actualizarafiliacion(afi:Afiliacion):Observable<Afiliacion>{
     return this.http.put<Afiliacion>(this.urlactualizarafili, afi, {headers: this.httpHeaders});
-  }  
-  
+  }
+
 
   guardarhistoria(his:Historia):Observable<Historia>{
     return this.http.post<Historia>(this.urlguardarhistoria, his, {headers: this.httpHeaders});

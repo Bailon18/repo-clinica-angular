@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 })
 export class LoginService {
 
-  private urlValidar: string = "http://localhost:8090/login/validar"
+  private urlValidar: string = "https://repo-clinicaa-spring-production.up.railway.app/login/validar"
 
  //usu: Usuario = new Usuario();
 

@@ -9,13 +9,13 @@ import { Roles, Usuario } from '../model/usuario';
 })
 export class UsuarioService {
 
-  private urlListar: string = 'http://localhost:8090/usuario/listar';
-  private urlcrear: string = 'http://localhost:8090/usuario/guardar';
-  private urlBuscar: string = 'http://localhost:8090/usuario/buscar';
-  private urlActualizar: string = 'http://localhost:8090/usuario/actualizar';
-  private urlBloquear: string = 'http://localhost:8090/usuario/bloquearUsuario';
-  private urlvalidarcorreo: string = 'http://localhost:8090/usuario/validarcorreo';
-  private urlvalidardni: string = 'http://localhost:8090/usuario/validardni';
+  private urlListar: string = 'https://repo-clinicaa-spring-production.up.railway.app/usuario/listar';
+  private urlcrear: string = 'https://repo-clinicaa-spring-production.up.railway.app/usuario/guardar';
+  private urlBuscar: string = 'https://repo-clinicaa-spring-production.up.railway.app/usuario/buscar';
+  private urlActualizar: string = 'https://repo-clinicaa-spring-production.up.railway.app/usuario/actualizar';
+  private urlBloquear: string = 'https://repo-clinicaa-spring-production.up.railway.app/usuario/bloquearUsuario';
+  private urlvalidarcorreo: string = 'https://repo-clinicaa-spring-production.up.railway.app/usuario/validarcorreo';
+  private urlvalidardni: string = 'https://repo-clinicaa-spring-production.up.railway.app/usuario/validardni';
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 

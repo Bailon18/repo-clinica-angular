@@ -15,19 +15,19 @@ import { ListaCitaxPsicologaDTO } from '../model/listacitasxpsicologadto';
 })
 export class CitasService {
 
-  private urlbuscarcitas: string = 'http://localhost:8090/citas/buscarcitas';
-  private urlbuscarcitasID: string = 'http://localhost:8090/citas/buscarcitasid';
-  private urlListar: string = 'http://localhost:8090/usuario/listar';
-  private urldias : string ='http://localhost:8090/citas/listardias';
-  private urlpacientecita : string ='http://localhost:8090/paciente/pagendar';
-  private urlcrear : string ='http://localhost:8090/citas/guardarcita';
-  private urlactualizarcita : string ='http://localhost:8090/citas/actualizarcita';
-  private urlbuscarpacienteagen : string = 'http://localhost:8090/paciente/buscarpaciente'
-  private urlcrearafi : string ='http://localhost:8090/afiliacion/guardarafiliacion';
-  private urlvalidarafi : string ='http://localhost:8090/afiliacion/validarafiliacion';
-  private urleliminarcita : string = 'http://localhost:8090/citas/eliminarcita';
-  private urllistacitaxpsicologa : string = 'http://localhost:8090/citas/listarcitasxpiscologa';
-  private urlbuscarcitasporfechas : string = 'http://localhost:8090/citas/buscarcitasporfechas';
+  private urlbuscarcitas: string = 'https://repo-clinicaa-spring-production.up.railway.app/citas/buscarcitas';
+  private urlbuscarcitasID: string = 'https://repo-clinicaa-spring-production.up.railway.app/citas/buscarcitasid';
+  private urlListar: string = 'https://repo-clinicaa-spring-production.up.railway.app/usuario/listar';
+  private urldias : string ='https://repo-clinicaa-spring-production.up.railway.app/citas/listardias';
+  private urlpacientecita : string ='https://repo-clinicaa-spring-production.up.railway.app/paciente/pagendar';
+  private urlcrear : string ='https://repo-clinicaa-spring-production.up.railway.app/citas/guardarcita';
+  private urlactualizarcita : string ='https://repo-clinicaa-spring-production.up.railway.app/citas/actualizarcita';
+  private urlbuscarpacienteagen : string = 'https://repo-clinicaa-spring-production.up.railway.app/paciente/buscarpaciente'
+  private urlcrearafi : string ='https://repo-clinicaa-spring-production.up.railway.app/afiliacion/guardarafiliacion';
+  private urlvalidarafi : string ='https://repo-clinicaa-spring-production.up.railway.app/afiliacion/validarafiliacion';
+  private urleliminarcita : string = 'https://repo-clinicaa-spring-production.up.railway.app/citas/eliminarcita';
+  private urllistacitaxpsicologa : string = 'https://repo-clinicaa-spring-production.up.railway.app/citas/listarcitasxpiscologa';
+  private urlbuscarcitasporfechas : string = 'https://repo-clinicaa-spring-production.up.railway.app/citas/buscarcitasporfechas';
 
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});

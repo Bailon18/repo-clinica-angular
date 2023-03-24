@@ -10,15 +10,15 @@ import { Paciente } from '../models/paciente';
 })
 export class PacienteService {
 
-  private urlocupacion: string = 'http://localhost:8090/paciente/listarOcupaciones';
-  private urloetapav: string = 'http://localhost:8090/paciente/listarEstadoCi';
-  private urlPaciente: string = 'http://localhost:8090/paciente/listarPacientes'
-  private urlBuscar: string = 'http://localhost:8090/paciente/buscarPaciente';
-  private urlcrear: string = 'http://localhost:8090/paciente/guardarPaciente';
-  private urlActualizar: string = 'http://localhost:8090/paciente/actualizarPaciente';
-  private urlvalidarcorreo: string = 'http://localhost:8090/paciente/validarcorreo';
-  private urlvalidardni: string = 'http://localhost:8090/paciente/validardni';
-  
+  private urlocupacion: string = 'https://repo-clinicaa-spring-production.up.railway.app/paciente/listarOcupaciones';
+  private urloetapav: string = 'https://repo-clinicaa-spring-production.up.railway.app/paciente/listarEstadoCi';
+  private urlPaciente: string = 'https://repo-clinicaa-spring-production.up.railway.app/paciente/listarPacientes'
+  private urlBuscar: string = 'https://repo-clinicaa-spring-production.up.railway.app/paciente/buscarPaciente';
+  private urlcrear: string = 'https://repo-clinicaa-spring-production.up.railway.app/paciente/guardarPaciente';
+  private urlActualizar: string = 'https://repo-clinicaa-spring-production.up.railway.app/paciente/actualizarPaciente';
+  private urlvalidarcorreo: string = 'https://repo-clinicaa-spring-production.up.railway.app/paciente/validarcorreo';
+  private urlvalidardni: string = 'https://repo-clinicaa-spring-production.up.railway.app/paciente/validardni';
+
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 
