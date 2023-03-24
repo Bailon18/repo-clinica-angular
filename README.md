@@ -35,21 +35,15 @@ Este es un proyecto de un historial clínico psicológico hecho con Angular, Jav
 
   ### Base de datos 
     
-    La base de datos se genera automáticamente en spring boot utilizando la funcionalidad de JPA (Java Persistence API) y Hibernate,
-    el script de llenado esta dentro del repositorio en el backend https://github.com/Bailon18/repo-clinica-spring en la carpeta BaseDeDatos
+    La base de datos se genera automáticamente en spring boot utilizando la funcionalidad de JPA (Java Persistence API) y Hibernate, el script de llenado esta dentro del repositorio en el backend https://github.com/Bailon18/repo-clinica-spring en la carpeta BaseDeDatos
   
   ### Backend
 
-    El proyecto del backend se encuentra https://github.com/Bailon18/repo-clinica-spring
-    Abra el proyecto en su IDE y actualice las credenciales de la base de datos en el archivo application.properties ubicado en /backend/src/main/resources/.
-    y crea la base datos en tu gestor local con el nombre "clinicaBd"
-    Compile y ejecute el proyecto. El backend se ejecutará en http://localhost:8080.
+    El proyecto del backend se encuentra https://github.com/Bailon18/repo-clinica-spring Abra el proyecto en su IDE y actualice las credenciales de la base de datos en el archivo application.properties ubicado en /backend/src/main/resources/. y crea la base datos en tu gestor local con el nombre "clinicaBd" Compile y ejecute el proyecto. El backend se ejecutará en http://localhost:8080.
 
   ### Frontend
 
-    Abra una terminal en el directorio /frontend.
-    Ejecute npm install para instalar las dependencias.
-    Ejecute ng serve para compilar y ejecutar el proyecto de Angular. La aplicación se ejecutará en http://localhost:4200.
+    Abra una terminal en el directorio /frontend. Ejecute npm install para instalar las dependencias.Ejecute ng serve para compilar y ejecutar el proyecto de Angular. La aplicación se ejecutará en http://localhost:4200.
 
   ### Uso
 
