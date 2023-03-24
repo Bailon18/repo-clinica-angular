@@ -33,6 +33,17 @@ Este es un proyecto de un historial clínico psicológico hecho con Angular, Jav
 
 ## Configuración
 
+
+  ### Demo
+
+  https://repo-clinica-angular-hazel.vercel.app/
+
+  Credenciales
+
+  Correo: admin@gmail.com
+  contraseña: admin123
+
+
   ### Base de datos 
     
   La base de datos se genera automáticamente en spring boot utilizando la funcionalidad
@@ -61,6 +72,4 @@ Este es un proyecto de un historial clínico psicológico hecho con Angular, Jav
   pacientes , ver su historial clínico , gestionar citas y actualizar sus datos en cualquier momento.
   credenciales:
 
-  correo: admin@gmail.com 
-  constraseña: admin123
 
