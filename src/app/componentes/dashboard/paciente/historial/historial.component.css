@@ -21,3 +21,11 @@ mat-error{
 .mat-radio-button ~ .mat-radio-button {  
     margin-left: 16px;  
 }  
+
+.mat-dialog-content {
+    height: 50vh;
+}
+
+.accordion-button{
+    font-weight: 500;
+}

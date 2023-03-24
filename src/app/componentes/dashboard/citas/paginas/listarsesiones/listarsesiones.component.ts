@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CitasService } from '../../services/citas.service';
 import { ListaCitaxPsicologaDTO } from '../../model/listacitasxpsicologadto';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Usuario } from '../../../usuario/model/usuario';
 
 @Component({
   selector: 'app-listarsesiones',
@@ -12,13 +14,17 @@ import { ListaCitaxPsicologaDTO } from '../../model/listacitasxpsicologadto';
 export class ListarsesionesComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'FECHA CITA', 'ESTADO CITA', 'ACCIONES'];
+  columnas: string[] = ['ID', 'NOMBRE', 'APELLIDOS', 'DNI', 'FECHA CITA', 'ESTADO CITA'];
   
   dataSource = new MatTableDataSource<any>;
 
   rolInicioSesion:string;
 
-  constructor(private servicio: CitasService) { }
+  psicologa:Usuario;
+
+  listaForm !: FormGroup;
+
+  constructor(private formbuilder: FormBuilder, private servicio: CitasService) { }
 
   ngAfterViewInit(): void {
     this.paginator._intl.itemsPerPageLabel = 'Paginas';
@@ -29,29 +35,56 @@ export class ListarsesionesComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
 
-    //this.rolInicioSesion = JSON.parse(localStorage.getItem('rol')!) || [];
+    this.psicologa = JSON.parse(localStorage.getItem('usuario')!) || [];
 
-    // idpsicologa actual
+    //console.log('id psico ', this.psicologa.id);
 
-    this.servicio.listarcitasxpsicologa(1).subscribe(
+    this.listaForm = this.formbuilder.group({
+      fechainicio:[''],
+      fechafinal : [''],
+    }
+    )
+
+    this.servicio.listarcitasxpsicologa(this.psicologa.id).subscribe(
+      
       {next: res => {
-
-          console.log("res ", res )
           this.dataSource = new MatTableDataSource(res)
           this.dataSource.paginator = this.paginator;
           },
           error: error => {
-          console.log("Ocurrio un error en la carga")
           }
       }
-  )
-
-
+    )
   }
+
 
   aplicarFiltro(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  obtenerfecha(event: any){
+
+    let fechainicio = this.listaForm.value['fechainicio'];
+    let fechafinal = this.listaForm.value['fechafinal'];
+
+
+    if(fechainicio && fechafinal){
+
+      this.servicio.buscarcitasporfechas(fechainicio, fechafinal, this.psicologa.id).subscribe(
+      
+        {next: res => {
+            this.dataSource = new MatTableDataSource(res)
+            this.dataSource.paginator = this.paginator;
+            console.log("RES ", res)
+            },
+            error: error => {
+            }
+        }
+      )
+    }
+    
   }
 
 

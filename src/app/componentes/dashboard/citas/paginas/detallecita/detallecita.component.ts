@@ -53,22 +53,6 @@ export class DetallecitaComponent implements OnInit {
         this.fechabase = this.datosetear.fechacita;
 
 
-        console.log("DATOS EDITAR ",  this.datosetear)
-
-        // {
-        //     "id": 18,
-        //     "fechacita": "2023-01-21",
-        //     "horacita": 11,
-        //     "modalidad": "Virtual",
-        //     "psicologonombre": "Bailon Paucar Montes",
-        //     "psicologoid": 1,
-        //     "idpaciente": 16,
-        //     "pacientenombres": "Mana Mana Mana",
-        //     "nota": "",
-        //     "estadocita": "Pendiente",
-        //     "servicionombre": 2
-        // }
-
         let fecha = new Date(this.datosetear.fechacita);
         fecha.setMinutes(fecha.getMinutes() + fecha.getTimezoneOffset());
         this.fecha = fecha;

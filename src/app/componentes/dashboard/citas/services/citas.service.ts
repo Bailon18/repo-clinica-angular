@@ -27,6 +27,7 @@ export class CitasService {
   private urlvalidarafi : string ='http://localhost:8090/afiliacion/validarafiliacion';
   private urleliminarcita : string = 'http://localhost:8090/citas/eliminarcita';
   private urllistacitaxpsicologa : string = 'http://localhost:8090/citas/listarcitasxpiscologa';
+  private urlbuscarcitasporfechas : string = 'http://localhost:8090/citas/buscarcitasporfechas';
 
 
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
@@ -75,6 +76,10 @@ export class CitasService {
 
   busquedapacienteagendar(idpsico: number, idpaci: number  ): Observable<any>{
     return this.http.get<any>(`${this.urlbuscarpacienteagen}/${idpsico}/${idpaci}`);
+  }
+
+  buscarcitasporfechas(fechainicio: Date, fechafinal: Date  , psicologa: number): Observable<Citas[]>{
+    return this.http.get<Citas[]>(`${this.urlbuscarcitasporfechas}/${fechainicio}/${fechafinal}/${psicologa}`);
   }
 
   eliminarcita(idcita:number): Observable<any>{

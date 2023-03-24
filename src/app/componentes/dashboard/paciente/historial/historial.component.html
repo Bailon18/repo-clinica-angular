@@ -3,265 +3,296 @@
     <div class="col">
         <h1 mat-dialog-title style="font-weight: 500;">Historial Clínico</h1>
     </div>
-    <div class="col mt-2 text-end" style="font-weight: 500;">
-        Número Documento: {{numerodocumento}}
+    <div class="col mt-2 text-end">
+        <span style="font-weight: 600;">Número Documento:</span> {{numerodocumento}}
     </div>
 </div>
 
 <form [formGroup]="historiaform">
-    <div class="accordion" id="accordionPanelsStayOpenExample">
+   <mat-dialog-content class="mat-typography">
 
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+    
+    
+            <!-- Datos personales -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                     Informacion Personal
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                  
+                    <mat-grid-list cols = "6" rowHeight = "70px" [gutterSize]="'13px'">
+    
+                        <input type="hidden" formControlName="idpaciente">
 
-        <!-- Datos personales -->
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-              Informacion Personal
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-            <div class="accordion-body">
-              
-                <mat-grid-list cols = "6" rowHeight = "70px" [gutterSize]="'13px'">
-
-                    <!-- Psicologo -->
-                    <mat-grid-tile [colspan] = "2" [rowspan] = "1">
-                        <mat-form-field  appearance="fill">
-                            <mat-label class="titulodisabled">Nombres</mat-label>
-                            <input matInput  formControlName="nombre" >
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-                    <!-- Apellidos -->
-                    <mat-grid-tile [colspan] = "2" [rowspan] = "1" id="inputdisable">
-                        <mat-form-field  appearance="fill">
-                            <mat-label class="titulodisabled">Apellidos</mat-label>
-                            <input matInput formControlName="apellidos">
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-                    <!-- Estado civil -->
-                    <mat-grid-tile [colspan] = "2" [rowspan] = "1" id="inputdisable">
-                        <mat-form-field  appearance="fill">
-                            <mat-label class="titulodisabled">Estado Civil</mat-label>
-                            <input matInput formControlName="estadocivil">
-                        </mat-form-field>
-                    </mat-grid-tile>
-            
-                    <!-- Edad -->
-                    <mat-grid-tile [colspan] = "2" [rowspan] = "1" id="inputdisable">
-                        <mat-form-field  appearance="fill">
-                            <mat-label class="titulodisabled">Edad</mat-label>
-                            <input matInput formControlName="edad">
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-                     <!-- Sexo  -->
-                    <mat-grid-tile [colspan] = "2" [rowspan] = "1" id="inputdisable">
-                        <mat-form-field  appearance="fill">
-                            <mat-label class="titulodisabled">Sexo</mat-label>
-                            <input matInput formControlName="sexo">
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-                    <!-- Ocupacion -->
-                    <mat-grid-tile [colspan] = "2" [rowspan] = "1" id="inputdisable">
-                        <mat-form-field  appearance="fill">
-                            <mat-label class="titulodisabled">Ocupación</mat-label>
-                            <input matInput formControlName="ocupacion">
-                        </mat-form-field>
-                    </mat-grid-tile>
-                                
-                </mat-grid-list>
-
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Datos Afiliacion -->
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-              Afiliación
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-            <div class="accordion-body">
-
-                <mat-grid-list cols = "6" rowHeight = "70px" [gutterSize]="'13px'">
-                 
-                    <!-- Psicologa asignada -->
-                    <mat-grid-tile [colspan]= "2" [rowspan] = "1">
-                        <mat-form-field  appearance="fill">
-                            <mat-label class="titulodisabled">Picologa</mat-label>
-                            <input matInput formControlName="psicologa">
-                        </mat-form-field>
-                    </mat-grid-tile>
+                        <!-- Psicologo -->
+                        <mat-grid-tile [colspan] = "2" [rowspan] = "1">
+                            <mat-form-field  appearance="fill">
+                                <mat-label class="titulodisabled">Nombres</mat-label>
+                                <input matInput  formControlName="nombre" >
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+                        <!-- Apellidos -->
+                        <mat-grid-tile [colspan] = "2" [rowspan] = "1" id="inputdisable">
+                            <mat-form-field  appearance="fill">
+                                <mat-label class="titulodisabled">Apellidos</mat-label>
+                                <input matInput formControlName="apellidos">
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+                        <!-- Estado civil -->
+                        <mat-grid-tile [colspan] = "2" [rowspan] = "1" id="inputdisable">
+                            <mat-form-field  appearance="fill">
+                                <mat-label class="titulodisabled">Estado Civil</mat-label>
+                                <input matInput formControlName="estadocivil">
+                            </mat-form-field>
+                        </mat-grid-tile>
                 
-                    <!-- Fecha de afiliacion -->
-                    <mat-grid-tile [colspan] = "2" [rowspan] = "1">
-                        <mat-form-field appearance="fill" >
-                            <mat-label>Fecha Afiliacion</mat-label>
-                            <input matInput [matDatepicker]="dp" formControlName="fechaafiliacion">
-                            <mat-datepicker-toggle matSuffix [for]="dp">
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #dp></mat-datepicker>
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-
-                    <!-- tuvo cierre -->
-                    <mat-grid-tile [colspan] = "2" [rowspan] = "1">
-                        <mat-form-field  appearance="fill">
-                            <mat-label>Tiene cierre?</mat-label>
-                            <mat-select formControlName="tuvocierre" name="tuvocierre">
-                                <mat-option value="0">No</mat-option>
-                                <mat-option value="1">SI</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-
-                    <!-- Fecha de cierre -->
-                    <mat-grid-tile [colspan] = "2" [rowspan] = "1">
-                        <mat-form-field appearance="fill" >
-                            <mat-label class="titulodisabled">Fecha Cierre</mat-label>
-                            <input matInput [matDatepicker]="dp2" formControlName="fechacierre">
-                            <mat-datepicker-toggle matSuffix [for]="dp2">
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #dp2></mat-datepicker>
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-
-                    <!-- Estado cierre -->
-                    <mat-grid-tile [colspan] = "2" [rowspan] = "1">
-                    <mat-form-field  appearance="fill">
-                        <mat-label class="titulodisabled">Estado cierre</mat-label>
-                        <mat-select formControlName="estadocierre" name="estadocierre" >
-                            <mat-option value="1">Cierre normal</mat-option>
-                            <mat-option value="2">Abandonó</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </mat-grid-tile>
-
-
-              </mat-grid-list>
-              
-
+                        <!-- Edad -->
+                        <mat-grid-tile [colspan] = "2" [rowspan] = "1" id="inputdisable">
+                            <mat-form-field  appearance="fill">
+                                <mat-label class="titulodisabled">Edad</mat-label>
+                                <input matInput formControlName="edad">
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+                         <!-- Sexo  -->
+                        <mat-grid-tile [colspan] = "2" [rowspan] = "1" id="inputdisable">
+                            <mat-form-field  appearance="fill">
+                                <mat-label class="titulodisabled">Sexo</mat-label>
+                                <input matInput formControlName="sexo">
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+                        <!-- Ocupacion -->
+                        <mat-grid-tile [colspan] = "2" [rowspan] = "1" id="inputdisable">
+                            <mat-form-field  appearance="fill">
+                                <mat-label class="titulodisabled">Ocupación</mat-label>
+                                <input matInput formControlName="ocupacion">
+                            </mat-form-field>
+                        </mat-grid-tile>
+                                    
+                    </mat-grid-list>
+    
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Antecendentes -->
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-              Antecedentes
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-            <div class="accordion-body">
-                
-                <mat-grid-list cols = "6" rowHeight = "70px" [gutterSize]="'13px'">
-                 
-
-                    <mat-grid-tile [colspan]="2" [rowspan] = "1">
+    
+            <!-- Datos Afiliacion -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                  Afiliación
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+    
+                    <mat-grid-list cols = "6" rowHeight = "70px" [gutterSize]="'13px'">
+    
+                        <input type="hidden" formControlName="idafiliacion">
+                        <input type="hidden" formControlName="idpsicologa">
+                     
+                        <!-- Psicologa asignada -->
+                        <mat-grid-tile [colspan]= "2" [rowspan] = "1">
+                            <mat-form-field  appearance="fill">
+                                <mat-label class="titulodisabled">Picologa</mat-label>
+                                <input matInput formControlName="psicologa">
+                            </mat-form-field>
+                        </mat-grid-tile>
+                    
+                        <!-- Fecha de afiliacion -->
+                        <mat-grid-tile [colspan] = "2" [rowspan] = "1">
+                            <mat-form-field appearance="fill" >
+                                <mat-label>Fecha Afiliacion</mat-label>
+                                <input matInput [matDatepicker]="dp" formControlName="fechaafiliacion" name="fechaafiliacion">
+                                <mat-datepicker-toggle matSuffix [for]="dp">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #dp></mat-datepicker>
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+    
+                        <!-- tuvo cierre -->
+                        <mat-grid-tile [colspan] = "2" [rowspan] = "1">
+                            <mat-form-field  appearance="fill">
+                                <mat-label>Tiene cierre?</mat-label>
+                                <mat-select formControlName="tuvocierre" name="tuvocierre" (selectionChange)="validarcierre($event.value)">
+                                    <mat-option [value]="true" >No</mat-option>
+                                    <mat-option [value]="false" >SI</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+    
+                        <!-- Fecha de cierre -->
+                        <mat-grid-tile [colspan] = "2" [rowspan] = "1">
+                            <mat-form-field appearance="fill" >
+                                <mat-label class="titulodisabled">Fecha Cierre</mat-label>
+                                <input matInput [matDatepicker]="dp2" formControlName="fechacierre" name="fechacierre">
+                                <mat-datepicker-toggle matSuffix [for]="dp2">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #dp2></mat-datepicker>
+                                <mat-error class="mensaje" *ngIf="historiaform.get('fechacierre')?.invalid && 
+                                historiaform.get('fechacierre')?.errors && 
+                                (historiaform.get('fechacierre')?.dirty || historiaform.get('fechacierre')?.touched)">
+                                <mat-error *ngIf="historiaform.get('fechacierre')?.hasError('required')">Campo fechacierre es requerido</mat-error>                 
+                                </mat-error>
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+    
+                        <!-- Estado cierre -->
+                        <mat-grid-tile [colspan] = "2" [rowspan] = "1">
                         <mat-form-field  appearance="fill">
-                            <mat-label>Motivo de consulta</mat-label>
-                            <mat-select formControlName="motivo" name="motivo">
-                                <mat-option value="Terapia de familia">Terapia de familia</mat-option>
-                                <mat-option value="Evaluación psicologica">Evaluación psicologica</mat-option>
-                                <mat-option value="MDR">MDR</mat-option>
+                            <mat-label class="titulodisabled">Estado cierre</mat-label>
+                            <mat-select formControlName="estadocierre" name="estadocierre"  >
+                                <mat-option value="1">Cierre normal</mat-option>
+                                <mat-option value="2">Abandonó</mat-option>
                             </mat-select>
+                            <mat-error class="mensaje" *ngIf="historiaform.get('estadocierre')?.invalid && 
+                            historiaform.get('estadocierre')?.errors && 
+                            (historiaform.get('estadocierre')?.dirty || historiaform.get('estadocierre')?.touched)">
+                            <mat-error *ngIf="historiaform.get('estadocierre')?.hasError('required')">Campo estadocierre es requerido</mat-error>                 
+                            </mat-error>
                         </mat-form-field>
                     </mat-grid-tile>
-                
-                    <mat-grid-tile [colspan]="2" [rowspan] = "1">
-                        <mat-form-field  appearance="fill">
-                            <mat-label>Medicación prevío</mat-label>
-                            <input matInput formControlName="mediprevio">
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-
-                    <mat-grid-tile [colspan]="2" [rowspan] = "1">
-                        <mat-form-field  appearance="fill">
-                            <mat-label>Diagnostico prevío</mat-label>
-                            <input matInput formControlName="diagprevio">
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-
-                    <mat-grid-tile [colspan]="2" [rowspan] = "1">
-                        <mat-form-field  appearance="fill">
-                            <mat-label>Lugar de atención prevío</mat-label>
-                            <input matInput formControlName="lugarprevio">
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-
-                    <mat-grid-tile [colspan]="2" [rowspan] = "1">
-                        <mat-form-field  appearance="fill">
-                            <mat-label>¿Algún riesgo?</mat-label>
-                            <mat-select formControlName="riesgo" name="riesgo">
-                                <mat-option value="Ninguno">Ninguno</mat-option>
-                                <mat-option value="Ideas suicidas">Ideas suicidas</mat-option>
-                                <mat-option value="Abandono del hogar">Abandono del hogar</mat-option>
-                                <mat-option value="Amenaza de violencia por otros">Amenaza de violencia por otros</mat-option>
-                                <mat-option value="Consumo de sustancias(adiccion)">Consumo de sustancias(adiccion)</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </mat-grid-tile>
-
-              </mat-grid-list>
-               
+    
+    
+                  </mat-grid-list>
+                  
+    
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-
-        <!-- Sesiones -->
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingFor">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFor" aria-expanded="false" aria-controls="panelsStayOpen-collapseFor">
-              Sesiones
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseFor" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFor">
-            <div class="accordion-body">
-
-                <div class="row">
-
-                    <div class="col-4">
-                        <label class="titulodisabled">Sesiones programadas</label><br>
-                        <label style="font-weight: 500;">{{numerodocumento}}</label>
-                    </div>
-                    <div class="col-4">
-                        <label class="titulodisabled">Sesiones finalizadas</label><br>
-                        <label style="font-weight: 500;">65</label>
-                    </div>
-                    <div class="col-4">
-                        <label class="titulodisabled">Sesiones canceladas</label><br>
-                        <label style="font-weight: 500;">65</label>
+    
+            <!-- Antecendentes -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                  Antecedentes
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                <div class="accordion-body">
+                    
+                    <mat-grid-list cols = "6" rowHeight = "70px" [gutterSize]="'13px'">
+                     
+                        <input type="hidden" formControlName="idhistoria">
+    
+                        <mat-grid-tile [colspan]="2" [rowspan] = "1">
+                            <mat-form-field  appearance="fill">
+                                <mat-label>Motivo de consulta</mat-label>
+                                <mat-select formControlName="motivo" name="motivo">
+                                    <mat-option value="Terapia de familia">Terapia de familia</mat-option>
+                                    <mat-option value="Evaluación psicologica">Evaluación psicologica</mat-option>
+                                    <mat-option value="MDR">MDR</mat-option>
+                                </mat-select>
+                                <mat-error class="mensaje" *ngIf="historiaform.get('motivo')?.invalid && 
+                                historiaform.get('motivo')?.errors && 
+                                (historiaform.get('motivo')?.dirty || historiaform.get('motivo')?.touched)">
+                                <mat-error *ngIf="historiaform.get('motivo')?.hasError('required')">Campo motivo es requerido</mat-error>                 
+                                </mat-error>
+                            </mat-form-field>
+                        </mat-grid-tile>
+                    
+                        <mat-grid-tile [colspan]="2" [rowspan] = "1">
+                            <mat-form-field  appearance="fill">
+                                <mat-label>Medicación prevío</mat-label>
+                                <input matInput formControlName="mediprevio">
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+    
+                        <mat-grid-tile [colspan]="2" [rowspan] = "1">
+                            <mat-form-field  appearance="fill">
+                                <mat-label>Diagnostico prevío</mat-label>
+                                <input matInput formControlName="diagprevio">
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+    
+                        <mat-grid-tile [colspan]="2" [rowspan] = "1">
+                            <mat-form-field  appearance="fill">
+                                <mat-label>Lugar de atención prevío</mat-label>
+                                <input matInput formControlName="lugarprevio">
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+    
+                        <mat-grid-tile [colspan]="2" [rowspan] = "1">
+                            <mat-form-field  appearance="fill">
+                                <mat-label>¿Algún riesgo?</mat-label>
+                                <mat-select formControlName="riesgo" name="riesgo">
+                                    <mat-option [value]=1>Ninguno</mat-option>
+                                    <mat-option [value]=2>Ideas suicidas</mat-option>
+                                    <mat-option [value]=3>Abandono del hogar</mat-option>
+                                    <mat-option [value]=4>Amenaza de violencia por otros</mat-option>
+                                    <mat-option [value]=5>Consumo de sustancias(adiccion)</mat-option>
+                                </mat-select>
+                                <mat-error class="mensaje" *ngIf="historiaform.get('riesgo')?.invalid && 
+                                historiaform.get('riesgo')?.errors && 
+                                (historiaform.get('riesgo')?.dirty || historiaform.get('riesgo')?.touched)">
+                                <mat-error *ngIf="historiaform.get('riesgo')?.hasError('required')">Campo riesgo es requerido</mat-error>                 
+                                </mat-error>
+                            </mat-form-field>
+                        </mat-grid-tile>
+    
+                  </mat-grid-list>
+                   
+                </div>
+              </div>
+            </div>
+    
+            <!-- Sesiones -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingFor">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFor" aria-expanded="false" aria-controls="panelsStayOpen-collapseFor">
+                  Sesiones
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseFor" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFor">
+                <div class="accordion-body">
+    
+                    <div class="row">
+    
+                        <div class="col-4">
+                            <label class="titulodisabled">Sesiones programadas</label><br>
+                            <label style="font-weight: 500;">3</label>
+                        </div>
+                        <div class="col-4">
+                            <label class="titulodisabled">Sesiones finalizadas</label><br>
+                            <label style="font-weight: 500;">2</label>
+                        </div>
+                        <div class="col-4">
+                            <label class="titulodisabled">Sesiones reprogramadas</label><br>
+                            <label style="font-weight: 500;">1</label>
+                        </div>
                     </div>
                 </div>
+              </div>
             </div>
-          </div>
+    
         </div>
-
-      </div>
+         
      
-
-              
-        <!-- Botones -->
-      
-        <div class="col text-end">
-            <button class="btn btn-secondary m-2 " mat-dialog-close>Cancelar</button>
-            <button class="btn btn-primary " type="submit" >Agregar historia</button>
-        </div>
-     
- 
+   </mat-dialog-content>
+   <mat-dialog-actions align="end" style="margin: 12px;">
+     <button  class="btn btn-secondary" mat-button mat-dialog-close>Cancelar</button>&nbsp;&nbsp; 
+     <button class="btn btn-primary" type="submit" (click)="actualizarhistoria()" [disabled]="historiaform.invalid">Actualizar</button>
+   </mat-dialog-actions>
 </form> 
+
+
+
+
+    
+
+    
+
+
 

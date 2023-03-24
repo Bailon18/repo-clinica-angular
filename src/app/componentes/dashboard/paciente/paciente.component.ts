@@ -85,9 +85,8 @@ export class PacienteComponent implements AfterViewInit, OnInit {
     verDetallehistoria(fila:any){
         this.dialog.open(HistorialComponent,{
             width:'40%',
-            height:'70%',
             data:fila,
-
+            
         }).afterClosed().subscribe(valor =>{
                 this.listarPaciente();
         });
