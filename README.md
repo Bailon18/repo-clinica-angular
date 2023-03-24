@@ -61,6 +61,6 @@ Este es un proyecto de un historial clínico psicológico hecho con Angular, Jav
   pacientes , ver su historial clínico , gestionar citas y actualizar sus datos en cualquier momento.
   credenciales:
 
-  admin@gmail.com
-  admin123
+  correo: admin@gmail.com 
+  constraseña: admin123
 
