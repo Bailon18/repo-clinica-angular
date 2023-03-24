@@ -1,27 +1,44 @@
-# PadmaClinica
+# Proyecto de Historial Clínico Psicológico
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.5.
+Este es un proyecto de un historial clínico psicológico hecho con Angular, Java, Spring Boot y MySQL. El proyecto contiene los siguientes modulos:
 
-## Development server
+- Usuarios ( usuarios del sistema)
+  - Agregar , editar.
+  - Permisos segun los roles
+  - Bloquear usuarios
+- Paciente ( clientes del sistema)
+  - Agregar , editar, lista de pacientes,  filtro
+  - Agregar , editar historial clinico
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+  [![pacientesss.jpg](https://i.postimg.cc/xjNYbzb8/pacientesss.jpg)](https://postimg.cc/grp1Crsb)
+  
+- Citas ( gestion de citas de los clientes )
+  - 
+  
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requisitos
 
-## Build
+Node.js
+Angular CLI
+Java 11
+Spring Boot 2.5.4
+MySQL
+Configuración
+Base de datos
+Cree una base de datos MySQL y ejecute el script SQL ubicado en /backend/src/main/resources/db.sql para crear la tabla patient y la tabla psychological_evaluation.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Backend
 
-## Running unit tests
+Abra el proyecto en su IDE y actualice las credenciales de la base de datos en el archivo application.properties ubicado en /backend/src/main/resources/.
+Compile y ejecute el proyecto. El backend se ejecutará en http://localhost:8080.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Frontend
+Abra una terminal en el directorio /frontend.
+Ejecute npm install para instalar las dependencias.
+Ejecute ng serve para compilar y ejecutar el proyecto de Angular. La aplicación se ejecutará en http://localhost:4200.
 
-## Running end-to-end tests
+## Uso
+Una vez que la aplicación esté en funcionamiento, los usuarios podrán registrarse e iniciar sesión. Después del inicio de sesión, podrán registrar sus datos psicológicos, ver su historial clínico y actualizar sus datos en cualquier momento.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
