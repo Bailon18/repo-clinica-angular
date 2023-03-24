@@ -45,7 +45,8 @@ Este es un proyecto de un historial clínico psicológico hecho con Angular, Jav
     el proyecto en su IDE y actualice las credenciales de la base de datos en el
     archivo application.properties ubicado en /backend/src/main/resources/. y crea la base datos
     en tu gestor local con el nombre "clinicaBd" Compile y ejecute el proyecto.
-    El backend se ejecutará en http://localhost:8080.
+    El backend se ejecutará en `(http://localhost:8080)`
+
 
   ### Frontend
 
