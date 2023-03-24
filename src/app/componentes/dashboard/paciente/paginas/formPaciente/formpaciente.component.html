@@ -1,0 +1,201 @@
+
+<h1 mat-dialog-title style="font-weight: 500;" >{{titulo}}</h1>
+<form [formGroup]="pacienteForm">
+
+    <mat-grid-list cols = "6" rowHeight = "70px" [gutterSize]="'13px'">
+
+        <!-- Nombre -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+                <input type="hidden" formControlName="id">
+                <mat-form-field  appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombre">
+                <mat-error  *ngIf="pacienteForm.get('nombre')?.invalid &&
+                pacienteForm.get('nombre')?.errors &&
+                (pacienteForm.get('nombre')?.dirty || pacienteForm.get('nombre')?.touched)">
+                    <small class="text-danger"
+                    *ngIf="pacienteForm.get('nombre')?.hasError('required')">
+                    Campo <b>Nombre</b> es requerido
+                    </small>
+                </mat-error>
+        </mat-form-field>
+           
+        </mat-grid-tile>
+        <!-- Apellidos -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Apellidos</mat-label>
+                <input matInput  formControlName="apellidos">
+                <mat-error *ngIf="pacienteForm.get('apellidos')?.invalid &&
+                pacienteForm.get('apellidos')?.errors &&
+                (pacienteForm.get('apellidos')?.dirty || pacienteForm.get('apellidos')?.touched)">
+                    <small class="text-danger"
+                    *ngIf="pacienteForm.get('apellidos')?.hasError('required')">
+                    Campo <b>Apellidos</b> es requerido
+                    </small>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+      
+        <!-- Fecha nacimiento -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field appearance="fill" >
+                <mat-label>Fecha Nacimiento</mat-label>
+                <input matInput [matDatepicker]="dp" formControlName="fechanacimiento" (dateChange)="obtenerfecha($event)">
+                <mat-datepicker-toggle matSuffix [for]="dp">
+                </mat-datepicker-toggle>
+                <mat-datepicker #dp></mat-datepicker>
+                <mat-error *ngIf="pacienteForm.get('fechanacimiento')?.invalid &&
+                pacienteForm.get('fechanacimiento')?.errors &&
+                (pacienteForm.get('fechanacimiento')?.dirty || pacienteForm.get('fechanacimiento')?.touched)">
+                    <small class="text-danger"
+                    *ngIf="pacienteForm.get('fechanacimiento')?.hasError('required')">
+                    Campo <b>Fecha</b> es requerido
+                    </small>
+                    <mat-error *ngIf="pacienteForm.get('fechanacimiento')?.hasError('invalid')">Registrar paciente mayores a <b>2 años</b></mat-error> 
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+      
+        <!-- Documento identidad -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label>DNI</mat-label>
+                <input type="number" formControlName="documento" matInput (keyup)="validardni($event)" >
+                <mat-error *ngIf="pacienteForm.get('documento')?.invalid && 
+                        pacienteForm.get('documento')?.errors && 
+                        (pacienteForm.get('documento')?.dirty || pacienteForm.get('documento')?.touched)">
+                        <mat-error *ngIf="pacienteForm.get('documento')?.hasError('required')">Campo <b>DNI</b> es requerido</mat-error>
+                        <mat-error  *ngIf="pacienteForm.get('documento')?.hasError('min')">Campo <b>DNI</b> minimo 8 digitos</mat-error>
+                        <mat-error *ngIf="pacienteForm.get('documento')?.hasError('max')">Campo <b>DNI</b> maximo 8 digitos</mat-error>  
+                        <mat-error *ngIf="pacienteForm.get('documento')?.hasError('invalid')">Campo <b>DNI</b> ya se encuentra registrado</mat-error>                    
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Sexo -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Sexo</mat-label>
+                <mat-select formControlName="sexo" name="sexo">
+                    <mat-option value="Masculino">Masculino</mat-option>
+                    <mat-option value="Femenino">Femenino</mat-option>
+                </mat-select>
+                <mat-error *ngIf="pacienteForm.get('sexo')?.invalid &&
+                pacienteForm.get('sexo')?.errors &&
+                (pacienteForm.get('sexo')?.dirty || pacienteForm.get('sexo')?.touched)">
+                <mat-error *ngIf="pacienteForm.get('sexo')?.hasError('required')">Campo <b>Sexo</b> es requerido</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Telefono -->
+        <mat-grid-tile [colspan] = "3" [rowspan] ="1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Telefono</mat-label>
+                <input type="number" matInput  formControlName="telefono">
+                <mat-error *ngIf="pacienteForm.get('telefono')?.invalid && 
+                        pacienteForm.get('telefono')?.errors && 
+                        (pacienteForm.get('telefono')?.dirty || pacienteForm.get('telefono')?.touched)">
+                        <mat-error *ngIf="pacienteForm.get('telefono')?.hasError('required')">Campo <b>Teléfono</b> es requerido</mat-error>
+                        <mat-error  *ngIf="pacienteForm.get('telefono')?.hasError('min')">Campo <b>Teléfono</b> minimo 9 digitos</mat-error>
+                        <mat-error *ngIf="pacienteForm.get('telefono')?.hasError('max')">Campo <b>Teléfono</b> maximo 9 digitos</mat-error>                    
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Correo -->
+        <mat-grid-tile [colspan] = "3" [rowspan] ="1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Correo</mat-label>
+                <input type="email" formControlName="correo" matInput placeholder="admin@idat.com" (keyup)="validarcorreo($event)">
+                <mat-error *ngIf="pacienteForm.get('correo')?.invalid && 
+                pacienteForm.get('correo')?.errors && 
+                (pacienteForm.get('correo')?.dirty || pacienteForm.get('correo')?.touched)">
+                <mat-error *ngIf="pacienteForm.get('correo')?.hasError('required')">Campo <b>correo</b> es requerido</mat-error>
+                <mat-error  *ngIf="pacienteForm.get('correo')?.hasError('email')">Campo <b>correo</b> no tiene el formato</mat-error> 
+                <mat-error  *ngIf="pacienteForm.get('correo')?.hasError('invalid')">Campo <b>correo</b> ya se encuentra registrado</mat-error>                
+            </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Estado civil -->
+        <mat-grid-tile [colspan] = "3" [rowspan] ="1">
+            <mat-form-field appearance="fill">
+                <mat-label>Estado Civil</mat-label>
+                <mat-select formControlName="estadocivil" name="estadocivil">
+                  <mat-option *ngFor="let est of estadocivil" [value]="est.id">
+                    {{est.descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="pacienteForm.get('estadocivil')?.invalid &&
+                pacienteForm.get('estadocivil')?.errors &&
+                (pacienteForm.get('estadocivil')?.dirty || pacienteForm.get('estadocivil')?.touched)">
+                    <mat-error *ngIf="pacienteForm.get('estadocivil')?.hasError('required')">Campo <b>Estado civil</b> es requerido</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Ocupacion -->
+        <mat-grid-tile [colspan] = "3" [rowspan] ="1">
+            <mat-form-field appearance="fill">
+                <mat-label>Ocupación</mat-label>
+                <mat-select formControlName="ocupacion" name="ocupacion">
+                  <mat-option *ngFor="let ocup of ocupaciones" [value]="ocup.id">
+                    {{ocup.descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="pacienteForm.get('ocupacion')?.invalid &&
+                pacienteForm.get('ocupacion')?.errors &&
+                (pacienteForm.get('ocupacion')?.dirty || pacienteForm.get('ocupacion')?.touched)">
+                    <mat-error *ngIf="pacienteForm.get('ocupacion')?.hasError('required')">Campo <b>Ocupación</b> es requerido</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Distrito -->
+        <mat-grid-tile [colspan] = "3" [rowspan] ="1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Distrito</mat-label>
+                <input matInput  formControlName="distrito">
+                <mat-error *ngIf="pacienteForm.get('distrito')?.invalid &&
+                pacienteForm.get('distrito')?.errors &&
+                (pacienteForm.get('distrito')?.dirty || pacienteForm.get('distrito')?.touched)">
+                    <small class="text-danger"
+                    *ngIf="pacienteForm.get('distrito')?.hasError('required')">
+                    Campo <b>distrito</b> es requerido
+                    </small>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Direccion actual -->
+        <mat-grid-tile [colspan] = "6" [rowspan] ="1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Direccion actual</mat-label>
+                <input matInput  formControlName="direccion">
+                <mat-error *ngIf="pacienteForm.get('direccion')?.invalid &&
+                pacienteForm.get('direccion')?.errors &&
+                (pacienteForm.get('direccion')?.dirty || pacienteForm.get('direccion')?.touched)">
+                    <small class="text-danger"
+                    *ngIf="pacienteForm.get('direccion')?.hasError('required')">
+                        Campo <b>Direccion</b> es requerido
+                    </small>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Botones -->
+        <mat-grid-tile [colspan] = "6" [rowspan] ="1">
+            <div class="col text-end">
+                <button class="btn btn-secondary m-2" mat-dialog-close>Cancelar</button>
+                <button class="btn btn-primary" type="submit" (click)="guardarPaciente()" [disabled]="pacienteForm.invalid">{{tituloBoton}}</button>
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+</form> 
+
+
+

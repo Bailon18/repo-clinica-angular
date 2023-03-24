@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%;  overflow-x: hidden;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+@import 'ngx-toastr/toastr';
+
+
+@import 'ngx-toastr/toastr-bs4-alert';
+
+
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+@import 'ngx-toastr/toastr-bs4-alert';
+
+@import 'ngx-toastr/toastr-bs5-alert';
+
+.mat-header-cell {
+    color:black;
+    font-size:14px;
+    font-family: "Helvetica Neue",;
+    font-weight: bold!important;
+  }
+  
+.mat-cell {
+font-family: "Helvetica Neue",;
+}
+
+.mat-header-cell {
+    text-align: center !important;
+}
+
+.mat-cell {
+    text-align: center !important;
+}
+
+.mat-tooltip.tooltip {
+    font-size: 12px;
+  }

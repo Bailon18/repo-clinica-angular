@@ -1,0 +1,287 @@
+main {
+  display: flex;
+}
+
+.fechaa{
+  font-size: 25px;
+  font-weight: 500;
+  color: #2980b9;
+}
+
+
+.calendar {
+  background: rgba(68, 70, 71, 0.1) ;
+  min-height: 100vh;
+}
+.citas {
+  max-height: calc(100vh - 80px);
+  width: 100%;
+  max-width: 100%;
+}
+.doctor {
+  display: flex;
+  align-items: center;
+  background-color: #ecf1f5;
+  padding: 0.5rem;
+  width: 100%;
+}
+.doctor > img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.144);
+}
+.doctor > div {
+  padding-left: 0.5rem;
+}
+.doctor > div > p:first-child {
+  margin-bottom: 0.1rem;
+  font-weight: 700;
+  color: rgb(105, 105, 105);
+}
+.doctor > div > p {
+  margin-bottom: 0;
+  color: royalblue;
+}
+.hours {
+  max-height: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+.hours > div:nth-child(even) {
+  background-color: #ecf1f5;
+}
+.cita {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.cita > div:first-child {
+  margin-right: 3.25rem;
+  margin-left: 0.25rem;
+  text-align: center;
+}
+.cita > div:first-child > h4 {
+  border-radius: 50%;
+  /* background-color: rgb(248, 28, 28); */
+  padding: 0.2rem;
+  width: 2.9rem;
+  height: 2.9rem;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cita > div:first-child > p {
+  text-align: center;
+  margin-bottom: 0.1rem;
+  white-space: nowrap;
+}
+.cita > div:first-child > small {
+  margin-bottom: 0;
+  color: #198754;
+}
+.separator {
+  height: 100%;
+  width: 5px;
+  background-color: #b1b1b1;
+  position: absolute;
+  top: 0;
+  left: 5.5rem;
+}
+.separator::before {
+  content: " ";
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background-color: #fff;
+  border: solid 0.2rem #b1b1b1;
+  position: absolute;
+  top: calc(50% - 0.6rem);
+  left: -0.5rem;
+}
+.separator.active {
+  background-color: #0E76A8;
+}
+.separator.active::before {
+  border: solid 0.2rem #0E76A8;
+}
+.info {
+  width: 100%;
+}
+.info > h5 {
+  margin-bottom: 0.15rem;
+}
+.info > p {
+  color: #198754;
+  margin-bottom: 0.2rem;
+}
+.actions,
+.actions > div {
+  display: flex;
+}
+.actions > div:first-child {
+  margin-bottom: 0.25rem;
+}
+.actions > button,
+.actions > div > button {
+  white-space: nowrap;
+  margin-left: 0.25rem;
+}
+
+.controls {
+  display: flex;
+}
+.controls > img {
+  width: 10%;
+  cursor: pointer;
+}
+.controls > p {
+  width: 100%;
+  margin-top: .4rem;
+  text-align: center;
+}
+.controls,
+p.today {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.weekdays {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, rgba(5, 98, 238, 0.048), rgba(5, 98, 238, 0.137), rgba(5, 98, 238, 0.048));
+}
+
+.days {
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 0.2rem;
+}
+
+.weekdays > div,
+.days > div {
+  padding: 0.25rem 0.5rem;
+  font-weight: 700;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.weekdays > div {
+  color: rgb(255, 255, 255);
+  font-size: 0.8em;
+}
+
+.days {
+  color: rgb(241, 241, 241);
+  font-size: 0.75em;
+}
+
+.days > div {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border ease-in 0.5s;
+  position: relative;
+}
+
+.day-active::after {
+  content: " ";
+  position: absolute;
+  width: .5rem;
+  height: .5rem;
+  background-color: rgba(14, 118, 168, 0.3);
+  /* background: rgba(72, 132, 156, 0.1)  */
+  opacity: initial;
+  border-radius: 50%;
+  top: .2rem;
+  right: 0;
+}
+.day-select {
+  border: solid 2px #fff;
+}
+
+.text-black{
+  font-weight: 600;
+}
+
+.txt-medium{
+  font-weight: 500;
+  color: #5c5959;
+}
+
+.demo-inline-calendar-card {
+  width: 300px;
+}
+
+.iconosAccion {
+  margin: 3px;
+}
+
+.success-icon{
+  color:rgb(97, 97, 97)
+}
+
+.danger-icon{
+  color:red
+}
+
+
+.tarjeta {
+  width: 400px;
+  height: 300px;
+}
+
+.botonagendar{
+  color:white;
+  background-color:  rgb(62, 112, 62);
+}
+
+#docopy{
+  height: 60px;
+  background: rgba(72, 132, 156, 0.1) 
+}
+
+
+mat-form-field {
+  width: 100%;
+}
+
+.scroll{
+  position: relative;
+  overflow: scroll;
+  height: 83%;
+}
+
+.nombrepsicologa{
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 600;
+  color: rgb(108 108 108);
+}
+
+.fechita{
+  position:relative;
+  left:23%;
+  font-size: 40px;
+  font-weight: 500;
+  color: #2980b9;
+}
+
+
+button.example-custom-date-class {
+  background: orange;
+  border-radius: 100%;
+}

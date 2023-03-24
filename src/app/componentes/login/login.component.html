@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body class="bg-secondary" style="background:url('../../assets/imagen/fondo.jpg');background-size: cover;">
+    <main class="d-flex w-100">
+        <div class="container d-flex flex-column">
+            <div class="row vh-100">
+                <div class="col-sm-12 col-md-3 col-6 mx-auto d-table h-100">
+                    <div class="d-table-cell align-middle">
+
+                        <div class="card" style="max-width: 23rem;">
+                            <div class="card-body">
+                                <div class="m-sm-3">
+                                    <div class="text-center">
+                                        <img src="/assets/imagen/userdefault.png" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
+                                    </div>
+
+                            
+                                    <br>
+
+                                    <form [formGroup]="formulario" (ngSubmit)="ingresar()">
+                                        <mat-form-field class="example-full-width"  appearance="fill" >
+                                            <mat-label>Correo</mat-label>
+                                            <input matInput autocomplete="off" formControlName="usuario" placeholder="Ingrese su correo">
+                                        </mat-form-field>
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Contraseña</mat-label>
+                                            <input matInput type="password" autocomplete="off" formControlName="password">
+                                        </mat-form-field>
+                                        <small>
+                                            <a href="index.html">olvido constraseña?</a>
+                                        </small>
+                                        <div class="text-center mt-4">
+                                            <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Ingresar</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+

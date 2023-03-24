@@ -1,0 +1,139 @@
+
+<div class="row">
+    <div class="col">
+        <h1 mat-dialog-title style="font-weight: 500;">Editar cita</h1>
+    </div>
+</div>
+
+<form [formGroup]="citaForm">
+
+    <mat-grid-list cols = "6" rowHeight = "70px" [gutterSize]="'13px'">
+
+        <!-- Fecha Cita -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1" id="inputdisable">
+                <input type="hidden" formControlName="idpsicologo">
+                <mat-form-field appearance="fill" >
+                    <mat-label>Fecha Nacimiento</mat-label>
+                    <input  matInput [matDatepicker]="dp" formControlName="fechacita" (dateChange)="obtenerfecha($event)">
+                    <mat-datepicker-toggle matSuffix [for]="dp">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                    <mat-error *ngIf="citaForm.get('fechacita')?.invalid &&
+                    citaForm.get('fechacita')?.errors &&
+                    (citaForm.get('fechacita')?.dirty || citaForm.get('fechacita')?.touched)">
+                        <small class="text-danger"
+                        *ngIf="citaForm.get('fechacita')?.hasError('required')">
+                        Campo <b>Fecha</b> es requerido
+                        </small>
+                    </mat-error>
+                </mat-form-field>
+        </mat-grid-tile>
+      
+        
+        <!-- Hora -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field appearance="fill">
+                <mat-label>Seleccione hora</mat-label>
+                <mat-select  (selectionChange)="obtenerhora($event.value)"  formControlName="hora" name="hora" [(value)]="selectedOption" >
+                <mat-option *ngFor="let est of listacitasresul" [value]="est" [disabled]="est.dato.paciente ? true : false"> <!-- [disabled]="est.dato.paciente? true : false"-->
+                    <div *ngIf="est.dato.paciente != null; else fal">
+                        <i style="color: brown;" class="fa-solid fa-circle fa-xs"></i> {{' '+est.formato}} -- {{est.dato.paciente.nombre+' '+est.dato.paciente.apellidos.split(" ")[0]}}
+                    </div>
+                    <ng-template #fal>
+                        <i style="color: rgb(7, 85, 7);" class="fa-solid fa-circle fa-xs"></i> {{est.formato}} -- {{"Libre"}}
+                    </ng-template>
+                </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Psicologo -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label class="titulodisabled">Psicologo</mat-label>
+                <input matInput  formControlName="psicologo">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Paciente -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label class="titulodisabled">Paciente</mat-label>
+                <input matInput  formControlName="paciente">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Modalidad -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Modalidad</mat-label>
+                <mat-select formControlName="modalidad" name="modalidad">
+                    <mat-option value="Presencial">Presencial</mat-option>
+                    <mat-option value="Virtual">Virtual</mat-option>
+                </mat-select>
+                <mat-error *ngIf="citaForm.get('modalidad')?.invalid &&
+                citaForm.get('modalidad')?.errors &&
+                (citaForm.get('modalidad')?.dirty || citaForm.get('modalidad')?.touched)">
+                <mat-error *ngIf="citaForm.get('modalidad')?.hasError('required')">Campo <b>Modalidad</b> es requerido</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+      
+        <!-- Servicio -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Servicio</mat-label>
+                <mat-select formControlName="servicios" name="servicios">
+                    <mat-option value="1">Evaluacion psicológico</mat-option>
+                    <mat-option value="2">Terapias</mat-option>
+                </mat-select>
+                <mat-error *ngIf="citaForm.get('servicios')?.invalid &&
+                citaForm.get('servicios')?.errors &&
+                (citaForm.get('servicios')?.dirty || citaForm.get('servicios')?.touched)">
+                <mat-error *ngIf="citaForm.get('servicios')?.hasError('required')">Campo <b>Modalidad</b> es requerido</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+              
+
+        <!-- Estado cita -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Estado cita</mat-label>
+                <mat-select formControlName="estadocita" name="estadocita">
+                    <mat-option value="Pendiente">Pendiente</mat-option>
+                    <mat-option value="Atendido">Atendido</mat-option>
+                    <mat-option value="Reprogramado">Reprogramado</mat-option>
+                </mat-select>
+                <mat-error *ngIf="citaForm.get('estadocita')?.invalid &&
+                citaForm.get('estadocita')?.errors &&
+                (citaForm.get('estadocita')?.dirty || citaForm.get('estadocita')?.touched)">
+                <mat-error *ngIf="citaForm.get('estadocita')?.hasError('required')">Campo <b>Estado cita</b> es requerido</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+                      
+  
+        <!-- OBservacion -->
+        <mat-grid-tile [colspan] = "6" [rowspan] = "2">
+            <mat-form-field appearance="outline">
+                <mat-label >Observación</mat-label>
+                <textarea matInput matTextareaAutosize matAutosizeMinRows=3 matAutosizeMaxRows=8 formControlName="nota" rows="5"></textarea>
+            </mat-form-field>
+        </mat-grid-tile>
+
+
+        <!-- Botones -->
+        <mat-grid-tile [colspan] = "6" [rowspan] ="1">
+            <div class="col text-end">
+                <button class="btn btn-secondary m-2 " mat-dialog-close>Cancelar</button>
+                <button class="btn btn-primary " (click)="actualizarCita()" [disabled]="citaForm.invalid">Actualizar</button>
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+</form> 
+
+
+

@@ -1,0 +1,79 @@
+<br>
+<mat-card>
+    <div class="row">
+        <div class="row">
+            <div class="col-6 mb-2">
+                <mat-card-title>
+                    Lista de Pacientes
+                </mat-card-title>
+            </div>
+        </div>
+        <div class="row">
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-6 " >
+                        <mat-form-field class="busqueda">
+                            <mat-label>Filtro multiple campos</mat-label>
+                            <input matInput (keyup)="aplicarFiltro($event)" placeholder="Ejemplo.. Bailon" #input>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6 text-end">
+                        <!-- <button class="btn btn-primary" (click)="abrirDialogoNuevoPaciente()">Nuevo Paciente</button> -->
+                    </div>
+                </div>
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource">
+                        <ng-container matColumnDef="ID">
+                        <th mat-header-cell *matHeaderCellDef> idPaciente</th>
+                        <td mat-cell *matCellDef="let fila"> {{fila.id}} </td>
+                        </ng-container>
+                    
+                        <ng-container matColumnDef="NOMBRE">
+                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <td mat-cell *matCellDef="let fila"> {{fila.nombre}} </td>
+                        </ng-container>
+                    
+                        <ng-container matColumnDef="APELLIDOS">
+                        <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+                        <td mat-cell *matCellDef="let fila"> {{fila.apellidos}} </td>
+                        </ng-container>
+
+                    
+                        <ng-container matColumnDef="DNI">
+                        <th mat-header-cell *matHeaderCellDef> Dni </th>
+                        <td mat-cell *matCellDef="let fila"> {{fila.documento}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="TELEFONO">
+                        <th mat-header-cell *matHeaderCellDef> Telefono </th>
+                        <td mat-cell *matCellDef="let fila"> {{fila.telefono}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="DISTRITO">
+                            <th mat-header-cell *matHeaderCellDef> Distrito </th>
+                            <td mat-cell *matCellDef="let fila"> {{fila.distrito}} </td>
+                        </ng-container>
+       
+    
+                        <ng-container matColumnDef="ACCIONES">
+                            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                            <td mat-cell *matCellDef="let fila">
+
+                                <a class="pointer iconosAccion" matTooltip="Editar Usuario" (click)="abrirDialogoEditarPaciente(fila)"><i class="fa-solid fa-pen-to-square fa-xl coloredit"></i></a>
+                                <a class="pointer iconosAccion" matTooltip="Detalle Historia" (click)="verDetallehistoria(fila)"><i class="fa-regular fa-folder-open fa-xl colordetalle"></i></a>
+                                <!-- <a class="pointer iconosAccion" matTooltip="Exportar Datos"><mat-icon class="pdf-icon">picture_as_pdf</mat-icon></a> -->
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+                        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                        aria-label="">
+                    </mat-paginator>
+                </div>
+            </mat-card-content>
+        </div>
+    </div>
+</mat-card>
+

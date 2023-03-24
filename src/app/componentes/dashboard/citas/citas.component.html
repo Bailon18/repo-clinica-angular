@@ -1,0 +1,161 @@
+<br>
+<mat-card >
+    <div class="row">
+        <mat-card-title>
+            Calendario de Citas
+        </mat-card-title>
+        <div class="row">
+            <mat-card-content>
+                <div class="container-fluid p-0">
+                    <main>
+                        <!-- Calendario -->
+                        <section class="calendar p-2">
+                            
+                            <!-- combobox psicologa -->
+                            <div *ngIf="rolInicioSesion != 'Psicologo'">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Seleccione psicolog@</mat-label>
+                                    <mat-select (selectionChange)="obtenerpsicologo($event.value)">
+                                    <mat-option *ngFor="let est of psicologos" [value]="est">
+                                        {{est.nombres}}
+                                    </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <!-- CAlemndario -->
+                            <mat-card class="demo-inline-calendar-card">
+                                <mat-calendar  [(selected)]="selected"  (selectedChange)="obtenerfecha($event)">
+                                </mat-calendar>
+                            </mat-card>
+                            <br>
+
+                            <div class="text-center">
+                                <button routerLink="/dashboard/citaslista" class="btn btn-secondary " type="submit">Visualizar en tabla</button>
+                            </div>
+                            
+
+                        </section>
+                        
+                        <!-- Fila de citas -->
+                        <section class="citas">
+
+                            <div class="doctor">
+
+                                <div class="doctor">
+                                    <img src="/assets/imagen/userdefault.png" />
+                                    <div>
+                                        <p class="nombrepsicologa">{{nombrepsicologa||'Nombre psicologo'}}</p>
+                                        <p>Psicologo Padma</p>
+                                    </div>
+                                    
+                                    <div class="col-6">
+                                        <h6 style="font-size: 25px;
+                                        font-weight: 500;
+                                        color: #2980b9; text-align: 
+                                        center;">{{fechatext || 'Fecha'}}</h6>
+                                    </div>
+        
+                                    
+                                    <div class="col text-end">
+                                        <button *ngIf="rolInicioSesion != 'Psicologo'" class="btn btn-primary " type="submit" (click)="abrirDialogoNuevoPaciente()">Nuevo Paciente</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="scroll">
+                                <div class="hours" *ngFor="let i of listacitasresul">
+                                    <div *ngIf="i.dato.psicologo != null; else fal">
+                                        <div class="cita filaitem">
+                                            <div>
+                                                <h4 style="background-color:#834c9f;font-weight: 500; font-size: 18px; ">{{i.dato.paciente.nombre.substr(0,1)+''+i.dato.paciente.apellidos.substr(0,1)| uppercase}}</h4>
+                                                <p class="txt-medium">{{i.formato}}</p>
+                                            </div>
+                                            <div class="separator active"></div>
+                                            <div class="info">
+
+                                                <h5 style="font-size: 19px; font-weight: 500;">{{i.dato.paciente.nombre}} {{i.dato.paciente.apellidos}}</h5>
+
+                                                <p *ngIf="i.dato.estadocita === 'Pendiente'" style="font-size: 17px;">
+                                                    <b>Género:</b> {{i.dato.paciente.sexo}} &nbsp; <b>Estado: </b>
+                                                    <span class="badge bg-warning text-dark">{{i.dato.estadocita}}</span> &nbsp; <b>Teléfono:</b>+51{{i.dato.paciente.telefono}} &nbsp;
+                                                     
+                                                    <b *ngIf="estadohistoria === 'SI'"> 
+                                                        Historia:
+                                                        <span class="badge bg-success">SI</span>
+                                                    </b> 
+                                                    <b *ngIf="estadohistoria === 'NO'"> 
+                                                        Historia:
+                                                        <span class="badge bg-warning text-dark">NO</span>
+                                                    </b> 
+
+                                                </p>
+
+                                                <p *ngIf="i.dato.estadocita === 'Atendido'" style="font-size: 17px;">
+                                                    <b>Género:</b> {{i.dato.paciente.sexo}} &nbsp; <b>Estado: </b>
+                                                    <span class="badge bg-info text-dark">{{i.dato.estadocita}}</span> &nbsp; <b>Teléfono:</b>+51{{i.dato.paciente.telefono}} &nbsp;
+                                                    
+                                                    <b *ngIf="estadohistoria === 'SI'"> 
+                                                        Historia:
+                                                        <span class="badge bg-success">SI</span>
+                                                    </b> 
+                                                    <b *ngIf="estadohistoria === 'NO'"> 
+                                                        Historia:
+                                                        <span class="badge bg-warning text-dark">NO</span>
+                                                    </b> 
+                                                </p>
+
+                                                <p *ngIf="i.dato.estadocita === 'Reprogramado'" style="font-size: 17px;">
+                                                    <b>Género:</b> {{i.dato.paciente.sexo}} &nbsp; <b>Estado: </b>
+                                                    <span class="badge bg-danger">{{i.dato.estadocita}}</span> &nbsp; <b>Teléfono:</b>+51{{i.dato.paciente.telefono}} &nbsp;
+                                                    
+                                                    <b *ngIf="estadohistoria === 'SI'"> 
+                                                        Historia:
+                                                        <span class="badge bg-success">SI</span>
+                                                    </b> 
+                                                    <b *ngIf="estadohistoria === 'NO'"> 
+                                                        Historia:
+                                                        <span class="badge bg-warning text-dark">NO</span>
+                                                    </b> 
+                                                </p>
+                                                    
+                                                <p>
+                                                </p>
+                                            </div>
+                                            <div class="actions d-block">
+                                                <div>
+                                                    <a class="pointer iconosAccion" style="color:rgb(97, 97, 97)" matTooltip="ver detalle" matTooltipClass="tooltip" (click)="abrirmodaleditarcita(i)">
+                                                        <i class="fa-regular fa-folder-open fa-xl"></i></a>
+                                                    <a class="pointer iconosAccion"  style="color:red" matTooltip="Eliminar" matTooltipClass="tooltip" (click)="eliminarcita(i)" >
+                                                        <i class="fa-regular fa-trash-can fa-xl"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <ng-template #fal>
+                                        <div id="docopy" class="cita ">
+                                            <div>
+                                                <p class="text-black">{{i.formato}}</p>
+                                            </div>
+                                            <div class="separator"></div>
+                                            <div class="info"></div>
+                                            <div class="actions">
+                                                <button style= "color:white; background-color:  rgb(62, 112, 62);" *ngIf="rolInicioSesion != 'Psicologo'" class="btn" (click)="abrirmodalnuevacita(i)">Agendar</button>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    
+                                </div>
+                            </div>
+
+                        </section>
+                    </main>
+                </div>
+            </mat-card-content>
+        </div>
+    </div>
+</mat-card>
+
+
+

@@ -1,0 +1,105 @@
+
+
+
+<div class="row">
+    <div class="col">
+        <h1 mat-dialog-title style="font-weight: 500;">Registra cita</h1>
+    </div>
+    <div class="col mt-2 text-end" style="font-weight: 500;">
+        {{nombrepaciente}}
+    </div>
+</div>
+
+<form [formGroup]="citaForm">
+
+    <mat-grid-list cols = "6" rowHeight = "70px" [gutterSize]="'13px'">
+
+
+        <!-- Fecha Cita -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1" id="inputdisable">
+                <input type="hidden" formControlName="idpsicologo">
+                <input type="hidden" formControlName="idpaciente">
+                <mat-form-field  appearance="fill">
+                    <mat-label class="titulodisabled">Fecha cita</mat-label>
+                    <input matInput formControlName="fechacita" [disabled]="true">
+                </mat-form-field>
+        </mat-grid-tile>
+      
+        <!-- Hora -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label class="titulodisabled">Hora cita</mat-label>
+                <input matInput  formControlName="hora">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Psicologo -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label class="titulodisabled">Psicologo</mat-label>
+                <input matInput  formControlName="psicologo">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Paciente -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label class="titulodisabled">Paciente</mat-label>
+                <input matInput type="number"  formControlName="paciente"  (keyup)="buscarusuario($event)" placeholder="Buscar por dni...">
+                <mat-error *ngIf="citaForm.get('paciente')?.invalid &&
+                citaForm.get('paciente')?.errors &&
+                (citaForm.get('paciente')?.dirty || citaForm.get('paciente')?.touched)">
+                <mat-error style="font-size: 12px;" *ngIf="citaForm.get('paciente')?.hasError('required')">Campo <b>Paciente</b> es requerido</mat-error>
+                <mat-error style="font-size: 12px;" *ngIf="citaForm.get('paciente')?.hasError('invalid')"><b>Paciente</b>  no encontrado</mat-error> 
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Modalidad -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Modalidad</mat-label>
+                <mat-select formControlName="modalidad" name="modalidad">
+                    <mat-option value="Presencial">Presencial</mat-option>
+                    <mat-option value="Virtual">Virtual</mat-option>
+                </mat-select>
+                <mat-error *ngIf="citaForm.get('modalidad')?.invalid &&
+                citaForm.get('modalidad')?.errors &&
+                (citaForm.get('modalidad')?.dirty || citaForm.get('modalidad')?.touched)">
+                <mat-error style="font-size: 12px;"  *ngIf="citaForm.get('modalidad')?.hasError('required')">Campo <b>Modalidad</b> es requerido</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+      
+        
+        <!-- Servicio -->
+        <mat-grid-tile [colspan] = "3" [rowspan] = "1">
+            <mat-form-field  appearance="fill">
+                <mat-label>Servicio</mat-label>
+                <mat-select formControlName="servicios" name="servicios">
+                    <mat-option value="1">Evaluacion psicológico</mat-option>
+                    <mat-option value="2">Terapias</mat-option>
+                </mat-select>
+                <mat-error *ngIf="citaForm.get('servicios')?.invalid &&
+                citaForm.get('servicios')?.errors &&
+                (citaForm.get('servicios')?.dirty || citaForm.get('servicios')?.touched)">
+                <mat-error style="font-size: 12px;" *ngIf="citaForm.get('servicios')?.hasError('required')">Campo <b>Modalidad</b> es requerido</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+              
+
+        <!-- Botones -->
+        <mat-grid-tile [colspan] = "6" [rowspan] ="1">
+            <div class="col text-end">
+                <button class="btn btn-secondary m-2 " mat-dialog-close>Cancelar</button>
+                <button class="btn btn-primary " type="submit" (click)="guardarCita()" [disabled]="citaForm.invalid">Agendar</button>
+            </div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+</form> 
+
+
+

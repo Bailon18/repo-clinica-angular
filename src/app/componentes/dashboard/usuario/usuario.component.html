@@ -1,0 +1,104 @@
+
+<br>
+<mat-card>
+    <div class="row">
+        <div class="row">
+            <div class="col-6 mb-2">
+                <mat-card-title>
+                    Lista de Usuarios
+                </mat-card-title>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-8">
+                                    <mat-form-field>
+                                        <mat-label>Filtro</mat-label>
+                                        <input matInput (keyup)="aplicarFiltro($event)" placeholder="Ejemplo.. Bailon" #input>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-4" style="margin-top: 18px;">
+                                    <mat-checkbox color="primary" class="example-margin" [(ngModel)]="estadoFiltro" (click)="mostrarInactivos()">Mostrar Inactivos</mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 text-end">
+                            <button class="btn btn-primary" (click)="abrirDialogoNuevoUsuario()">Nuevo Usuario</button>
+                        </div>
+                    </div>
+                    <div class="mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource">
+                            <ng-container matColumnDef="ID">
+                            <th mat-header-cell *matHeaderCellDef> idUsuario</th>
+                            <td mat-cell *matCellDef="let fila"> {{fila.id}} </td>
+                            </ng-container>
+                        
+                            <ng-container matColumnDef="NOMBRE">
+                            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                            <td mat-cell *matCellDef="let fila"> {{fila.nombres}} </td>
+                            </ng-container>
+                        
+                            <ng-container matColumnDef="APELLIDOS">
+                            <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+                            <td mat-cell *matCellDef="let fila"> {{fila.apellidos}} </td>
+                            </ng-container>
+                        
+                            <!-- <ng-container matColumnDef="DNI">
+                            <th mat-header-cell *matHeaderCellDef> Dni </th>
+                            <td mat-cell *matCellDef="let fila"> {{fila.dni}} </td>
+                            </ng-container> -->
+                
+                            <ng-container matColumnDef="CORREO">
+                                <th mat-header-cell *matHeaderCellDef> Correo </th>
+                                <td mat-cell *matCellDef="let fila"> {{fila.correo}} </td>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="ESTADO" style="width: 100%;">
+                            <th mat-header-cell *matHeaderCellDef> Estado </th>
+                            <td mat-cell *matCellDef="let fila">
+                                <div *ngIf="fila.estado === 'Activo'; else ladoNe">                
+                                    <span class="badge text-bg-secondary">{{fila.estado}}</span>
+                                </div>
+                                <ng-template #ladoNe>
+                                    <span class="badge text-bg-danger">{{fila.estado}}</span>
+                                </ng-template>  
+                            </td>
+                            </ng-container>
+                        
+                            <ng-container matColumnDef="ROL">
+                            <th mat-header-cell *matHeaderCellDef> Rol </th>
+    
+                            <td mat-cell *matCellDef="let fila">
+                                <p *ngFor="let f of fila.roles">
+                                    {{f.descripcion}}
+                                </p>
+                            </td>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="ACCIONES">
+                                <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                                <td mat-cell *matCellDef="let fila">
+                                    <a class="pointer iconosAccion" matTooltip="Editar Usuario" (click)="editarUsuario(fila)"><mat-icon class="success-icon">edit</mat-icon></a>
+                                    <a class="pointer iconosAccion" matTooltip="Bloquear Usuario" (click)="bloquearUsuario(fila)"><mat-icon class="danger-icon">not_interested</mat-icon></a>
+                                    <!-- <a class="pointer iconosAccion" matTooltip="Exportar Datos"><mat-icon class="pdf-icon">picture_as_pdf</mat-icon></a> -->
+                                </td>
+                            </ng-container>
+                        
+                            <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+                            <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                            aria-label="">
+                        </mat-paginator>
+                    </div>
+                </mat-card-content>
+
+            </div>
+
+        </div>
+    </div>
+</mat-card>

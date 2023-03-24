@@ -1,0 +1,157 @@
+
+<h1 mat-dialog-title style="font-weight: 500;" >{{titulo}}</h1>
+
+<form [formGroup]="usuarioForm"> 
+    
+    <div class="row mb-2">
+        <!-- NOMBRES -->
+        <div class="col-6">
+            <input type="hidden" formControlName="id">
+            <mat-form-field  appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombres">
+            <mat-error class="mensaje" *ngIf="usuarioForm.get('nombres')?.invalid && 
+            usuarioForm.get('nombres')?.errors && 
+            (usuarioForm.get('nombres')?.dirty || usuarioForm.get('nombres')?.touched)">
+                <small class="text-danger"
+                *ngIf="usuarioForm.get('nombres')?.hasError('required')">
+                El campo nombre es requerido
+                </small>
+            </mat-error>
+        </mat-form-field>
+        </div>
+
+        <!-- APELLIDOS -->
+        <div class="col-6">
+            <mat-form-field  appearance="fill">
+                <mat-label>Apellidos</mat-label>
+                <input matInput  formControlName="apellidos">
+                <mat-error class="mensaje"  *ngIf="usuarioForm.get('apellidos')?.invalid && 
+                usuarioForm.get('apellidos')?.errors && 
+                (usuarioForm.get('apellidos')?.dirty || usuarioForm.get('apellidos')?.touched)">
+                    <mat-error *ngIf="usuarioForm.get('apellidos')?.hasError('required')">Campo apellido es requerido</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    
+    <div class="row mb-2">
+
+        <!-- DNI -->
+        <div class="col-6">
+            <mat-form-field appearance="fill">
+                <mat-label>Ingrese Dni</mat-label>
+                <input type="number" formControlName="dni" matInput (keyup)="validardni($event)">
+                <mat-error class="mensaje" *ngIf="usuarioForm.get('dni')?.invalid && 
+                        usuarioForm.get('dni')?.errors && 
+                        (usuarioForm.get('dni')?.dirty || usuarioForm.get('dni')?.touched)">
+                        <mat-error *ngIf="usuarioForm.get('dni')?.hasError('required')">Campo dni es requerido</mat-error>
+                        <mat-error  *ngIf="usuarioForm.get('dni')?.hasError('min')">Campo minimo 8 digitos</mat-error>
+                        <mat-error *ngIf="usuarioForm.get('dni')?.hasError('max')">Campo maximo 8 digitos</mat-error>                    
+                        <mat-error *ngIf="usuarioForm.get('dni')?.hasError('invalid')">Dni ya se encuentra registrado</mat-error>                    
+                </mat-error>
+                
+            </mat-form-field>
+        </div>
+
+        <!-- SEXO -->
+        <div class="col-6">
+            <mat-form-field  appearance="fill">
+                <mat-label>Sexo</mat-label>
+                <mat-select formControlName="sexo" name="sexo">
+                    <mat-option value="Masculino">Masculino</mat-option>
+                    <mat-option value="Femenino">Femenino</mat-option>
+                </mat-select>
+                <mat-error class="mensaje" *ngIf="usuarioForm.get('sexo')?.invalid && 
+                usuarioForm.get('sexo')?.errors && 
+                (usuarioForm.get('sexo')?.dirty || usuarioForm.get('sexo')?.touched)">
+                <mat-error *ngIf="usuarioForm.get('sexo')?.hasError('required')">Campo sexo es requerido</mat-error>                 
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <!-- CORREO -->
+    <div class="row mb-2">
+        <mat-form-field  appearance="fill">
+            <mat-label>Correo</mat-label>
+            <input type="email" formControlName="correo" matInput placeholder="admin@idat.com" (keyup)="validarcorreo($event)">
+            <mat-error class="mensaje" *ngIf="usuarioForm.get('correo')?.invalid && 
+            usuarioForm.get('correo')?.errors && 
+            (usuarioForm.get('correo')?.dirty || usuarioForm.get('correo')?.touched)">
+            <mat-error *ngIf="usuarioForm.get('correo')?.hasError('required')">Campo correo es requerido</mat-error>
+            <mat-error  *ngIf="usuarioForm.get('correo')?.hasError('email')">Campo correo no tiene el formato</mat-error>               
+            <mat-error  *ngIf="usuarioForm.get('correo')?.hasError('invalid')">Correo ya se encuentra registrado</mat-error>               
+        </mat-error>
+        </mat-form-field>
+    </div>
+    
+   
+    <div class="row mb-2">
+
+         <!-- CONTRASEÑA -->
+        <div class="col-6">
+            <mat-form-field  appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input type="password"  formControlName="contrasena" matInput>
+                <mat-error class="mensaje" *ngIf="usuarioForm.get('contrasena')?.invalid && 
+                usuarioForm.get('contrasena')?.errors && 
+                (usuarioForm.get('contrasena')?.dirty || usuarioForm.get('contrasena')?.touched)">
+                <mat-error *ngIf="usuarioForm.get('contrasena')?.hasError('required')">Campo contraseña es requerido</mat-error>
+                <mat-error  *ngIf="usuarioForm.get('contrasena')?.hasError('minlength')">Campo minimo 5 digitos</mat-error>                 
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+         <!-- ESTADO -->
+        <div class="col-6">
+            <div class="row">
+                <div class="col" >
+                    <mat-form-field  appearance="fill" >
+                        <mat-label>Estado</mat-label>
+                        <mat-select formControlName="estado" value="Activo">
+                            <mat-option value="Activo">Activo</mat-option>
+                            <mat-option value="Inactivo">Inactivo</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- ROLES -->
+    <div class="row mb-2">
+        <mat-label class="mb-2">Roles</mat-label>
+        <div *ngFor="let item of listaRoles; let i=index">
+            <label>
+              <input type="checkbox"  name="{{item.descripcion}}"  (change)="onchange($event)"  [(ngModel)]="item.seleccion"  [ngModelOptions]="{standalone: true}"/>
+              {{item.descripcion}}
+            </label>
+          </div>
+          <mat-error class="mensaje" *ngIf="usuarioForm.get('roles')?.invalid ||
+          usuarioForm.get('roles')?.errors || 
+          (usuarioForm.get('roles')?.dirty || usuarioForm.get('roles')?.touched)">
+            <mat-error class="error" *ngIf="this.usuarioForm.get('roles')?.hasError('required')">
+                Seleccione minimo un rol
+            </mat-error>
+        </mat-error>
+    </div>
+    
+    <div class="row mb-2">
+        <div class="col text-end">
+            <button class="btn btn-secondary m-2" mat-dialog-close>Cancelar</button>
+            <button class="btn btn-primary" type="submit" (click)="guardarUsuario()" [disabled]="usuarioForm.invalid">{{tituloBoton}}</button>
+        </div>
+    </div> 
+
+</form>
+
+
+
+
+
+
+  
+  
+
+
